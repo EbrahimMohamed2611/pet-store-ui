@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="card">
+<!--    <img src="..." class="card-img-top" alt="..." />-->
+    <div class="card-body">
+      <h5 class="card-title">Login Form</h5>
+      <form [formGroup]="formLogin">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Email address</label
+          >
+          <input
+            formControlName="email"
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+          <small *ngIf="formLogin.controls['Email']" class="aler aler-danger">
+            Invalid Email
+          </small>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+          />
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+          <label class="form-check-label" for="exampleCheck1"
+            >Check me out</label
+          >
+        </div>
+        <button
+          (click)="login()"
+          [disabled]="formLogin.invalid"
+          type="submit"
+          class="btn btn-primary"
+        >
+          Login
+        </button>
+      </form>
+      {{ token | json }}
+    </div>
+  </div>
+</div>
