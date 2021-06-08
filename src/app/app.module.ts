@@ -12,6 +12,7 @@ import { AuthenticationInterceptorService } from './service/interceptor/authenti
 import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { CategoryComponent } from './component/category/category.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NavbarComponent } from './component/navbar/navbar.component';
     HomeComponent,
      HeaderComponent,
      FooterComponent,
-     NavbarComponent
+     NavbarComponent,
+     CategoryComponent
   ],
   imports: [
     BrowserModule,
