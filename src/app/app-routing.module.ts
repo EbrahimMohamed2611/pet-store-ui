@@ -4,11 +4,13 @@ import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import {CategoryComponent} from './component/category/category.component';
+import {CustomerComponent} from './component/customer/customer.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'customer', component: CustomerComponent },
   { path: 'category', component: CategoryComponent },
   { path: '**', component: NotFoundComponent }
 ];

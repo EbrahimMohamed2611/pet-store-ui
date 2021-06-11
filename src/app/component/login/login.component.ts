@@ -2,7 +2,7 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../../model/User.mode';
+import { User } from '../../model/User.model';
 import { AuthenticationService } from '../../service/authenticate/authentication.service';
 import { UserService } from '../../service/userService/user.service';
 

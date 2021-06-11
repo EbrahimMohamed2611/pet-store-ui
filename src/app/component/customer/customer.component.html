@@ -1,0 +1,134 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Login Form</h5>
+
+      <form [formGroup]="formLogin">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label" >Email </label>
+          <input formControlName="email" type="email"   class="form-control"  id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+          <small *ngIf="formLogin.controls['Email']" class="aler aler-danger">
+            Invalid Email
+          </small>
+        </div>
+
+
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Phone Number</label>
+          <input
+            formControlName="phoneNumber"
+            type="number"
+            class="form-control"
+            id="phoneNumber"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="gender" class="form-label">Gender</label>
+          <input
+            formControlName="gender"
+            type="text"
+            class="form-control"
+            id="gender"
+          />
+        </div>
+
+
+        <div class="mb-3">
+          <label for="userName" class="form-label">User Name</label>
+          <input
+            formControlName="userName"
+            type="text"
+            class="form-control"
+            id="userName"
+          />
+        </div>
+
+
+
+        <div class="mb-3">
+          <label for="street" class="form-label">Street</label>
+          <input
+            formControlName="street"
+            type="text"
+            class="form-control"
+            id="street"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="city" class="form-label">City</label>
+          <input
+            formControlName="city"
+            type="text"
+            class="form-control"
+            id="city"
+          />
+        </div>
+
+
+        <div class="mb-3">
+          <label for="country" class="form-label">Country</label>
+          <input
+            formControlName="country"
+            type="text"
+            class="form-control"
+            id="country"
+          />
+        </div>
+
+
+        <div class="mb-3">
+          <label for="country" class="form-label">Role</label>
+          <input
+            formControlName="role"
+            type="text"
+            class="form-control"
+            id="role"
+          />
+        </div>
+
+
+        <div class="mb-3">
+          <label for="birthDate" class="form-label">Birth Date</label>
+          <input
+            formControlName="birthDate"
+            type="text"
+            class="form-control"
+            id="birthDate"
+          />
+        </div>
+
+
+
+
+        <button
+          (click)="addNewCustomer()"
+          [disabled]="formLogin.invalid"
+          type="submit"
+          class="btn btn-primary"
+        >
+          Add New Customer
+        </button>
+      </form>
+
+
+
+
+<!--      {{ token | json }}-->
+    </div>
+  </div>
+</div>
