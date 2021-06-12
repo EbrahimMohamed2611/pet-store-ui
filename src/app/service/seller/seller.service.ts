@@ -20,6 +20,10 @@ export class SellerService {
     return this.httpClient.get<Seller>(this.url + "/" + id);
   }
 
+  getSellerProducts(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.url + "/" + id + "/products");
+  }
+
   addNewSeller(seller: Seller): Observable<Seller> {
     return this.httpClient.post<Seller>(this.url, seller);
   }
