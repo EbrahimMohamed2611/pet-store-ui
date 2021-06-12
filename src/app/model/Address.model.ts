@@ -1,7 +1,7 @@
 export class Address{
-  street:string;
-  city:string;
-  country:string;
+  street: string;
+  city: string;
+  country: string;
 
   constructor() {
   }
