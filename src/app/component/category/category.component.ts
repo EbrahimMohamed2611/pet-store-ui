@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {CategoryService} from '../../service/category/category.service';
 import {Category} from '../../model/Category.model';
+import {ToastrService} from 'ngx-toastr';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-category',
@@ -10,7 +12,8 @@ import {Category} from '../../model/Category.model';
 export class CategoryComponent implements OnInit {
   public allCategories: Category[];
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService,
+              private toasterService:ToastrService) { }
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -19,9 +22,11 @@ export class CategoryComponent implements OnInit {
   // @ts-ignore
   public getAllCategories(): Category[]{
     this.categoryService.getAllCategory().subscribe((response: Category[]) => {
+      this.toasterService.success("All Categories ")
       this.allCategories = response;
       console.log(this.allCategories);
-    }, (error) => {
+    }, (error:HttpErrorResponse) => {
+      this.toasterService.error(error.message)
       console.log(error);
     });
   }

@@ -14,6 +14,9 @@ import { FooterComponent } from './component/footer/footer.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { CategoryComponent } from './component/category/category.component';
 import { CustomerComponent } from './component/customer/customer.component';
+import { SignUpComponent } from './component/sign-up/sign-up.component';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { CustomerComponent } from './component/customer/customer.component';
      FooterComponent,
      NavbarComponent,
      CategoryComponent,
-     CustomerComponent
+     CustomerComponent,
+     SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +38,8 @@ import { CustomerComponent } from './component/customer/customer.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
 
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true }],
