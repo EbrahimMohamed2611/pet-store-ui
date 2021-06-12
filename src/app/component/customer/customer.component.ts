@@ -31,6 +31,7 @@ export class CustomerComponent implements OnInit {
     });
   }
 
+  // tslint:disable-next-line:typedef
   public addNewCustomer() {
 
     console.log('formLogin.value = > ', this.formLogin.value);
@@ -52,7 +53,7 @@ export class CustomerComponent implements OnInit {
       .subscribe((response) => {
         console.log('response => ', response);
         //
-      }, (error:HttpErrorResponse) => {
+      }, (error: HttpErrorResponse) => {
 
         console.log('error => ', error);
         //
