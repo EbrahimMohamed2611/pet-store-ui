@@ -10,17 +10,35 @@ import {Customer} from '../../model/Customer.model';
 })
 export class CustomerService {
 
+  private url = environment.apiUrl + 'customers';
+
   constructor(private httpClient: HttpClient) { }
 
-  public addNewCustomer(customer: Customer): Observable<Customer> {
-    return this.httpClient.post<Customer>(`${environment.apiUrl}` + 'customers', customer);
+  getCustomers(): Observable<Customer[]> {
+    return this.httpClient.get<Customer[]>(this.url);
   }
 
-  public getCustomerById(customerId: number): Observable<Customer> {
-    return this.httpClient.get<Customer>(`${environment.apiUrl}` + 'customers/' + customerId);
-  }
-  public getAllCustomer(): Observable<Customer[]> {
-    return this.httpClient.get<Customer[]>(`${environment.apiUrl}` + 'customers');
+  getCustomer(id: number): Observable<Customer> {
+    return this.httpClient.get<Customer>(this.url + '/' + id);
   }
 
+  getCustomerOrders(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.url + '/' + id + '/orders');
+  }
+
+  addNewCustomer(customer: Customer): Observable<Customer> {
+    return this.httpClient.post<Customer>(this.url, customer);
+  }
+
+  updateCustomer(customer: Customer): Observable<Customer> {
+    return this.httpClient.put<Customer>(this.url + '/' + customer.id, customer);
+  }
+
+  deleteCustomer(id: number): Observable<any> {
+    return this.httpClient.delete(this.url + '/' + id);
+  }
+
+  deleteCustomers(): Observable<any> {
+    return this.httpClient.delete(this.url);
+  }
 }
