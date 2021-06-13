@@ -6,6 +6,7 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
 import {CategoryComponent} from './component/category/category.component';
 import {CustomerComponent} from './component/customer/customer.component';
 import {SignUpComponent} from './component/sign-up/sign-up.component';
+import { SpeciesComponent } from './component/species/species.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'log-in', component: LoginComponent },
   { path: 'customers', component: CustomerComponent },
   { path: 'categories', component: CategoryComponent },
+  { path: 'species', component: SpeciesComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

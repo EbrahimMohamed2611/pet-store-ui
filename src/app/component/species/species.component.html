@@ -1,0 +1,83 @@
+<div *ngIf="!submitted" style="width: 500px; margin: auto;" class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Species Name" [(ngModel)]="species.speciesName"
+        aria-label="Species Name" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="addNewSpecies()">Add</button>
+    </div>
+</div>
+
+<div *ngIf="submitted" style="width: 500px; margin: auto;" class="input-group mb-3">
+    <p>You successfully created a species! </p>
+    <button class="btn btn-outline-secondary" (click)="newSpecies()">New</button>
+</div>
+
+
+
+<div style="width: 500px; margin: auto;" class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Search by id" [(ngModel)]="species.speciesId"
+        aria-label="Species Id" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="getSpeciesById()">Search</button>
+    </div>
+    <div *ngIf="invalidId">
+        <p> No Species with id : {{species.speciesId}}</p>
+    </div>
+</div>
+
+<div style="width: 500px; margin: auto;" class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Delete by id" [(ngModel)]="speciesId" aria-label="Species Id"
+        aria-describedby="basic-addon2">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="deleteSpeciesById()">Delete</button>
+    </div>
+    <div *ngIf="invalidId">
+        <p> No Species with id : {{species.speciesId}}</p>
+    </div>
+</div>
+
+
+<form>
+    <div class="form-row" style="margin: auto; display: inline-flex;">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Species Id" name="species-id" [(ngModel)]="species.speciesId">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Species Name" name="species-name" [(ngModel)]="species.speciesName">
+        </div>
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" (click)="updateSpecies()">Update</button>
+        </div>
+    </div>
+</form>
+
+<br>
+
+<div style="width: 500px; margin: auto;" class="input-group mb-3">
+    <p>Get all Species</p>
+    <button class="btn btn-outline-secondary" type="button" (click)="getAllSpecies()">
+        Get All
+    </button>
+</div>
+<br>
+
+<div style="width: 500px; margin: auto;" class="col-md-6">
+    <h4>Species List</h4>
+    <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Index</th>
+                <th>Species Id</th>
+                <th>Species Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let singleSpecies of allSpecies; let i = index">
+                <td scope="row">{{i}}</td>
+                <td>{{singleSpecies.speciesId}}</td>
+                <td>{{singleSpecies.speciesName}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
