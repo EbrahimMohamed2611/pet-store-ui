@@ -9,6 +9,8 @@ import {Category} from '../../model/Category.model';
 })
 export class CategoryService {
 
+  private url = environment.apiUrl + 'category';
+
   constructor(private httpClient: HttpClient) { }
 
   public addNewCategory(category: Category): Observable<Category> {
@@ -19,6 +21,10 @@ export class CategoryService {
   }
   public getAllCategory(): Observable<Category[]> {
     return this.httpClient.get<Category[]>(`${environment.apiUrl}` + 'categories');
+  }
+
+  getCategoryProducts(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.url + '/' + id + '/products');
   }
 
 }
