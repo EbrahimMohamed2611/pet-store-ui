@@ -14,9 +14,12 @@ import { FooterComponent } from './component/footer/footer.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { CategoryComponent } from './component/category/category.component';
 import { CustomerComponent } from './component/customer/customer.component';
+import { ProductComponent } from './component/product/product.component';
 import { SignUpComponent } from './component/sign-up/sign-up.component';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { SpeciesComponent } from './component/species/species.component';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +33,16 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
      NavbarComponent,
      CategoryComponent,
      CustomerComponent,
-     SignUpComponent
+feature-species,
+     SignUpComponent,
+     SpeciesComponent,
+
+     feature-product,
+     ProductComponent,
+
+     SignUpComponent,
+     development,
+
   ],
   imports: [
     BrowserModule,

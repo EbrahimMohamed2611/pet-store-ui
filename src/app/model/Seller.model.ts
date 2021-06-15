@@ -1,7 +1,7 @@
-import {Address} from './Address.model';
+import { Address } from "./Address.model";
 
-export class UserSignUp{
-  id: number;
+export class Seller {
+  id?: number;
   email: string;
   phoneNumber: string;
   address: Address = new Address();
@@ -10,7 +10,4 @@ export class UserSignUp{
   gender: string;
   birthDate: Date;
   password: string;
-
-  constructor() {
-  }
 }

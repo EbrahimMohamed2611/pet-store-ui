@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {User} from '../../model/User.model';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {Category} from '../../model/Category.model';
@@ -9,6 +8,8 @@ import {Category} from '../../model/Category.model';
   providedIn: 'root'
 })
 export class CategoryService {
+
+  private url = environment.apiUrl + 'category';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,6 +21,10 @@ export class CategoryService {
   }
   public getAllCategory(): Observable<Category[]> {
     return this.httpClient.get<Category[]>(`${environment.apiUrl}` + 'categories');
+  }
+
+  getCategoryProducts(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.url + '/' + id + '/products');
   }
 
 }

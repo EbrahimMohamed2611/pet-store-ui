@@ -1,6 +1,6 @@
-import {Address} from './Address.model';
+import { Address } from './Address.model';
 
-export class UserSignUp{
+export class ServiceProvider {
   id: number;
   email: string;
   phoneNumber: string;
