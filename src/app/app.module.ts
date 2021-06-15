@@ -18,6 +18,7 @@ import { ProductComponent } from './component/product/product.component';
 import { SignUpComponent } from './component/sign-up/sign-up.component';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { SpeciesComponent } from './component/species/species.component';
 
 
 @NgModule({
@@ -32,11 +33,16 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
      NavbarComponent,
      CategoryComponent,
      CustomerComponent,
+feature-species,
+     SignUpComponent,
+     SpeciesComponent,
+
      feature-product,
      ProductComponent,
 
      SignUpComponent,
      development,
+
   ],
   imports: [
     BrowserModule,

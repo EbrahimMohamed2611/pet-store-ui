@@ -10,7 +10,6 @@ export class UserSignUp{
   gender: string;
   birthDate: Date;
   password: string;
-
   constructor() {
   }
 }
