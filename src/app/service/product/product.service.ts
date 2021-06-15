@@ -10,16 +10,32 @@ import {Product} from '../../model/Product.model';
 })
 
 export class ProductService {
+  private url = environment.apiUrl + 'products';
+
   constructor(private httpClient: HttpClient) { }
 
-  public addNewProduct(product: Product): Observable<Product> {
-    return this.httpClient.post<Product>(`${environment.apiUrl}` + 'products', product);
+  getProducts(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(this.url);
   }
-  public getProductById(productId: number): Observable<Product> {
-    return this.httpClient.get<Product>(`${environment.apiUrl}` + 'products/' + productId);
+
+  getProduct(id: number): Observable<Product> {
+    return this.httpClient.get<Product>(this.url + '/' + id);
   }
-  public getAllProduct(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(`${environment.apiUrl}` + 'products');
+
+  addNewProduct(product: Product): Observable<Product> {
+    return this.httpClient.post<Product>(this.url, product);
+  }
+
+  updateProduct(product: Product): Observable<Product> {
+    return this.httpClient.put<Product>(this.url + '/' + product.id, product);
+  }
+
+  deleteProduct(id: number): Observable<any> {
+    return this.httpClient.delete(this.url + '/' + id);
+  }
+
+  deleteProducts(): Observable<any> {
+    return this.httpClient.delete(this.url);
   }
 
 }
