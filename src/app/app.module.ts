@@ -15,6 +15,10 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { CategoryComponent } from './component/category/category.component';
 import { CustomerComponent } from './component/customer/customer.component';
 import { ProductComponent } from './component/product/product.component';
+import { SignUpComponent } from './component/sign-up/sign-up.component';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { ProductComponent } from './component/product/product.component';
      NavbarComponent,
      CategoryComponent,
      CustomerComponent,
-     ProductComponent
+     feature-product,
+     ProductComponent,
+
+     SignUpComponent,
+     development,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +44,8 @@ import { ProductComponent } from './component/product/product.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
 
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true }],
