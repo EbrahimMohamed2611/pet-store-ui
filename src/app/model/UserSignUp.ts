@@ -11,6 +11,7 @@ export class UserSignUp{
   birthDate: Date;
   password: string;
 
+
   constructor() {
   }
 }
