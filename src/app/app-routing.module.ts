@@ -7,6 +7,7 @@ import {CategoryComponent} from './component/category/category.component';
 import {CustomerComponent} from './component/customer/customer.component';
 import {SignUpComponent} from './component/sign-up/sign-up.component';
 import { SpeciesComponent } from './component/species/species.component';
+import {ShopComponent} from './component/shop/shop.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'customers', component: CustomerComponent },
   { path: 'categories', component: CategoryComponent },
   { path: 'species', component: SpeciesComponent },
+  { path: 'shop', component: ShopComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
