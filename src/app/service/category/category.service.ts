@@ -3,13 +3,13 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {Category} from '../../model/Category.model';
+import { Product } from 'src/app/model/Product.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  private url = environment.apiUrl + 'category';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -23,8 +23,8 @@ export class CategoryService {
     return this.httpClient.get<Category[]>(`${environment.apiUrl}` + 'categories');
   }
 
-  getCategoryProducts(id: number): Observable<any> {
-    return this.httpClient.get<any>(this.url + '/' + id + '/products');
+  getCategoryProducts(id: number): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${environment.apiUrl}/categories/${id}/products`);
   }
 
 }

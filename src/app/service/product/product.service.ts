@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {environment} from '../../../environments/environment';
-import {Product} from '../../model/Product.model';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { Product } from '../../model/Product.model';
+import { Products } from 'src/app/model/Products.model';
 
 
 @Injectable({
@@ -36,6 +37,15 @@ export class ProductService {
 
   deleteProducts(): Observable<any> {
     return this.httpClient.delete(this.url);
+  }
+
+  getCategoryProducts(categoryId: number, page?: number, pageLimit?: number): Observable<Products> {
+    let parameters = new HttpParams().set('categoryId', categoryId.toString());
+    if (page != undefined && pageLimit != undefined) {
+      parameters.append('page', page.toString());
+      parameters.append('pageLimit', pageLimit.toString());
+    }
+    return this.httpClient.get<Products>(this.url, { params: parameters });
   }
 
 }
