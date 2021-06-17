@@ -15,8 +15,13 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getProducts(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(this.url);
+  getProducts(page?: number, pageLimit?: number): Observable<Products> {
+    let parameters = new HttpParams();
+    if (page != undefined && pageLimit != undefined) {
+      parameters.append('page', page.toString());
+      parameters.append('pageLimit', pageLimit.toString());
+    }
+    return this.httpClient.get<Products>(this.url, { params: parameters });
   }
 
   getProduct(id: number): Observable<Product> {

@@ -13,16 +13,24 @@ export class ShopComponent implements OnInit {
 
   products: Product[];
   categories: Category[];
+  pages: number;
 
   constructor(private _productService: ProductService, private _categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this._categoryService.getAllCategory().subscribe(categories => this.categories = categories, error => console.log(error.message));
-    this._productService.getProducts().subscribe(products => this.products = products, error => console.log(error.message));
+    this._productService.getProducts().subscribe(response => {
+      this.products = response.products;
+      this.pages = response.numberOfPages;
+    }
+      , error => console.log(error.message));
   }
 
   displayCategoryProducts(categoryId: number): void {
-    this._categoryService.getCategoryProducts(categoryId).subscribe(products => this.products = products, error => console.log(error.message));
+    this._productService.getCategoryProducts(categoryId).subscribe(response => {
+      this.products = response.products;
+      this.pages = response.numberOfPages;
+    }, error => console.log(error.message));
   }
 
 }
