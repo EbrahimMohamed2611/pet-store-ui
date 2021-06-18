@@ -21,7 +21,9 @@ export class ShopComponent implements OnInit {
   page = 1;
   selectedCategory: any;
   selectedBrand: any;
-  math = Math; 
+  minPriceSelected: number;
+  maxPriceSelected: number;
+  math = Math;
 
   constructor(private _productService: ProductService, private _categoryService: CategoryService, private _brandService: BrandService) { }
 
@@ -38,22 +40,22 @@ export class ShopComponent implements OnInit {
   applyFilters(): void {
     this.page = 1;
     if (this.selectedCategory == undefined && this.selectedBrand == undefined) {
-      this._productService.getProducts(this.page - 1, this.pageLimit).subscribe(response => {
+      this._productService.getProducts(this.page - 1, this.pageLimit, this.minPriceSelected, this.maxPriceSelected).subscribe(response => {
         this.products = response.products;
         this.count = response.count;
       }, error => console.log(error.message));
     } else if (this.selectedCategory != undefined && this.selectedBrand != undefined) {
-      this._productService.getProductsByCategoryAndBrand(this.selectedCategory as number, this.selectedBrand as number, this.page - 1, this.pageLimit).subscribe(response => {
+      this._productService.getProductsByCategoryAndBrand(this.selectedCategory as number, this.selectedBrand as number, this.page - 1, this.pageLimit, this.minPriceSelected, this.maxPriceSelected).subscribe(response => {
         this.products = response.products;
         this.count = response.count;
       }, error => console.log(error.message));
     } else if (this.selectedBrand != undefined) {
-      this._productService.getBrandProducts(this.selectedBrand as number, this.page - 1, this.pageLimit).subscribe(response => {
+      this._productService.getBrandProducts(this.selectedBrand as number, this.page - 1, this.pageLimit, this.minPriceSelected, this.maxPriceSelected).subscribe(response => {
         this.products = response.products;
         this.count = response.count;
       }, error => console.log(error.message));
     } else if (this.selectedCategory != undefined) {
-      this._productService.getCategoryProducts(this.selectedCategory as number, this.page - 1, this.pageLimit).subscribe(response => {
+      this._productService.getCategoryProducts(this.selectedCategory as number, this.page - 1, this.pageLimit, this.minPriceSelected, this.maxPriceSelected).subscribe(response => {
         this.products = response.products;
         this.count = response.count;
       }, error => console.log(error.message));
@@ -67,6 +69,13 @@ export class ShopComponent implements OnInit {
       this.count = response.count;
     }
       , error => console.log(error.message));
+  }
+
+  priceValueChanged(): void {
+    let minPrice = document.querySelector(".noUi-handle.noUi-handle-lower");
+    let maxPrice = document.querySelector(".noUi-handle.noUi-handle-upper");
+    this.minPriceSelected = Number(minPrice?.getAttribute("aria-valuenow"));
+    this.maxPriceSelected = Number(maxPrice?.getAttribute("aria-valuenow"));
   }
 
 }

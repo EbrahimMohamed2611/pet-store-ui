@@ -88,7 +88,7 @@
                                         <div class="filter__body" data-collapse-content>
                                             <div class="filter__container">
                                                 <div class="filter-price" data-min="0" data-max="10000" data-from="0"
-                                                    data-to="10000">
+                                                    data-to="10000" (mouseup)="priceValueChanged()">
                                                     <div class="filter-price__slider"></div>
                                                     <div class="filter-price__title">Price: EGP<span
                                                             class="filter-price__min-value"></span> – EGP<span
@@ -142,7 +142,7 @@
                             </div>
                             <div class="widget-filters__actions d-flex">
                                 <button class="btn btn-primary btn-sm" (click)="applyFilters()">Filter</button>
-                                <button class="btn btn-secondary btn-sm ml-2">Reset</button>
+                                <!-- <button class="btn btn-secondary btn-sm ml-2">Reset</button> -->
                             </div>
                         </div>
                     </div>
@@ -170,12 +170,12 @@
                                 </div>
                                 <div class="view-options__legend">Showing {{math.min(page * pageLimit, count)}} of {{count}} products</div>
                                 <div class="view-options__divider"></div>
-                                <div class="view-options__control"><label for="">Sort By</label>
+                                <!-- <div class="view-options__control"><label for="">Sort By</label>
                                     <div><select class="form-control form-control-sm" name="" id="">
                                             <option value="">Default</option>
                                             <option value="">Name (A-Z)</option>
                                         </select></div>
-                                </div>
+                                </div> -->
                                 <div class="view-options__control"><label for="">Show</label>
                                     <div><select class="form-control form-control-sm" name="" id="">
                                             <option value="" (click)="pageLimit = 12; applyFilters()">12</option>
