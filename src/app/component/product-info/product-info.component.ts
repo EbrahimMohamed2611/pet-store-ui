@@ -9,6 +9,7 @@ import { ProductService } from 'src/app/service/product/product.service';
 })
 export class ProductInfoComponent implements OnInit {
   product: Product;
+  selectedTab = 'description';
   // relatedProducts: Product[];
 
   constructor(private _activatedRoute: ActivatedRoute, private _productService: ProductService) {

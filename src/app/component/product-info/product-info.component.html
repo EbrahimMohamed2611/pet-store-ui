@@ -146,8 +146,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product__rating-legend"><a href="#">{{product.rates.length}}
-                                Reviews</a><span>/</span><a href="#">Write A Review</a></div>
+                        <div class="product__rating-legend">{{product.rates.length}} Reviews</div>
                     </div>
                     <div class="product__description">{{product.description}}</div>
                     <ul class="product__features">
@@ -192,9 +191,9 @@
                 <!-- .product__end -->
                 <div class="product__footer">
                     <div class="product__tags tags">
-                        <div class="tags__list"><a href="#">{{product.category.name}}</a></div>
+                        <div class="tags__list"><a>{{product.category.name}}</a></div>
                     </div>
-                    <div class="product__share-links share-links">
+                    <!-- <div class="product__share-links share-links">
                         <ul class="share-links__list">
                             <li class="share-links__item share-links__item--type--like"><a href="#">Like</a>
                             </li>
@@ -203,93 +202,25 @@
                                     It</a></li>
                             <li class="share-links__item share-links__item--type--counter"><a href="#">4K</a></li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
         <div class="product-tabs">
-            <div class="product-tabs__list"><a href="#tab-description"
-                    class="product-tabs__item product-tabs__item--active">Description</a> <a href="#tab-specification"
-                    class="product-tabs__item">Specification</a> <a href="#tab-reviews"
-                    class="product-tabs__item">Reviews</a></div>
-            <div class="product-tabs__content">
-                <div class="product-tabs__pane product-tabs__pane--active" id="tab-description">
+            <div class="product-tabs__list">
+                <div class="product-tabs__item" [class.product-tabs__item--active]="selectedTab == 'description'" (click)="selectedTab = 'description'">Description</div>
+                <div class="product-tabs__item" [class.product-tabs__item--active]="selectedTab == 'reviews'" (click)="selectedTab = 'reviews'">Reviews</div>
+            </div>
+            <div [ngSwitch]="selectedTab" class="product-tabs__content">
+                <div *ngSwitchCase="'description'" class="product-tabs__pane" [class.product-tabs__pane--active]="selectedTab == 'description'" id="tab-description">
                     <div class="typography">
                         <h3>Product Full Description</h3>
                         <p>{{product.description}}</p>
-                        <h3>Etiam lacus lacus mollis in mattis</h3>
-                        <p>Praesent mattis eget augue ac elementum. Maecenas vel ante ut enim mollis
-                            accumsan. Vestibulum vel eros at mi suscipit feugiat. Sed tortor purus,
-                            vulputate et eros a, rhoncus laoreet orci. Proin sapien neque, commodo at porta
-                            in, vehicula eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et
-                            ultrices posuere cubilia Curae; Curabitur porta vulputate augue, at sollicitudin
-                            nisl molestie eget.</p>
-                        <p>Nunc sollicitudin, nunc id accumsan semper, libero nunc aliquet nulla, nec
-                            pretium ipsum risus ac neque. Morbi eu facilisis purus. Quisque mi tortor,
-                            cursus in nulla ut, laoreet commodo quam. Pellentesque et ornare sapien. In ac
-                            est tempus urna tincidunt finibus. Integer erat ipsum, tristique ac lobortis sit
-                            amet, dapibus sit amet purus. Nam sed lorem nisi. Vestibulum ultrices tincidunt
-                            turpis, sit amet fringilla odio scelerisque non.</p>
                     </div>
                 </div>
-                <div class="product-tabs__pane" id="tab-specification">
-                    <div class="spec">
-                        <h3 class="spec__header">Specification</h3>
-                        <div class="spec__section">
-                            <h4 class="spec__section-title">General</h4>
-                            <div class="spec__row">
-                                <div class="spec__name">Material</div>
-                                <div class="spec__value">Aluminium, Plastic</div>
-                            </div>
-                            <div class="spec__row">
-                                <div class="spec__name">Engine Type</div>
-                                <div class="spec__value">Brushless</div>
-                            </div>
-                            <div class="spec__row">
-                                <div class="spec__name">Battery Voltage</div>
-                                <div class="spec__value">18 V</div>
-                            </div>
-                            <div class="spec__row">
-                                <div class="spec__name">Battery Type</div>
-                                <div class="spec__value">Li-lon</div>
-                            </div>
-                            <div class="spec__row">
-                                <div class="spec__name">Number of Speeds</div>
-                                <div class="spec__value">2</div>
-                            </div>
-                            <div class="spec__row">
-                                <div class="spec__name">Charge Time</div>
-                                <div class="spec__value">1.08 h</div>
-                            </div>
-                            <div class="spec__row">
-                                <div class="spec__name">Weight</div>
-                                <div class="spec__value">1.5 kg</div>
-                            </div>
-                        </div>
-                        <div class="spec__section">
-                            <h4 class="spec__section-title">Dimensions</h4>
-                            <div class="spec__row">
-                                <div class="spec__name">Length</div>
-                                <div class="spec__value">99 mm</div>
-                            </div>
-                            <div class="spec__row">
-                                <div class="spec__name">Width</div>
-                                <div class="spec__value">207 mm</div>
-                            </div>
-                            <div class="spec__row">
-                                <div class="spec__name">Height</div>
-                                <div class="spec__value">208 mm</div>
-                            </div>
-                        </div>
-                        <div class="spec__disclaimer">Information on technical characteristics, the delivery
-                            set, the country of manufacture and the appearance of the goods is for reference
-                            only and is based on the latest information available at the time of
-                            publication.</div>
-                    </div>
-                </div>
-                <div class="product-tabs__pane" id="tab-reviews">
+                <div *ngSwitchCase="'reviews'" class="product-tabs__pane" [class.product-tabs__pane--active]="selectedTab == 'reviews'" id="tab-reviews">
                     <div class="reviews-view">
-                        <div class="reviews-view__list">
+                        <!-- <div class="reviews-view__list">
                             <h3 class="reviews-view__header">Customer Reviews</h3>
                             <div class="reviews-list">
                                 <ol class="reviews-list__content">
@@ -692,7 +623,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <form class="reviews-view__form">
                             <h3 class="reviews-view__header">Write A Review</h3>
                             <div class="row">
