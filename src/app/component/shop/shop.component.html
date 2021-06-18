@@ -7,7 +7,9 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a [routerLink]="['']">Home</a>
                             <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                <use xlink:href="../../../assets/../../../assets/images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                <use
+                                    xlink:href="../../../assets/../../../assets/images/sprite.svg#arrow-rounded-right-6x9">
+                                </use>
                             </svg>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Shop</li>
@@ -31,7 +33,9 @@
                                     <div class="filter filter--opened" data-collapse-item>
                                         <button type="button" class="filter__title" data-collapse-trigger>Categories
                                             <svg class="filter__arrow" width="12px" height="7px">
-                                                <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                                <use
+                                                    xlink:href="../../../assets/images/sprite.svg#arrow-rounded-down-12x7">
+                                                </use>
                                             </svg>
                                         </button>
                                         <div class="filter__body" data-collapse-content>
@@ -40,7 +44,8 @@
                                                     <ul class="filter-categories__list">
                                                         <li *ngFor="let category of categories"
                                                             class="filter-categories__item filter-categories__item--child">
-                                                            <div (click)="displayCategoryProducts(category.id)">{{category.name}}</div>
+                                                            <div (click)="displayCategoryProducts(category.id)">
+                                                                {{category.name}}</div>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -52,7 +57,9 @@
                                     <div class="filter filter--opened" data-collapse-item>
                                         <button type="button" class="filter__title" data-collapse-trigger>Price
                                             <svg class="filter__arrow" width="12px" height="7px">
-                                                <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                                <use
+                                                    xlink:href="../../../assets/images/sprite.svg#arrow-rounded-down-12x7">
+                                                </use>
                                             </svg>
                                         </button>
                                         <div class="filter__body" data-collapse-content>
@@ -72,7 +79,9 @@
                                     <div class="filter filter--opened" data-collapse-item>
                                         <button type="button" class="filter__title" data-collapse-trigger>Brand
                                             <svg class="filter__arrow" width="12px" height="7px">
-                                                <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                                <use
+                                                    xlink:href="../../../assets/images/sprite.svg#arrow-rounded-down-12x7">
+                                                </use>
                                             </svg>
                                         </button>
                                         <div class="filter__body" data-collapse-content>
@@ -156,21 +165,26 @@
                                                 type="button"
                                                 class="layout-switcher__button layout-switcher__button--active">
                                                 <svg width="16px" height="16px">
-                                                    <use xlink:href="../../../assets/images/sprite.svg#layout-grid-16x16"></use>
+                                                    <use
+                                                        xlink:href="../../../assets/images/sprite.svg#layout-grid-16x16">
+                                                    </use>
                                                 </svg>
                                             </button>
                                             <button data-layout="grid-3-sidebar" data-with-features="true"
                                                 title="Grid With Features" type="button"
                                                 class="layout-switcher__button">
                                                 <svg width="16px" height="16px">
-                                                    <use xlink:href="../../../assets/images/sprite.svg#layout-grid-with-details-16x16">
+                                                    <use
+                                                        xlink:href="../../../assets/images/sprite.svg#layout-grid-with-details-16x16">
                                                     </use>
                                                 </svg>
                                             </button>
                                             <button data-layout="list" data-with-features="false" title="List"
                                                 type="button" class="layout-switcher__button">
                                                 <svg width="16px" height="16px">
-                                                    <use xlink:href="../../../assets/images/sprite.svg#layout-list-16x16"></use>
+                                                    <use
+                                                        xlink:href="../../../assets/images/sprite.svg#layout-list-16x16">
+                                                    </use>
                                                 </svg>
                                             </button>
                                         </div>
@@ -195,31 +209,13 @@
                         <div class="products-view__list products-list" data-layout="grid-3-sidebar"
                             data-with-features="false">
                             <div class="products-list__body">
-                                <app-product *ngFor="let product of products" [product-item]="product" class="products-list__item"></app-product>
+                                <app-product
+                                    *ngFor="let product of products | paginate: {itemsPerPage: pageLimit, currentPage: page, totalItems: count}"
+                                    [product-item]="product" class="products-list__item"></app-product>
                             </div>
                         </div>
                         <div class="products-view__pagination">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled"><a class="page-link page-link--with-arrow" href="#"
-                                        aria-label="Previous">
-                                        <svg class="page-link__arrow page-link__arrow--left" aria-hidden="true"
-                                            width="8px" height="13px">
-                                            <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-left-8x13"></use>
-                                        </svg>
-                                    </a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">2 <span
-                                            class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link page-link--with-arrow" href="#"
-                                        aria-label="Next">
-                                        <svg class="page-link__arrow page-link__arrow--right" aria-hidden="true"
-                                            width="8px" height="13px">
-                                            <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-right-8x13"></use>
-                                        </svg>
-                                    </a></li>
-                            </ul>
+                            <pagination-controls class="pagination justify-content-center" (pageChange)="pageChanged($event)" [autoHide]="true" [maxSize]="5" [responsive]="true"></pagination-controls>
                         </div>
                     </div>
                 </div>

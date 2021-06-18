@@ -21,6 +21,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SpeciesComponent } from './component/species/species.component';
 import { ShopComponent } from './component/shop/shop.component';
 import { ProductInfoComponent } from './component/product-info/product-info.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -52,6 +53,7 @@ import { ProductInfoComponent } from './component/product-info/product-info.comp
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgxPaginationModule,
     ToastrModule.forRoot(),
 
   ],
