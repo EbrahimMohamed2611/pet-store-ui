@@ -41,13 +41,36 @@
                                         <div class="filter__body" data-collapse-content>
                                             <div class="filter__container">
                                                 <div class="filter-categories">
-                                                    <ul class="filter-categories__list">
-                                                        <li *ngFor="let category of categories"
+                                                    <div class="filter-categories__list">
+                                                        <label class="filter-list__item">
+                                                            <span class="filter-list__input input-radio">
+                                                                <span class="input-radio__body">
+                                                                    <input class="input-radio__input"
+                                                                        name="category_filter_radio" type="radio"
+                                                                        (click)="selectedCategory = undefined" checked>
+                                                                    <span class="input-radio__circle"></span>
+                                                                </span>
+                                                            </span>
+                                                            <span class="filter-list__title">All Categories</span>
+                                                        </label>
+                                                        <label *ngFor="let category of categories"
+                                                            class="filter-list__item">
+                                                            <span class="filter-list__input input-radio">
+                                                                <span class="input-radio__body">
+                                                                    <input class="input-radio__input"
+                                                                        name="category_filter_radio" type="radio"
+                                                                        (click)="selectedCategory = category.id">
+                                                                    <span class="input-radio__circle"></span>
+                                                                </span>
+                                                            </span>
+                                                            <span class="filter-list__title">{{category.name}}</span>
+                                                        </label>
+                                                        <!-- <li *ngFor="let category of categories"
                                                             class="filter-categories__item filter-categories__item--child">
                                                             <div (click)="displayCategoryProducts(category.id)">
                                                                 {{category.name}}</div>
-                                                        </li>
-                                                    </ul>
+                                                        </li> -->
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -64,11 +87,11 @@
                                         </button>
                                         <div class="filter__body" data-collapse-content>
                                             <div class="filter__container">
-                                                <div class="filter-price" data-min="500" data-max="1500" data-from="590"
-                                                    data-to="1130">
+                                                <div class="filter-price" data-min="0" data-max="10000" data-from="0"
+                                                    data-to="10000">
                                                     <div class="filter-price__slider"></div>
-                                                    <div class="filter-price__title">Price: $<span
-                                                            class="filter-price__min-value"></span> – $<span
+                                                    <div class="filter-price__title">Price: EGP<span
+                                                            class="filter-price__min-value"></span> – EGP<span
                                                             class="filter-price__max-value"></span></div>
                                                 </div>
                                             </div>
@@ -87,57 +110,29 @@
                                         <div class="filter__body" data-collapse-content>
                                             <div class="filter__container">
                                                 <div class="filter-list">
-                                                    <div class="filter-list__list"><label
-                                                            class="filter-list__item"><span
-                                                                class="filter-list__input input-radio"><span
-                                                                    class="input-radio__body"><input
-                                                                        class="input-radio__input" name="filter_radio"
-                                                                        type="radio"> <span
-                                                                        class="input-radio__circle"></span>
-                                                                </span></span><span class="filter-list__title">Wakita
-                                                            </span><span class="filter-list__counter">7</span></label>
-                                                        <label class="filter-list__item"><span
-                                                                class="filter-list__input input-radio"><span
-                                                                    class="input-radio__body"><input
-                                                                        class="input-radio__input" name="filter_radio"
-                                                                        type="radio"> <span
-                                                                        class="input-radio__circle"></span>
-                                                                </span></span><span class="filter-list__title">Zosch
-                                                            </span><span class="filter-list__counter">42</span></label>
-                                                        <label
-                                                            class="filter-list__item filter-list__item--disabled"><span
-                                                                class="filter-list__input input-radio"><span
-                                                                    class="input-radio__body"><input
-                                                                        class="input-radio__input" name="filter_radio"
-                                                                        type="radio" checked="checked"
-                                                                        disabled="disabled"> <span
-                                                                        class="input-radio__circle"></span>
-                                                                </span></span><span
-                                                                class="filter-list__title">WeVALT</span></label> <label
-                                                            class="filter-list__item filter-list__item--disabled"><span
-                                                                class="filter-list__input input-radio"><span
-                                                                    class="input-radio__body"><input
-                                                                        class="input-radio__input" name="filter_radio"
-                                                                        type="radio" disabled="disabled"> <span
-                                                                        class="input-radio__circle"></span>
-                                                                </span></span><span
-                                                                class="filter-list__title">Hammer</span></label> <label
-                                                            class="filter-list__item"><span
-                                                                class="filter-list__input input-radio"><span
-                                                                    class="input-radio__body"><input
-                                                                        class="input-radio__input" name="filter_radio"
-                                                                        type="radio"> <span
-                                                                        class="input-radio__circle"></span>
-                                                                </span></span><span class="filter-list__title">Mitasia
-                                                            </span><span class="filter-list__counter">1</span></label>
-                                                        <label class="filter-list__item"><span
-                                                                class="filter-list__input input-radio"><span
-                                                                    class="input-radio__body"><input
-                                                                        class="input-radio__input" name="filter_radio"
-                                                                        type="radio"> <span
-                                                                        class="input-radio__circle"></span>
-                                                                </span></span><span class="filter-list__title">Metaggo
-                                                            </span><span class="filter-list__counter">25</span></label>
+                                                    <div class="filter-list__list">
+                                                        <label class="filter-list__item">
+                                                            <span class="filter-list__input input-radio">
+                                                                <span class="input-radio__body">
+                                                                    <input class="input-radio__input"
+                                                                        name="brand_filter_radio" type="radio" checked
+                                                                        (click)="selectedBrand = undefined">
+                                                                    <span class="input-radio__circle"></span>
+                                                                </span>
+                                                            </span>
+                                                            <span class="filter-list__title">All Brands</span>
+                                                        </label>
+                                                        <label *ngFor="let brand of brands" class="filter-list__item">
+                                                            <span class="filter-list__input input-radio">
+                                                                <span class="input-radio__body">
+                                                                    <input class="input-radio__input"
+                                                                        name="brand_filter_radio" type="radio"
+                                                                        (click)="selectedBrand = brand.id">
+                                                                    <span class="input-radio__circle"></span>
+                                                                </span>
+                                                            </span>
+                                                            <span class="filter-list__title">{{brand.name}}</span>
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -146,7 +141,7 @@
                                 </div>
                             </div>
                             <div class="widget-filters__actions d-flex">
-                                <button class="btn btn-primary btn-sm">Filter</button>
+                                <button class="btn btn-primary btn-sm" (click)="applyFilters()">Filter</button>
                                 <button class="btn btn-secondary btn-sm ml-2">Reset</button>
                             </div>
                         </div>
@@ -170,27 +165,10 @@
                                                     </use>
                                                 </svg>
                                             </button>
-                                            <button data-layout="grid-3-sidebar" data-with-features="true"
-                                                title="Grid With Features" type="button"
-                                                class="layout-switcher__button">
-                                                <svg width="16px" height="16px">
-                                                    <use
-                                                        xlink:href="../../../assets/images/sprite.svg#layout-grid-with-details-16x16">
-                                                    </use>
-                                                </svg>
-                                            </button>
-                                            <button data-layout="list" data-with-features="false" title="List"
-                                                type="button" class="layout-switcher__button">
-                                                <svg width="16px" height="16px">
-                                                    <use
-                                                        xlink:href="../../../assets/images/sprite.svg#layout-list-16x16">
-                                                    </use>
-                                                </svg>
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="view-options__legend">Showing 6 of 98 products</div>
+                                <div class="view-options__legend">Showing {{math.min(page * pageLimit, count)}} of {{count}} products</div>
                                 <div class="view-options__divider"></div>
                                 <div class="view-options__control"><label for="">Sort By</label>
                                     <div><select class="form-control form-control-sm" name="" id="">
@@ -200,8 +178,8 @@
                                 </div>
                                 <div class="view-options__control"><label for="">Show</label>
                                     <div><select class="form-control form-control-sm" name="" id="">
-                                            <option value="">12</option>
-                                            <option value="">24</option>
+                                            <option value="" (click)="pageLimit = 12; applyFilters()">12</option>
+                                            <option value="" (click)="pageLimit = 24; applyFilters()">24</option>
                                         </select></div>
                                 </div>
                             </div>
@@ -215,7 +193,9 @@
                             </div>
                         </div>
                         <div class="products-view__pagination">
-                            <pagination-controls class="pagination justify-content-center" (pageChange)="pageChanged($event)" [autoHide]="true" [maxSize]="5" [responsive]="true"></pagination-controls>
+                            <pagination-controls class="pagination justify-content-center"
+                                (pageChange)="pageChanged($event)" [autoHide]="true" [maxSize]="5" [responsive]="true">
+                            </pagination-controls>
                         </div>
                     </div>
                 </div>

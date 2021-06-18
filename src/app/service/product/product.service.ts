@@ -51,4 +51,20 @@ export class ProductService {
     return this.httpClient.get<Products>(this.url, { params: parameters });
   }
 
+  getBrandProducts(brandId: number, page?: number, pageLimit?: number): Observable<Products> {
+    let parameters = new HttpParams().set('brandId', brandId.toString());
+    if (page != undefined && pageLimit != undefined) {
+      parameters = parameters.append('page', page.toString()).append('pageLimit', pageLimit.toString());
+    }
+    return this.httpClient.get<Products>(this.url, { params: parameters });
+  }
+
+  getProductsByCategoryAndBrand(categoryId: number, brandId: number, page?: number, pageLimit?: number): Observable<Products> {
+    let parameters = new HttpParams().set('categoryId', categoryId.toString()).append('brandId', brandId.toString());
+    if (page != undefined && pageLimit != undefined) {
+      parameters = parameters.append('page', page.toString()).append('pageLimit', pageLimit.toString());
+    }
+    return this.httpClient.get<Products>(this.url, { params: parameters });
+  }
+
 }
