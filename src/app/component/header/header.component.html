@@ -187,7 +187,7 @@
           <div class="nav-panel__row">
             <div class="nav-panel__departments">
               <!-- .departments -->
-              <div class="departments departments--opened departments--fixed"
+              <div hidden class="departments departments--opened departments--fixed"
                    data-departments-fixed-by=".block-slideshow">
                 <div class="departments__body">
                   <div class="departments__links-wrapper">
@@ -642,7 +642,8 @@
                       </li>
                     </ul>
                   </div>
-                </div><button class="departments__button"><svg class="departments__button-icon"
+                </div>
+                <button class="departments__button"><svg class="departments__button-icon"
                                                                width="18px" height="14px">
                 <use xlink:href="../../../assets/images/sprite.svg#menu-18x14"></use>
               </svg> Shop By Category <svg class="departments__button-arrow" width="9px"
@@ -754,7 +755,7 @@
                   </div>
                 </li>
                 <li class="nav-links__item nav-links__item--with-submenu"><a
-                  href="shop-grid-3-columns-sidebar.html"><span>Shop <svg
+                 [routerLink]="['/shop']"><span>Shop <svg
                   class="nav-links__arrow" width="9px" height="6px">
                                                         <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-down-9x6">
                                                         </use>
