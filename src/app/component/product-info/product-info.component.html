@@ -25,8 +25,8 @@
                 <div class="product__content">
                     <!-- .product__gallery -->
                     <div class="product__gallery">
-                        <div class="product-gallery">
-                            <div class="product-gallery__featured">
+                       - <div class="product-gallery"> 
+                            <!-- <div class="product-gallery__featured">
                                 <div class="owl-carousel" id="product-image">
                                     <ng-template ngFor let-image [ngForOf]="product.images">
                                         <a [href]="image.url" target="_blank">
@@ -34,14 +34,19 @@
                                         </a>
                                     </ng-template>
                                 </div>
-                            </div>
-                            <div class="product-gallery__carousel">
+                            </div>  -->
+                            <!-- <div class="product-gallery__carousel">
                                 <ng-template ngFor let-image [ngForOf]="product.images">
                                     <a href="#" class="product-gallery__carousel-item">
                                         <img class="product-gallery__carousel-image" [src]="image.url" alt="">
                                     </a>
                                 </ng-template>
-                            </div>
+                            </div> -->
+                            <owl-carousel-o [options]="customOptions">
+                                <ng-template carouselSlide *ngFor="let image of product.images" >
+                                    <img [src]="image.url">
+                                </ng-template>  
+                            </owl-carousel-o>
                         </div>
                     </div>
                 </div>
