@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
 
 
   public getAllUsers() {
-    this._userService.getAllUsers().subscribe((response: Response) => {
+    this._userService.getUsers().subscribe((response: Response) => {
       console.log("response.headers ", response.headers.get("authorization"));
     });
   }

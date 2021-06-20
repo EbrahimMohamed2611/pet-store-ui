@@ -22,6 +22,10 @@ import { SpeciesComponent } from './component/species/species.component';
 import { ShopComponent } from './component/shop/shop.component';
 import { ProductInfoComponent } from './component/product-info/product-info.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { UserDetailsComponent } from './component/admin/user-details/user-details.component';
+import { ProductDetailsComponent } from './component/admin/product-details/product-details.component';
+import { ServiceDetailsComponent } from './component/admin/service-details/service-details.component';
+import { OrderDetailsComponent } from './component/admin/order-details/order-details.component';
 
 
 
@@ -42,7 +46,11 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
      ProductComponent,
      SignUpComponent,
      ShopComponent,
-     ProductInfoComponent
+     ProductInfoComponent,
+     UserDetailsComponent,
+     ProductDetailsComponent,
+     ServiceDetailsComponent,
+     OrderDetailsComponent
 
 
   ],

@@ -9,6 +9,10 @@ import {SignUpComponent} from './component/sign-up/sign-up.component';
 import { SpeciesComponent } from './component/species/species.component';
 import {ShopComponent} from './component/shop/shop.component';
 import { ProductInfoComponent } from './component/product-info/product-info.component';
+import { UserDetailsComponent } from './component/admin/user-details/user-details.component';
+import { ServiceDetailsComponent } from './component/admin/service-details/service-details.component';
+import { ProductDetailsComponent } from './component/admin/product-details/product-details.component';
+import { OrderDetailsComponent } from './component/admin/order-details/order-details.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +24,10 @@ const routes: Routes = [
   { path: 'species', component: SpeciesComponent },
   { path: 'product/:id', component: ProductInfoComponent },
   { path: 'shop', component: ShopComponent },
+  { path: 'admin/users', component: UserDetailsComponent },
+  { path: 'admin/products', component: ProductDetailsComponent },
+  { path: 'admin/services', component: ServiceDetailsComponent },
+  { path: 'admin/orders', component: OrderDetailsComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
