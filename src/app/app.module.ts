@@ -26,8 +26,7 @@ import { UserDetailsComponent } from './component/admin/user-details/user-detail
 import { ProductDetailsComponent } from './component/admin/product-details/product-details.component';
 import { ServiceDetailsComponent } from './component/admin/service-details/service-details.component';
 import { OrderDetailsComponent } from './component/admin/order-details/order-details.component';
-
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -62,6 +61,7 @@ import { OrderDetailsComponent } from './component/admin/order-details/order-det
     HttpClientModule,
     BrowserAnimationsModule,
     CarouselModule,
+    NgxPaginationModule,
     ToastrModule.forRoot(),
 
   ],

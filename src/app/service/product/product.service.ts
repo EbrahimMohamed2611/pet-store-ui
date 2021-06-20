@@ -15,11 +15,13 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getProducts(page?: number, pageLimit?: number): Observable<Products> {
+  getProducts(page?: number, pageLimit?: number, minPrice?: number, maxPrice?: number): Observable<Products> {
     let parameters = new HttpParams();
     if (page != undefined && pageLimit != undefined) {
-      parameters.append('page', page.toString());
-      parameters.append('pageLimit', pageLimit.toString());
+      parameters = parameters.set('page', page.toString()).append('pageLimit', pageLimit.toString());
+    }
+    if(minPrice != undefined && maxPrice != undefined) {
+      parameters = parameters.append('price.lt', minPrice.toString()).append('price.gt', maxPrice.toString());
     }
     return this.httpClient.get<Products>(this.url, { params: parameters });
   }
@@ -50,11 +52,35 @@ export class ProductService {
     return this.httpClient.delete(this.url);
   }
 
-  getCategoryProducts(categoryId: number, page?: number, pageLimit?: number): Observable<Products> {
+  getCategoryProducts(categoryId: number, page?: number, pageLimit?: number, minPrice?: number, maxPrice?: number): Observable<Products> {
     let parameters = new HttpParams().set('categoryId', categoryId.toString());
     if (page != undefined && pageLimit != undefined) {
-      parameters.append('page', page.toString());
-      parameters.append('pageLimit', pageLimit.toString());
+      parameters = parameters.append('page', page.toString()).append('pageLimit', pageLimit.toString());
+    }
+    if(minPrice != undefined && maxPrice != undefined) {
+      parameters = parameters.append('price.lt', minPrice.toString()).append('price.gt', maxPrice.toString());
+    }
+    return this.httpClient.get<Products>(this.url, { params: parameters });
+  }
+
+  getBrandProducts(brandId: number, page?: number, pageLimit?: number, minPrice?: number, maxPrice?: number): Observable<Products> {
+    let parameters = new HttpParams().set('brandId', brandId.toString());
+    if (page != undefined && pageLimit != undefined) {
+      parameters = parameters.append('page', page.toString()).append('pageLimit', pageLimit.toString());
+    }
+    if(minPrice != undefined && maxPrice != undefined) {
+      parameters = parameters.append('price.lt', minPrice.toString()).append('price.gt', maxPrice.toString());
+    }
+    return this.httpClient.get<Products>(this.url, { params: parameters });
+  }
+
+  getProductsByCategoryAndBrand(categoryId: number, brandId: number, page?: number, pageLimit?: number, minPrice?: number, maxPrice?: number): Observable<Products> {
+    let parameters = new HttpParams().set('categoryId', categoryId.toString()).append('brandId', brandId.toString());
+    if (page != undefined && pageLimit != undefined) {
+      parameters = parameters.append('page', page.toString()).append('pageLimit', pageLimit.toString());
+    }
+    if(minPrice != undefined && maxPrice != undefined) {
+      parameters = parameters.append('price.lt', minPrice.toString()).append('price.gt', maxPrice.toString());
     }
     return this.httpClient.get<Products>(this.url, { params: parameters });
   }

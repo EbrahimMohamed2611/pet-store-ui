@@ -23,6 +23,7 @@
     "bootstrap": "^5.0.1",
     "jquery": "^3.6.0",
     "ngx-owl-carousel-o": "^6.0.0",
+    "ngx-pagination": "^5.1.1",
     "ngx-toastr": "^14.0.0",
     "rxjs": "~6.6.0",
     "save": "^2.4.0",
@@ -30,7 +31,7 @@
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.1102.14",
+    "@angular-devkit/build-angular": "^12.0.4",
     "@angular/cli": "^11.2.14",
     "@angular/compiler-cli": "~11.2.8",
     "@types/jasmine": "~3.6.0",
