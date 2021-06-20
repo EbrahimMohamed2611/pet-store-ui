@@ -22,6 +22,8 @@ import { SpeciesComponent } from './component/species/species.component';
 import { ShopComponent } from './component/shop/shop.component';
 import { ProductInfoComponent } from './component/product-info/product-info.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 
 
@@ -54,6 +56,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     HttpClientModule,
     BrowserAnimationsModule,
     CarouselModule,
+    NgxPaginationModule,
     ToastrModule.forRoot(),
 
   ],

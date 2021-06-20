@@ -34,6 +34,7 @@ export class ProductInfoComponent implements OnInit {
     nav: true
   }
   product: Product;
+  selectedTab = 'description';
   // relatedProducts: Product[];
 
   constructor(private _activatedRoute: ActivatedRoute, private _productService: ProductService) {
