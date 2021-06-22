@@ -27,6 +27,7 @@ import { ProductDetailsComponent } from './component/admin/product-details/produ
 import { ServiceDetailsComponent } from './component/admin/service-details/service-details.component';
 import { OrderDetailsComponent } from './component/admin/order-details/order-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AboutUsComponent } from './component/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
      UserDetailsComponent,
      ProductDetailsComponent,
      ServiceDetailsComponent,
-     OrderDetailsComponent
+     OrderDetailsComponent,
+     AboutUsComponent
 
 
   ],
