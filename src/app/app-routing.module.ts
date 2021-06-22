@@ -13,6 +13,7 @@ import { UserDetailsComponent } from './component/admin/user-details/user-detail
 import { ServiceDetailsComponent } from './component/admin/service-details/service-details.component';
 import { ProductDetailsComponent } from './component/admin/product-details/product-details.component';
 import { OrderDetailsComponent } from './component/admin/order-details/order-details.component';
+import { ContactUsComponent } from './component/contact-us/contact-us.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'admin/products', component: ProductDetailsComponent },
   { path: 'admin/services', component: ServiceDetailsComponent },
   { path: 'admin/orders', component: OrderDetailsComponent },
+  { path: 'contact-us', component: ContactUsComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
