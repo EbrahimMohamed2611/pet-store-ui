@@ -1,4 +1,4 @@
 export class Rate {
-    id?: { userId: number, productId: number };
+    userName: string;
     rateNumber: number;
 }
