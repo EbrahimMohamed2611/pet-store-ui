@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {UserService} from "../userService/user.service";
 import {Observable} from "rxjs";
 import {CartItem} from "../../model/CartItem.model";
 import {Product} from "../../model/Product.model";

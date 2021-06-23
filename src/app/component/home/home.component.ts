@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {JwtHelperService} from '@auth0/angular-jwt';
-import {AuthenticationService} from '../../service/authenticate/authentication.service';
-import {UserService} from '../../service/userService/user.service';
 import {CategoryService} from "../../service/category/category.service";
 import {Category} from "../../model/Category.model";
 import {ToastrService} from "ngx-toastr";

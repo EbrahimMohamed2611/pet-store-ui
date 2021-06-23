@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {CartItem} from '../../model/CartItem.model';
 import {environment} from '../../../environments/environment';
-import {UserService} from '../userService/user.service';
 import {Product} from '../../model/Product.model';
 
 @Injectable({

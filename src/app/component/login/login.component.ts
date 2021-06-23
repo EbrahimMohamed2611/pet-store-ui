@@ -1,10 +1,9 @@
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../model/User.model';
 import { AuthenticationService } from '../../service/authenticate/authentication.service';
-import { UserService } from '../../service/userService/user.service';
+import {UserService} from "../../service/user/user.service";
 
 @Component({
   selector: 'app-login',
@@ -25,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formLogin = this._formBuilder.group({
-      email: ['ebrahim@gmail.com', [Validators.email, Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
+      email: ['', [Validators.email, Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
       password: ['', [Validators.required]]
     });
     this.getAllUsers();
@@ -40,7 +39,7 @@ export class LoginComponent implements OnInit {
       console.log(response);
       if (response.jwtToken) {
         localStorage.setItem("token", response.jwtToken);
-        this._routerService.navigate(["home"]);
+        this._routerService.navigate(['/home']);
       }
     }, (error: Error) => {
 
