@@ -13,6 +13,7 @@ import { UserDetailsComponent } from './component/admin/user-details/user-detail
 import { ServiceDetailsComponent } from './component/admin/service-details/service-details.component';
 import { ProductDetailsComponent } from './component/admin/product-details/product-details.component';
 import { OrderDetailsComponent } from './component/admin/order-details/order-details.component';
+import { ProfileComponent } from './component/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +25,8 @@ const routes: Routes = [
   { path: 'species', component: SpeciesComponent },
   { path: 'product/:id', component: ProductInfoComponent },
   { path: 'shop', component: ShopComponent },
+  { path: 'customer/profile', component: ProfileComponent },
+
   { path: 'admin/users', component: UserDetailsComponent },
   { path: 'admin/products', component: ProductDetailsComponent },
   { path: 'admin/services', component: ServiceDetailsComponent },
