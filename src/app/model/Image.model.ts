@@ -1,4 +1,8 @@
 export class Image {
-    id?: number;
-    url: string;
+  id?: number;
+  url: string;
+
+
+  constructor() {
+  }
 }

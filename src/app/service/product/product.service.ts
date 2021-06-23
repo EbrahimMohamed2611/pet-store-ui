@@ -20,7 +20,7 @@ export class ProductService {
     if (page != undefined && pageLimit != undefined) {
       parameters = parameters.set('page', page.toString()).append('pageLimit', pageLimit.toString());
     }
-    if(minPrice != undefined && maxPrice != undefined) {
+    if (minPrice != undefined && maxPrice != undefined) {
       parameters = parameters.append('price.lt', minPrice.toString()).append('price.gt', maxPrice.toString());
     }
     return this.httpClient.get<Products>(this.url, { params: parameters });
@@ -51,7 +51,7 @@ export class ProductService {
     if (page != undefined && pageLimit != undefined) {
       parameters = parameters.append('page', page.toString()).append('pageLimit', pageLimit.toString());
     }
-    if(minPrice != undefined && maxPrice != undefined) {
+    if (minPrice != undefined && maxPrice != undefined) {
       parameters = parameters.append('price.lt', minPrice.toString()).append('price.gt', maxPrice.toString());
     }
     return this.httpClient.get<Products>(this.url, { params: parameters });
@@ -62,7 +62,7 @@ export class ProductService {
     if (page != undefined && pageLimit != undefined) {
       parameters = parameters.append('page', page.toString()).append('pageLimit', pageLimit.toString());
     }
-    if(minPrice != undefined && maxPrice != undefined) {
+    if (minPrice != undefined && maxPrice != undefined) {
       parameters = parameters.append('price.lt', minPrice.toString()).append('price.gt', maxPrice.toString());
     }
     return this.httpClient.get<Products>(this.url, { params: parameters });
@@ -73,10 +73,18 @@ export class ProductService {
     if (page != undefined && pageLimit != undefined) {
       parameters = parameters.append('page', page.toString()).append('pageLimit', pageLimit.toString());
     }
-    if(minPrice != undefined && maxPrice != undefined) {
+    if (minPrice != undefined && maxPrice != undefined) {
       parameters = parameters.append('price.lt', minPrice.toString()).append('price.gt', maxPrice.toString());
     }
     return this.httpClient.get<Products>(this.url, { params: parameters });
+  }
+
+  public getTopRatedProducts(rateSize: number): Observable<any> {
+    return this.httpClient.get<any>(this.url + `?rateSize=${rateSize}`);
+  }
+
+  public getSpecialOffersProducts(size: number): Observable<any> {
+    return this.httpClient.get<any>(this.url + `?size=${size}`);
   }
 
 }

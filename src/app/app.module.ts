@@ -22,6 +22,9 @@ import { SpeciesComponent } from './component/species/species.component';
 import { ShopComponent } from './component/shop/shop.component';
 import { ProductInfoComponent } from './component/product-info/product-info.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ShoppingCartComponent } from './component/shopping-cart/shopping-cart.component';
+import {ShoppingCartService} from "./service/shoppingCart/shopping-cart.service";
+import { CheckoutComponent } from './component/checkout/checkout.component';
 
 
 
@@ -42,7 +45,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
      ProductComponent,
      SignUpComponent,
      ShopComponent,
-     ProductInfoComponent
+     ProductInfoComponent,
+     ShoppingCartComponent,
+     CheckoutComponent
 
 
   ],
@@ -55,6 +60,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserAnimationsModule,
     NgxPaginationModule,
     ToastrModule.forRoot(),
+
 
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true }],
