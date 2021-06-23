@@ -9,9 +9,10 @@ import {SignUpComponent} from './component/sign-up/sign-up.component';
 import {SpeciesComponent} from './component/species/species.component';
 import {ShopComponent} from './component/shop/shop.component';
 import {ProductInfoComponent} from './component/product-info/product-info.component';
-import {ShoppingCartComponent} from "./component/shopping-cart/shopping-cart.component";
-import {CheckoutComponent} from "./component/checkout/checkout.component";
-import {LayoutComponent} from "./component/layout/layout.component";
+import {ShoppingCartComponent} from './component/shopping-cart/shopping-cart.component';
+import {CheckoutComponent} from './component/checkout/checkout.component';
+import {LayoutComponent} from './component/layout/layout.component';
+import {ServicesShopComponent} from './component/services-shop/services-shop.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
       {path: 'species', component: SpeciesComponent},
       {path: 'product/:id', component: ProductInfoComponent},
       {path: 'shop', component: ShopComponent},
+      {path: 'services', component: ServicesShopComponent},
       {path: 'cart', component: ShoppingCartComponent},
       {path: 'checkout', component: CheckoutComponent},
     ]

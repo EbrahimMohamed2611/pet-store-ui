@@ -1,0 +1,120 @@
+<div class="service-card">
+    <div class="service-card__image">
+        <!-- <a href="/service/{{service.id}}"> -->
+        <a [routerLink]="['/service', service.id]">
+            <!-- <img [src]="service.images[0]?.url" alt="Service image"> -->
+        </a>
+    </div>
+    <div class="service-card__info">
+        <div class="service-card__name">
+            <a [routerLink]="['/service', service.id]">{{service.name}}</a>
+            <!-- <a href="/service/{{service.id}}">{{service.name}}</a> -->
+        </div>
+<!--        <div class="service-card__rating">-->
+<!--            <div class="rating">-->
+<!--                <div class="rating__body">-->
+<!--                    <svg class="rating__star rating__star&#45;&#45;active" width="13px" height="12px">-->
+<!--                        <g class="rating__fill">-->
+<!--                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>-->
+<!--                        </g>-->
+<!--                        <g class="rating__stroke">-->
+<!--                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">-->
+<!--                            </use>-->
+<!--                        </g>-->
+<!--                    </svg>-->
+<!--                    <div class="rating__star rating__star&#45;&#45;only-edge rating__star&#45;&#45;active">-->
+<!--                        <div class="rating__fill">-->
+<!--                            <div class="fake-svg-icon"></div>-->
+<!--                        </div>-->
+<!--                        <div class="rating__stroke">-->
+<!--                            <div class="fake-svg-icon"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <svg class="rating__star rating__star&#45;&#45;active" width="13px" height="12px">-->
+<!--                        <g class="rating__fill">-->
+<!--                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>-->
+<!--                        </g>-->
+<!--                        <g class="rating__stroke">-->
+<!--                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">-->
+<!--                            </use>-->
+<!--                        </g>-->
+<!--                    </svg>-->
+<!--                    <div class="rating__star rating__star&#45;&#45;only-edge rating__star&#45;&#45;active">-->
+<!--                        <div class="rating__fill">-->
+<!--                            <div class="fake-svg-icon"></div>-->
+<!--                        </div>-->
+<!--                        <div class="rating__stroke">-->
+<!--                            <div class="fake-svg-icon"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <svg class="rating__star rating__star&#45;&#45;active" width="13px" height="12px">-->
+<!--                        <g class="rating__fill">-->
+<!--                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>-->
+<!--                        </g>-->
+<!--                        <g class="rating__stroke">-->
+<!--                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">-->
+<!--                            </use>-->
+<!--                        </g>-->
+<!--                    </svg>-->
+<!--                    <div class="rating__star rating__star&#45;&#45;only-edge rating__star&#45;&#45;active">-->
+<!--                        <div class="rating__fill">-->
+<!--                            <div class="fake-svg-icon"></div>-->
+<!--                        </div>-->
+<!--                        <div class="rating__stroke">-->
+<!--                            <div class="fake-svg-icon"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <svg class="rating__star rating__star&#45;&#45;active" width="13px" height="12px">-->
+<!--                        <g class="rating__fill">-->
+<!--                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>-->
+<!--                        </g>-->
+<!--                        <g class="rating__stroke">-->
+<!--                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">-->
+<!--                            </use>-->
+<!--                        </g>-->
+<!--                    </svg>-->
+<!--                    <div class="rating__star rating__star&#45;&#45;only-edge rating__star&#45;&#45;active">-->
+<!--                        <div class="rating__fill">-->
+<!--                            <div class="fake-svg-icon"></div>-->
+<!--                        </div>-->
+<!--                        <div class="rating__stroke">-->
+<!--                            <div class="fake-svg-icon"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <svg class="rating__star" width="13px" height="12px">-->
+<!--                        <g class="rating__fill">-->
+<!--                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>-->
+<!--                        </g>-->
+<!--                        <g class="rating__stroke">-->
+<!--                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">-->
+<!--                            </use>-->
+<!--                        </g>-->
+<!--                    </svg>-->
+<!--                    <div class="rating__star rating__star&#45;&#45;only-edge">-->
+<!--                        <div class="rating__fill">-->
+<!--                            <div class="fake-svg-icon"></div>-->
+<!--                        </div>-->
+<!--                        <div class="rating__stroke">-->
+<!--                            <div class="fake-svg-icon"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--             <div class="service-card__rating-legend">{{service.rates.length}} Reviews</div> -->
+<!--        </div>-->
+        <ul class="service-card__features-list">
+            <li>Service Type: {{service.type.name}}</li>
+        </ul>
+    </div>
+<!--    <div class="service-card__actions">-->
+<!--        <div class="service-card__availability">Availability: <span class="text-success">In Stock</span></div>-->
+<!--        <div class="service-card__prices">{{service.price | currency:'EGP':true}}</div>-->
+<!--        <div class="service-card__buttons">-->
+<!--            <button (click)="addServiceToShoppingCart(service,1)" class="btn btn-primary service-card__addtocart" type="button">Add To Cart-->
+<!--            </button>-->
+<!--            <button (click)="addServiceToShoppingCart(service,1)" class="btn btn-secondary service-card__addtocart service-card__addtocart&#45;&#45;list" type="button">Add To-->
+<!--                Cart-->
+<!--            </button>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>

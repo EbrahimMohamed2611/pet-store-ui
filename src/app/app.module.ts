@@ -26,6 +26,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ShoppingCartComponent } from './component/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './component/checkout/checkout.component';
 import { LayoutComponent } from './component/layout/layout.component';
+import { ServicesShopComponent } from './component/services-shop/services-shop.component';
+import { ServiceComponent } from './component/service/service.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { LayoutComponent } from './component/layout/layout.component';
      ProductInfoComponent,
      ShoppingCartComponent,
      CheckoutComponent,
-     LayoutComponent
+     LayoutComponent,
+     ServicesShopComponent,
+     ServiceComponent
 
 
   ],
