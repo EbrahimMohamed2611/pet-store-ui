@@ -26,6 +26,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ShoppingCartComponent } from './component/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './component/checkout/checkout.component';
 import { LayoutComponent } from './component/layout/layout.component';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider, SocialAuthServiceConfig
+} from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -65,7 +69,25 @@ import { LayoutComponent } from './component/layout/layout.component';
 
 
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true }],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '150394644628-b6rfj7tbi4pv0cguooulnsomi7a4p1qv.apps.googleusercontent.com'
+            )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('950564655732078')
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

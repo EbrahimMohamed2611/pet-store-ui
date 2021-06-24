@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { User } from '../../model/User.model';
-import { AuthenticationService } from '../../service/authenticate/authentication.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {User} from '../../model/User.model';
+import {AuthenticationService} from '../../service/authenticate/authentication.service';
 import {UserService} from "../../service/user/user.service";
+import {SocialMediaService} from "../../service/socialMedia/social-media.service";
+import {FacebookLoginProvider, GoogleLoginProvider, SocialAuthService} from "angularx-social-login";
+import {SocialMediaToken} from "../../model/SocialMediaToken.model";
+import {AuthenticationResponse} from "../../model/AuthenticationResponse";
 
 @Component({
   selector: 'app-login',
@@ -17,8 +21,10 @@ export class LoginComponent implements OnInit {
   token: string;
 
   constructor(private _formBuilder: FormBuilder, private _userService: UserService,
-    private _authenticationService: AuthenticationService,
-    private _routerService: Router) {
+              private _authenticationService: AuthenticationService,
+              private _routerService: Router,
+              private authService: SocialAuthService,
+              private _socialMediaService: SocialMediaService) {
     this.getAllUsers();
   }
 
@@ -46,6 +52,41 @@ export class LoginComponent implements OnInit {
       console.log(error);
     })
 
+  }
+
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((response) => {
+      let token = new SocialMediaToken();
+      token.token = response.idToken;
+      this._socialMediaService.loginWithGoogle(token).subscribe((response:AuthenticationResponse)=>{
+        console.log(response.jwtToken);
+        localStorage.setItem("token", response.jwtToken );
+        this._routerService.navigate(['/home']);
+      }, (error)=>{
+
+        console.log(error);
+      })
+
+    }, (error) => {
+      console.log(error);
+    })
+  }
+
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((response) => {
+      let token = new SocialMediaToken();
+      token.token = response.authToken;
+      this._socialMediaService.loginWithFacebook(token).subscribe((response: AuthenticationResponse) => {
+        console.log(response.jwtToken);
+        localStorage.setItem("token", response.jwtToken);
+        this._routerService.navigate(['/home']);
+      }, (error) => {
+
+        console.log(error);
+      })
+    }, (error) => {
+      console.log(error);
+    })
   }
 
 
