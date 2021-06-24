@@ -1,3 +1,7 @@
 .product-tabs__item {
-    cursor: hand;
+  cursor: pointer;
+}
+
+owl-carousel-o {
+  cursor: pointer;
 }
