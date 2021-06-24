@@ -83,7 +83,7 @@
             </div>
             <h1 class="product__name">
               {{product.name}}
-              <div class="d-inline-block align-text-top product-card__badge product-card__badge--sale">Sale</div>
+              <div *ngIf="product.discount > 0" class="d-inline-block align-text-top product-card__badge product-card__badge--sale">Sale</div>
             </h1>
             <div class="product__rating">
               <div class="product__rating-stars">
