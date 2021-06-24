@@ -11,21 +11,33 @@ import { CustomerService } from 'src/app/service/customer/customer.service';
 })
 export class ProfileComponent implements OnInit {
 
- 
-  customer:Customer;
+  optionsSelect: Array<any>;
+  selected: any;
+  customer:Customer=new Customer();
   constructor(private customerService:CustomerService,private toaster:ToastrService) {
    }
 
     ngOnInit(): void {
-      this.customerService.getCustomer(1).subscribe((response : Customer)=>{
+      this.customerService.getCustomer(2).subscribe((response : Customer)=>{
         this.customer=response;
       },(error : HttpErrorResponse)=>{
         this.toaster.error(error.message)
       });
+
+      this.optionsSelect = [
+        {value: 'MALE', label: 'Male'},
+        {value: 'FEMALE', label: 'Female'},
+      ];
   }
+  
+  public update(customer:Customer) {
+    this.customerService.updateCustomer(this.customer).subscribe((response: Customer) => {
+      console.log(customer);
+    },(error:HttpErrorResponse)=>{
+      this.toaster.error(error.message)
+    });
 
 
 
-
-
+  }
 }
