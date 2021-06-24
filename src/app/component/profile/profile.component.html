@@ -1,4 +1,7 @@
-<div class="container profile-form">
+<div style="padding-top: 20px;" class="container">
+  <button style="margin-left:1040px" *ngIf="!isEditable" class="btn btn-warning" (click)="edit()">Edit</button>
+</div>
+<div style="padding-top: 20px;" class="container profile-form">
   <div class="card-container">
     <div class="card-flip">
       <div class="card front">
@@ -9,7 +12,7 @@
               <div class="card-body">
                 <div class="form-group">
                   <label>Email</label>
-                  <input type="text" class="form-control" disabled value={{customer.email}} >
+                     <label>{{customer.email}}</label>
                 </div>
                 <div class="form-group">
                   <label>Phone Number</label>
@@ -19,7 +22,29 @@
                         <i class="fas fa-phone"></i>
                       </div>
                     </div>
-                    <input type="text" class="form-control phone-number" value={{customer.phoneNumber}}>
+                    <input pattern="[0-9]{11}" required [disabled]="!isEditable" type="tel" class="form-control phone-number" value={{customer.phoneNumber}}>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>First Name</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="far fa-user"></i>
+                      </div>
+                    </div>
+                    <input [disabled]="!isEditable" type="text" class="form-control" value={{customer.firstName}}>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Last Name</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="far fa-user"></i>
+                      </div>
+                    </div>
+                    <input [disabled]="!isEditable" type="text" class="form-control" value={{customer.lastName}}>
                   </div>
                 </div>
                 <div class="form-group">
@@ -30,7 +55,7 @@
                         <i class="far fa-user"></i>
                       </div>
                     </div>
-                    <input type="text" class="form-control" value={{customer.userName}}>
+                    <input [disabled]="!isEditable" type="text" class="form-control" value={{customer.userName}}>
                   </div>
                 </div>
                 <div class="form-group">
@@ -41,26 +66,13 @@
                         <i class="fas fa-address-book"></i>
                       </div>
                     </div>
-                    <input type="text" class="form-control" placeholder="Street" value={{customer.address.street}}>
-                    <input type="text" class="form-control" placeholder="City" value={{customer.address.city}}>
-                    <input type="text" class="form-control" placeholder="Country" value={{customer.address.country}}>
+                    <input [disabled]="!isEditable" type="text" class="form-control" placeholder="Street" value={{customer.address.street}}>
+                    <input [disabled]="!isEditable" type="text" class="form-control" placeholder="City" value={{customer.address.city}}>
+                    <input [disabled]="!isEditable" type="text" class="form-control" placeholder="Country" value={{customer.address.country}}>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label>BirthDate</label>
-                  <input type="date" class="form-control datepicker" value={{customer.birthDate}}>
-                </div>
-                <div class="form-group">
-                  <label>Gender</label>
-                  <select class="form-control"  >
-                    <option value="" disabled selected>{{customer.gender}}</option>
-                <option *ngFor="let option of optionsSelect; let i = index" [value]="optionsSelect[i].value">
-                  {{optionsSelect[i].value}}
-                </option>
-                  </select>
-                </div>
-                <button class="btn btn-primary mr-1" type="submit" (click)="update(customer)">Save Changes</button>
-                <button class="btn btn-primary mr-1" type="cancel" [routerLink]="['/home']">Cancel</button>
+                <button *ngIf="isEditable" class="btn btn-primary mr-1" (click)="update(customer)">Save Changes</button>
+                <button *ngIf="isEditable" class="btn btn-primary mr-1" (click)="cancel()">Cancel</button>
               </div>
             </div>
       </div>

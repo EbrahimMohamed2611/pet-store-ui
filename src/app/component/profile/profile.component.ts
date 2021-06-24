@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   optionsSelect: Array<any>;
   selected: any;
   customer:Customer=new Customer();
+  isEditable:boolean;
   constructor(private customerService:CustomerService,private toaster:ToastrService) {
    }
 
@@ -24,20 +25,24 @@ export class ProfileComponent implements OnInit {
         this.toaster.error(error.message)
       });
 
-      this.optionsSelect = [
-        {value: 'MALE', label: 'Male'},
-        {value: 'FEMALE', label: 'Female'},
-      ];
   }
   
   public update(customer:Customer) {
     this.customerService.updateCustomer(this.customer).subscribe((response: Customer) => {
       console.log(customer);
+      this.isEditable=false;
     },(error:HttpErrorResponse)=>{
       this.toaster.error(error.message)
     });
 
 
+
+  }
+  public edit(){
+    this.isEditable=true;
+  }
+  public cancel(){
+    this.isEditable=false;
 
   }
 }

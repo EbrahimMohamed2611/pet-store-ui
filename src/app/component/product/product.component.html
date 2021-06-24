@@ -112,9 +112,9 @@
         <div class="product-card__availability">Availability: <span class="text-success">In Stock</span></div>
         <div class="product-card__prices">{{product.price | currency:'EGP':true}}</div>
         <div class="product-card__buttons">
-            <button class="btn btn-primary product-card__addtocart" type="button">Add To Cart
+            <button (click)="addProductToShoppingCart(product,1)" class="btn btn-primary product-card__addtocart" type="button">Add To Cart
             </button>
-            <button class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">Add To
+            <button (click)="addProductToShoppingCart(product,1)" class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">Add To
                 Cart
             </button>
         </div>

@@ -22,19 +22,19 @@ import { SpeciesComponent } from './component/species/species.component';
 import { ShopComponent } from './component/shop/shop.component';
 import { ProductInfoComponent } from './component/product-info/product-info.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { UserDetailsComponent } from './component/admin/user-details/user-details.component';
-import { ProductDetailsComponent } from './component/admin/product-details/product-details.component';
-import { ServiceDetailsComponent } from './component/admin/service-details/service-details.component';
-import { OrderDetailsComponent } from './component/admin/order-details/order-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ShoppingCartComponent } from './component/shopping-cart/shopping-cart.component';
+import { CheckoutComponent } from './component/checkout/checkout.component';
+import { LayoutComponent } from './component/layout/layout.component';
 import { ProfileComponent } from './component/profile/profile.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NotFoundComponent,
-
+    ProfileComponent,
     HomeComponent,
      HeaderComponent,
      FooterComponent,
@@ -47,11 +47,9 @@ import { ProfileComponent } from './component/profile/profile.component';
      SignUpComponent,
      ShopComponent,
      ProductInfoComponent,
-     UserDetailsComponent,
-     ProductDetailsComponent,
-     ServiceDetailsComponent,
-     OrderDetailsComponent,
-     ProfileComponent
+     ShoppingCartComponent,
+     CheckoutComponent,
+     LayoutComponent
 
 
   ],
@@ -65,6 +63,8 @@ import { ProfileComponent } from './component/profile/profile.component';
     CarouselModule,
     NgxPaginationModule,
     ToastrModule.forRoot(),
+
+
 
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true }],

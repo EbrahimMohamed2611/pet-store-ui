@@ -1,6 +1,6 @@
 import { Product } from "./Product.model";
 
 export class Products {
-    products: Product[];
+    products: Product[] =[];
     count: number;
 }

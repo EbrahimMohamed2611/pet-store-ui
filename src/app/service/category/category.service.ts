@@ -23,8 +23,12 @@ export class CategoryService {
     return this.httpClient.get<Category[]>(`${environment.apiUrl}` + 'categories');
   }
 
-  getCategoryProducts(id: number): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(`${environment.apiUrl}/categories/${id}/products`);
+  public getCategoryProducts(id: number): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${environment.apiUrl}categories/${id}/products`);
+  }
+
+  public getTheFirstThreeCategories(categorySize: number): Observable<Category[]> {
+    return this.httpClient.get<Product[]>(`${environment.apiUrl}categories?size=${categorySize}`);
   }
 
 }
