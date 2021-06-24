@@ -29,7 +29,7 @@ export class ShopComponent implements OnInit {
 
   ngOnInit(): void {
     this._categoryService.getAllCategory().subscribe(categories => this.categories = categories, error => console.log(error.message));
-    // this._brandService.getAllBrands().subscribe(brands => this.brands = brands, error => console.log(error.message));
+    this._brandService.getAllBrands().subscribe(brands => this.brands = brands, error => console.log(error.message));
     this._productService.getProducts(this.page - 1, this.pageLimit).subscribe(response => {
       this.products = response.products;
       this.count = response.count;
