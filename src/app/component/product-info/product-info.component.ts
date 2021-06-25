@@ -10,6 +10,18 @@ import {OwlOptions} from 'ngx-owl-carousel-o';
   styleUrls: ['./product-info.component.css']
 })
 export class ProductInfoComponent implements OnInit {
+  firstCarouselOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    margin: 10,
+    navSpeed: 700,
+    navText: ['', ''],
+    items: 1,
+    nav: false
+  };
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
