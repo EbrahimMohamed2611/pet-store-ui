@@ -67,8 +67,8 @@ export class LoginComponent implements OnInit {
         console.log(error);
       })
 
-    }, (error) => {
-      console.log(error);
+    }, (err) => {
+      console.log(err);
     })
   }
 
@@ -84,8 +84,8 @@ export class LoginComponent implements OnInit {
 
         console.log(error);
       })
-    }, (error) => {
-      console.log(error);
+    }, (err) => {
+      console.log(err);
     })
   }
 

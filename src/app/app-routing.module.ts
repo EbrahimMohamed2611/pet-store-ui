@@ -28,7 +28,7 @@ const routes: Routes = [
       {path: 'checkout', component: CheckoutComponent},
     ]
   },
-  {path: 'signUp', component: SignUpComponent},
+  {path: 'signup', component: SignUpComponent},
   {path: 'login', component: LoginComponent},
   {path: '**', component: NotFoundComponent}
 
