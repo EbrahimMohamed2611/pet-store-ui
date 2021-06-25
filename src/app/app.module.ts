@@ -22,12 +22,14 @@ import { SpeciesComponent } from './component/species/species.component';
 import { ShopComponent } from './component/shop/shop.component';
 import { ProductInfoComponent } from './component/product-info/product-info.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { UserDetailsComponent } from './component/admin/user-details/user-details.component';
-import { ProductDetailsComponent } from './component/admin/product-details/product-details.component';
-import { ServiceDetailsComponent } from './component/admin/service-details/service-details.component';
-import { OrderDetailsComponent } from './component/admin/order-details/order-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+
 import { ContactUsComponent } from './component/contact-us/contact-us.component';
+
+import { ShoppingCartComponent } from './component/shopping-cart/shopping-cart.component';
+import { CheckoutComponent } from './component/checkout/checkout.component';
+import { LayoutComponent } from './component/layout/layout.component';
+
 
 @NgModule({
   declarations: [
@@ -52,6 +54,10 @@ import { ContactUsComponent } from './component/contact-us/contact-us.component'
      ServiceDetailsComponent,
      OrderDetailsComponent,
      ContactUsComponent
+     ShoppingCartComponent,
+     CheckoutComponent,
+     LayoutComponent
+
 
 
   ],
@@ -65,6 +71,8 @@ import { ContactUsComponent } from './component/contact-us/contact-us.component'
     CarouselModule,
     NgxPaginationModule,
     ToastrModule.forRoot(),
+
+
 
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true }],

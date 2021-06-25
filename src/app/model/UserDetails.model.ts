@@ -7,4 +7,7 @@ export class UserDetails {
     phoneNumber:string;
     address:Address=new Address();
 
+
+  constructor() {
+  }
 }
