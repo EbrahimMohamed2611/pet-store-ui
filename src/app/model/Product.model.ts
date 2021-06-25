@@ -5,15 +5,15 @@ import {Species} from './Species.model';
 import {Image} from './Image.model';
 
 export class Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  quantity: number;
+  id?: number;
+  name: string = "";
+  description: string = "";
+  price: number = 0;
+  quantity: number = 0;
   category: Category = new Category();
   brand: Brand = new Brand();
-  discount: number;
-  avaialble?: boolean;
+  discount: number = 0;
+  avaialble?: boolean = false;
   rates: Rate[] = [];
   species: Species = new Species();
   images: Image[] = [];

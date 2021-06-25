@@ -8,10 +8,11 @@ import {CustomerComponent} from './component/customer/customer.component';
 import {SignUpComponent} from './component/sign-up/sign-up.component';
 import {SpeciesComponent} from './component/species/species.component';
 import {ShopComponent} from './component/shop/shop.component';
-import {ProductInfoComponent} from './component/product-info/product-info.component';
+
 import {ShoppingCartComponent} from "./component/shopping-cart/shopping-cart.component";
 import {CheckoutComponent} from "./component/checkout/checkout.component";
 import {LayoutComponent} from "./component/layout/layout.component";
+import {ProductInfoComponent} from "./component/product-info/product-info.component";
 
 const routes: Routes = [
   {
@@ -28,7 +29,7 @@ const routes: Routes = [
       {path: 'checkout', component: CheckoutComponent},
     ]
   },
-  {path: 'signUp', component: SignUpComponent},
+  {path: 'signup', component: SignUpComponent},
   {path: 'login', component: LoginComponent},
   {path: '**', component: NotFoundComponent}
 

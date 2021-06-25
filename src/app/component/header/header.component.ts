@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {CartItem} from '../../model/CartItem.model';
-import {ShoppingCartService} from '../../service/shoppingCart/shopping-cart.service';
-import {ToastrService} from 'ngx-toastr';
-import {Product} from '../../model/Product.model';
-import {HttpErrorResponse} from '@angular/common/http';
-import {CartService} from "../../service/cart/cart.service";
+import { CartItem } from '../../model/CartItem.model';
+import { ShoppingCartService } from '../../service/shoppingCart/shopping-cart.service';
+import { ToastrService } from 'ngx-toastr';
+import { Product } from '../../model/Product.model';
+import { HttpErrorResponse } from '@angular/common/http';
+import { CartService } from "../../service/cart/cart.service";
+import { AuthenticationService } from 'src/app/service/authenticate/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -13,14 +14,29 @@ import {CartService} from "../../service/cart/cart.service";
 })
 export class HeaderComponent implements OnInit {
 
+  isLogged = false;
   public cartItems: CartItem[] = [];
 
   constructor(private shoppingCartService: CartService,
-              private toasterService: ToastrService) {
+    private toasterService: ToastrService,
+    private _authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
+    // this.logged = this._authenticationService.isLoggedIn();
+    // this._authenticationService.getLoggedStatus().subscribe((status) => {
+    //   this.isLogged = status;
+    //   console.log("status : " + status)
+    // }, (error) => {
+    //   console.log(error);
+    // })
 
+    if (localStorage.getItem("token") != null) {
+      this.isLogged = true;
+    } else {
+
+      this.isLogged = false;
+    }
   }
 
 
@@ -40,6 +56,12 @@ export class HeaderComponent implements OnInit {
     }, (error: HttpErrorResponse) => {
       this.toasterService.error(error.message);
     });
+
+  }
+  public logOut() {
+
+    this._authenticationService.logOut();
+    this.isLogged = false;
 
   }
 
