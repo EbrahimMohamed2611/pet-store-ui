@@ -13,7 +13,7 @@ export class ServiceTypeService {
 
 
   public getAllServicesTypes(): Observable<ServiceType[]> {
-    return this.httpClient.get<ServiceType[]>(`${environment.apiUrl}` + 'categories');
+    return this.httpClient.get<ServiceType[]>(`${environment.apiUrl}` + 'types');
   }
 
 }

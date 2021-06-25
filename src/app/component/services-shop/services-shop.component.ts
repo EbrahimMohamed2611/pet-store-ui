@@ -13,13 +13,6 @@ import { ServiceService } from 'src/app/service/service/service.service';
 })
 export class ServicesShopComponent implements OnInit {
 
-  // id?:number;
-  // name:string;
-  // price:number;
-  // description:string;
-  // discount:number;
-  // startTime:Date;
-  // endTime:Date;
   services: Service[];
   servicesTypes: ServiceType[];
 

@@ -16,7 +16,7 @@ export class ServiceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Product Component');
+    
   }
 }
 

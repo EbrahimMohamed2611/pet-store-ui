@@ -28,6 +28,7 @@ import { CheckoutComponent } from './component/checkout/checkout.component';
 import { LayoutComponent } from './component/layout/layout.component';
 import { ServicesShopComponent } from './component/services-shop/services-shop.component';
 import { ServiceComponent } from './component/service/service.component';
+import { ServiceInfoComponent } from './component/service-info/service-info.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ServiceComponent } from './component/service/service.component';
      CheckoutComponent,
      LayoutComponent,
      ServicesShopComponent,
-     ServiceComponent
+     ServiceComponent,
+     ServiceInfoComponent
 
 
   ],
