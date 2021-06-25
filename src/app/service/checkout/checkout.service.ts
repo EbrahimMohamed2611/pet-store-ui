@@ -1,16 +1,14 @@
-import { Injectable } from '@angular/core';
-import {environment} from "../../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Injectable} from '@angular/core';
+import {environment} from '../../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
-import {Order} from "../../model/Order.model";
+import {Order} from '../../model/Order.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckoutService {
-
-
   private URL = environment.apiUrl + 'customers/';
 
   constructor(private httpClient: HttpClient) {
@@ -23,4 +21,11 @@ export class CheckoutService {
     // @ts-ignore
     return this.httpClient.post(this.URL + `${userId}/orders`, order);
   }
+
+  payWithCart(payment: any): Observable<any> {
+
+    return this.httpClient.post(this.URL + 'payment', payment);
+  }
+
+
 }
