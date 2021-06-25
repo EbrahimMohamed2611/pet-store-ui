@@ -1,4 +1,7 @@
 <div class="product-card">
+    <div *ngIf="product.discount > 0" class="product-card__badges-list">
+        <div class="product-card__badge product-card__badge--sale">Sale</div>
+    </div>
     <div class="product-card__image">
         <!-- <a href="/product/{{product.id}}"> -->
         <a [routerLink]="['/product', product.id]">
@@ -65,11 +68,23 @@
     </div>
     <div class="product-card__actions">
         <div class="product-card__availability">Availability: <span class="text-success">In Stock</span></div>
-        <div class="product-card__prices">{{product.price | currency:'EGP':true}}</div>
+        <div class="product-card__prices">
+            <div *ngIf="product.discount != 0; then salePrice else normalPrice"></div>
+            <ng-template #salePrice>
+                <span class="product-card__new-price">{{(product.price - (product.price * product.discount)) |
+                    currency:'EGP':true}}</span>
+                <span class="pl-1 product-card__old-price">{{product.price | currency:'EGP':true}}</span>
+            </ng-template>
+            <ng-template #normalPrice>
+                {{product.price | currency:'EGP':true}}
+            </ng-template>
+        </div>
         <div class="product-card__buttons">
-            <button (click)="addProductToShoppingCart(product,1)" class="btn btn-primary product-card__addtocart" type="button">Add To Cart
+            <button (click)="addProductToShoppingCart(product,1)" class="btn btn-primary product-card__addtocart"
+                type="button">Add To Cart
             </button>
-            <button (click)="addProductToShoppingCart(product,1)" class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">Add To
+            <button (click)="addProductToShoppingCart(product,1)"
+                class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">Add To
                 Cart
             </button>
         </div>

@@ -7,7 +7,7 @@
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a> <svg class="breadcrumb-arrow"
                                                                            width="6px" height="9px">
-              <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+              <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-right-6x9"></use>
             </svg></li>
             <li class="breadcrumb-item"><a href="#">Breadcrumb</a> <svg class="breadcrumb-arrow"
                                                                         width="6px" height="9px">
@@ -73,8 +73,8 @@
           <td class="cart-table__column cart-table__column--total" data-title="Total">{{item.product.price * item.quantity | currency:'LE'}}
           </td>
           <td class="cart-table__column cart-table__column--remove">
-            <button (click)="removeItemFromShoppingCart(item.product.id)" type="button" class="btn btn-light btn-sm btn-svg-icon"><svg width="12px" height="12px">
-            <use xlink:href="../../assets/images/sprite.svg#cross-12"></use>
+            <button (click)="removeItemFromShoppingCart(item.product.id?item.product.id:0)" type="button" class="btn btn-light btn-sm btn-svg-icon"><svg width="12px" height="12px">
+            <use xlink:href="../../../assets/images/sprite.svg#cross-12"></use>
           </svg></button></td>
         </tr>
 

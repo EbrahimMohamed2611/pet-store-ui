@@ -139,10 +139,10 @@
               <div class="product-card__badges-list">
                 <div class="product-card__badge product-card__badge--new">New</div>
               </div>
-              <div class="product-card__image"><a><img [src]="topRateProducts[2].images[1]?.url" alt=""></a>
+              <div class="product-card__image"><a><img *ngIf="topRateProducts[2]" [src]="topRateProducts[2].images[1].url" alt=""></a>
               </div>
               <div class="product-card__info">
-                <div class="product-card__name"><a>{{topRateProducts[2].name}}</a></div>
+                <div class="product-card__name"><a *ngIf="topRateProducts[2]" >{{topRateProducts[2].name}}</a></div>
                 <div class="product-card__rating">
                   <div class="rating">
                     <div class="rating__body">
@@ -233,7 +233,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="product-card__rating-legend">{{topRateProducts[2].rates.length}} Reviews</div>
+                  <div class="product-card__rating-legend" *ngIf="topRateProducts[2]">{{topRateProducts[2].rates.length}} Reviews</div>
                 </div>
                 <ul class="product-card__features-list">
                   <li>Speed: 750 RPM</li>
@@ -245,7 +245,7 @@
               </div>
               <div class="product-card__actions">
                 <div class="product-card__availability">Availability: <span class="text-success">In Stock</span></div>
-                <div class="product-card__prices">{{topRateProducts[2].price}} L.E</div>
+                <div class="product-card__prices" *ngIf="topRateProducts[2]">{{topRateProducts[2].price}} L.E</div>
                 <div class="product-card__buttons">
                   <button class="btn btn-primary product-card__addtocart"
                           (click)="addToShoppingCart(topRateProducts[2])"
@@ -287,9 +287,9 @@
                 <div class="product-card__badge product-card__badge--hot">Hot</div>
               </div>
               <div class="product-card__image"><a>
-                <img [src]="bestOfferProducts[1].images[1]?.url"  *ngIf="bestOfferProducts[1]"  alt=""></a></div>
+                <img [src]="bestOfferProducts[1].images[1].url"  *ngIf="bestOfferProducts[1]"  alt=""></a></div>
               <div class="product-card__info">
-                <div class="product-card__name"><a>{{bestOfferProducts[1].name}}</a></div>
+                <div class="product-card__name"><a *ngIf="bestOfferProducts[1]">{{bestOfferProducts[1].name}}</a></div>
                 <div class="product-card__rating">
                   <div class="rating">
                     <div class="rating__body">
@@ -380,7 +380,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="product-card__rating-legend">{{bestOfferProducts[1].rates.length}} Reviews</div>
+                  <div class="product-card__rating-legend" *ngIf="bestOfferProducts[1]">{{bestOfferProducts[1].rates.length}} Reviews</div>
                 </div>
                 <ul class="product-card__features-list">
                   <li>Speed: 750 RPM</li>
@@ -392,7 +392,7 @@
               </div>
               <div class="product-card__actions">
                 <div class="product-card__availability">Availability: <span class="text-success">In Stock</span></div>
-                <div class="product-card__prices">{{bestOfferProducts[1].price}} L.E</div>
+                <div class="product-card__prices" *ngIf="bestOfferProducts[1]">{{bestOfferProducts[1].price}} L.E</div>
                 <div class="product-card__buttons">
                   <button class="btn btn-primary product-card__addtocart"
                           (click)="addToShoppingCart(bestOfferProducts[1])"
@@ -433,7 +433,7 @@
                 <img [src]="bestOfferProducts[2].images[1]?.url" *ngIf="bestOfferProducts[2]" alt=""></a>
               </div>
               <div class="product-card__info">
-                <div class="product-card__name"><a>{{bestOfferProducts[2].name}}</a></div>
+                <div class="product-card__name"><a *ngIf="bestOfferProducts[2]">{{bestOfferProducts[2].name}}</a></div>
                 <div class="product-card__rating">
                   <div class="rating">
                     <div class="rating__body">
@@ -536,7 +536,7 @@
               </div>
               <div class="product-card__actions">
                 <div class="product-card__availability">Availability: <span class="text-success">In Stock</span></div>
-                <div class="product-card__prices">{{bestOfferProducts[2].price}} L.E</div>
+                <div class="product-card__prices" *ngIf="bestOfferProducts[2]">{{bestOfferProducts[2].price}} L.E</div>
                 <div class="product-card__buttons">
                   <button class="btn btn-primary product-card__addtocart"
                           (click)="addToShoppingCart(bestOfferProducts[2])"
@@ -582,7 +582,7 @@
                 <img [src]="categoryProducts[1].images[1]?.url" *ngIf="categoryProducts[1]" alt=""></a>
               </div>
               <div class="product-card__info">
-                <div class="product-card__name"><a>{{categoryProducts[1].name}}</a></div>
+                <div class="product-card__name"><a *ngIf="categoryProducts[1]">{{categoryProducts[1].name}}</a></div>
                 <div class="product-card__rating">
                   <div class="rating">
                     <div class="rating__body">
@@ -673,7 +673,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="product-card__rating-legend">{{categoryProducts[1].rates.length}} Reviews</div>
+                  <div class="product-card__rating-legend" *ngIf="categoryProducts[1]">{{categoryProducts[1].rates.length}} Reviews</div>
                 </div>
                 <ul class="product-card__features-list">
                   <li>Speed: 750 RPM</li>
@@ -685,7 +685,7 @@
               </div>
               <div class="product-card__actions">
                 <div class="product-card__availability">Availability: <span class="text-success">In Stock</span></div>
-                <div class="product-card__prices"><span class="product-card__new-price">{{categoryProducts[1].price}}
+                <div class="product-card__prices"><span class="product-card__new-price" *ngIf="categoryProducts[1]">{{categoryProducts[1].price}}
                   L.E</span></div>
                 <div class="product-card__buttons">
                   <button class="btn btn-primary product-card__addtocart"
@@ -727,7 +727,7 @@
                 <img [src]="categoryProducts[5].images[1]?.url" *ngIf="categoryProducts[5]" alt=""></a>
               </div>
               <div class="product-card__info">
-                <div class="product-card__name"><a>{{categoryProducts[5].name}}</a></div>
+                <div class="product-card__name"><a *ngIf="categoryProducts[5]">{{categoryProducts[5].name}}</a></div>
                 <div class="product-card__rating">
                   <div class="rating">
                     <div class="rating__body">
@@ -818,7 +818,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="product-card__rating-legend">{{categoryProducts[5].rates.length}} Reviews</div>
+                  <div class="product-card__rating-legend" *ngIf="categoryProducts[5]">{{categoryProducts[5].rates.length}} Reviews</div>
                 </div>
                 <ul class="product-card__features-list">
                   <li>Speed: 750 RPM</li>
@@ -830,7 +830,7 @@
               </div>
               <div class="product-card__actions">
                 <div class="product-card__availability">Availability: <span class="text-success">In Stock</span></div>
-                <div class="product-card__prices">{{categoryProducts[5].price}} L.E</div>
+                <div class="product-card__prices" *ngIf="categoryProducts[5]">{{categoryProducts[5].price}} L.E</div>
                 <div class="product-card__buttons">
                   <button class="btn btn-primary product-card__addtocart"
                           (click)="addToShoppingCart(categoryProducts[5])"
@@ -871,7 +871,7 @@
                 <img [src]="categoryProducts[7].images[1]?.url" *ngIf="categoryProducts[7]" alt=""></a>
               </div>
               <div class="product-card__info">
-                <div class="product-card__name"><a>{{categoryProducts[7].name}}</a></div>
+                <div class="product-card__name"><a *ngIf="categoryProducts[7]">{{categoryProducts[7].name}}</a></div>
                 <div class="product-card__rating">
                   <div class="rating">
                     <div class="rating__body">
@@ -962,7 +962,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="product-card__rating-legend">{{categoryProducts[7].rates.length}} Reviews</div>
+                  <div class="product-card__rating-legend" *ngIf="categoryProducts[7]">{{categoryProducts[7].rates.length}} Reviews</div>
                 </div>
                 <ul class="product-card__features-list">
                   <li>Speed: 750 RPM</li>
@@ -974,7 +974,7 @@
               </div>
               <div class="product-card__actions">
                 <div class="product-card__availability">Availability: <span class="text-success">In Stock</span></div>
-                <div class="product-card__prices">$3,199.00</div>
+                <div class="product-card__prices" *ngIf="categoryProducts[7]">{{categoryProducts[7].price}}</div>
                 <div class="product-card__buttons">
                   <button class="btn btn-primary product-card__addtocart"
                           (click)="addToShoppingCart(categoryProducts[7])"
@@ -1015,7 +1015,7 @@
                 <img [src]="categoryProducts[3].images[1]?.url" *ngIf="categoryProducts[3]" alt=""></a>
               </div>
               <div class="product-card__info">
-                <div class="product-card__name"><a>{{categoryProducts[3].name}}</a></div>
+                <div class="product-card__name"><a *ngIf="categoryProducts[3]">{{categoryProducts[3].name}}</a></div>
                 <div class="product-card__rating">
                   <div class="rating">
                     <div class="rating__body">
@@ -1106,7 +1106,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="product-card__rating-legend">{{categoryProducts[3].rates.length}}</div>
+                  <div class="product-card__rating-legend" *ngIf="categoryProducts[3]">{{categoryProducts[3].rates.length}}</div>
                 </div>
                 <ul class="product-card__features-list">
                   <li>Speed: 750 RPM</li>
@@ -1118,7 +1118,7 @@
               </div>
               <div class="product-card__actions">
                 <div class="product-card__availability">Availability: <span class="text-success">In Stock</span></div>
-                <div class="product-card__prices">{{categoryProducts[3].price}} L.E</div>
+                <div class="product-card__prices" *ngIf="categoryProducts[3]">{{categoryProducts[3].price}} L.E</div>
                 <div class="product-card__buttons">
                   <button class="btn btn-primary product-card__addtocart"
                           (click)="addToShoppingCart(categoryProducts[3])"

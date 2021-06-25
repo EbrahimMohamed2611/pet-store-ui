@@ -1,12 +1,12 @@
 <div class="container">
   <div class="card">
-<!--    <img src="..." class="card-img-top" alt="..." />-->
-    <div  class="card-body">
+    <!--    <img src="..." class="card-img-top" alt="..." />-->
+    <div class="card-body">
       <h5 class="card-title">Login Form</h5>
       <form [formGroup]="formLogin">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label"
-            >Email address</label
+          >Email address</label
           >
           <input
             formControlName="email"
@@ -29,19 +29,14 @@
           />
         </div>
         <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+          <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
           <label class="form-check-label" for="exampleCheck1"
-            >Check me out</label
+          >Check me out</label
           >
         </div>
-        <button
-          (click)="login()"
-          [disabled]="formLogin.invalid"
-          type="submit"
-          class="btn btn-primary"
-        >
-          Login
-        </button>
+        <button (click)="login()" [disabled]="formLogin.invalid" class="btn btn-primary"> Login</button>
+        <button (click)="signInWithFB()" class="btn btn-primary"> Login with FaceBook</button>
+        <button (click)="signInWithGoogle()" class="btn btn-danger"> Login with Google</button>
       </form>
     </div>
   </div>

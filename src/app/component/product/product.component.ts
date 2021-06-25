@@ -21,7 +21,7 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Product Component');
+    // console.log('Product Component');
   }
 
   public addProductToShoppingCart(product: Product, quantity: number) {

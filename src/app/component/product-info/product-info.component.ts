@@ -3,37 +3,43 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/model/Product.model';
 import { ProductService } from 'src/app/service/product/product.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { Rate } from 'src/app/model/Rate.model';
 @Component({
   selector: 'app-product-info',
   templateUrl: './product-info.component.html',
   styleUrls: ['./product-info.component.css']
 })
 export class ProductInfoComponent implements OnInit {
+  firstCarouselOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    margin: 10,
+    navSpeed: 700,
+    navText: ['', ''],
+    items: 1,
+    nav: false
+  };
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
     dots: false,
+    margin: 10,
     navSpeed: 700,
     navText: ['', ''],
     responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 2
-      },
-      740: {
-        items: 3
-      },
-      940: {
-        items: 4
-      }
+      1200: {items: 5},
+      992: {items: 4},
+      768: {items: 3},
+      480: {items: 5},
+      380: {items: 4},
+      0: {items: 3}
     },
     nav: true
-  }
+  };
   product: Product;
   selectedTab = 'description';
   // relatedProducts: Product[];
