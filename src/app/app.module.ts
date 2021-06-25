@@ -23,6 +23,10 @@ import { ShopComponent } from './component/shop/shop.component';
 import { ProductInfoComponent } from './component/product-info/product-info.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AboutUsComponent } from './component/about-us/about-us.component';
+
+import { ContactUsComponent } from './component/contact-us/contact-us.component';
+
 import { ShoppingCartComponent } from './component/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './component/checkout/checkout.component';
 import { LayoutComponent } from './component/layout/layout.component';
@@ -30,6 +34,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider, SocialAuthServiceConfig
 } from 'angularx-social-login';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +54,13 @@ import {
      SignUpComponent,
      ShopComponent,
      ProductInfoComponent,
+     UserDetailsComponent,
+     ProductDetailsComponent,
+     ServiceDetailsComponent,
+     OrderDetailsComponent,
+     AboutUsComponent,
+
+     ContactUsComponent,
      ShoppingCartComponent,
      CheckoutComponent,
      LayoutComponent

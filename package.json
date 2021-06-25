@@ -21,6 +21,8 @@
     "@angular/router": "~11.2.8",
     "@auth0/angular-jwt": "^5.0.2",
     "angularx-social-login": "^3.5.7",
+    "@popperjs/core": "^2.9.2",
+    "@types/jquery": "^3.5.5",
     "bootstrap": "^5.0.1",
     "jquery": "^3.6.0",
     "ngx-owl-carousel-o": "^6.0.0",
