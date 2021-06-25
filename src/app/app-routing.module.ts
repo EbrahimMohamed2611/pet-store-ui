@@ -9,6 +9,15 @@ import {SignUpComponent} from './component/sign-up/sign-up.component';
 import {SpeciesComponent} from './component/species/species.component';
 import {ShopComponent} from './component/shop/shop.component';
 
+import { ProductInfoComponent } from './component/product-info/product-info.component';
+import { UserDetailsComponent } from './component/admin/user-details/user-details.component';
+import { ServiceDetailsComponent } from './component/admin/service-details/service-details.component';
+import { ProductDetailsComponent } from './component/admin/product-details/product-details.component';
+import { OrderDetailsComponent } from './component/admin/order-details/order-details.component';
+import {AboutUsComponent} from "./component/about-us/about-us.component";
+
+
+
 import {ProductInfoComponent} from './component/product-info/product-info.component';
 import {ShoppingCartComponent} from "./component/shopping-cart/shopping-cart.component";
 import {CheckoutComponent} from "./component/checkout/checkout.component";

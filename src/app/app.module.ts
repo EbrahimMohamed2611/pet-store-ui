@@ -23,6 +23,7 @@ import { ShopComponent } from './component/shop/shop.component';
 import { ProductInfoComponent } from './component/product-info/product-info.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AboutUsComponent } from './component/about-us/about-us.component';
 
 import { ContactUsComponent } from './component/contact-us/contact-us.component';
 
@@ -53,11 +54,12 @@ import { LayoutComponent } from './component/layout/layout.component';
      ProductDetailsComponent,
      ServiceDetailsComponent,
      OrderDetailsComponent,
-     ContactUsComponent
+     AboutUsComponent,
+
+     ContactUsComponent,
      ShoppingCartComponent,
      CheckoutComponent,
      LayoutComponent
-
 
 
   ],
