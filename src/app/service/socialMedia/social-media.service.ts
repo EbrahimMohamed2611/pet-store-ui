@@ -15,9 +15,9 @@ export class SocialMediaService {
   constructor(private _httpClient: HttpClient) { }
 
   public loginWithFacebook(authToken: SocialMediaToken): Observable<AuthenticationResponse> {
-    return this._httpClient.post<AuthenticationResponse>(this.API_URL + "/auth/facebook", authToken);
+    return this._httpClient.post<AuthenticationResponse>(this.API_URL + "auth/facebook", authToken);
   }
   public loginWithGoogle(idToken: SocialMediaToken): Observable<AuthenticationResponse> {
-    return this._httpClient.post<AuthenticationResponse>(this.API_URL + "/auth/google", idToken);
+    return this._httpClient.post<AuthenticationResponse>(this.API_URL + "auth/google", idToken);
   }
 }

@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
 
   private getTopRatedProducts(): void {
     this.productService.getTopRatedProducts(this.rateSize).subscribe((products: any) => {
-      this.topRateProducts = products;
+      this.topRateProducts = products.products;
     }, (error: HttpErrorResponse) => {
       this.notification.error(error.message)
     })
@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
 
   private getTopOfferProducts(): void {
     this.productService.getTopRatedProducts(this.rateSize).subscribe((products: any) => {
-      this.bestOfferProducts = products;
+      this.bestOfferProducts = products.products;
     }, (error: HttpErrorResponse) => {
       this.notification.error(error.message)
     })

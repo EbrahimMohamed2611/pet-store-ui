@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {User} from '../../model/User.model';
 import {AuthenticationService} from '../../service/authenticate/authentication.service';
-import {UserService} from "../../service/user/user.service";
 import {SocialMediaService} from "../../service/socialMedia/social-media.service";
 import {FacebookLoginProvider, GoogleLoginProvider, SocialAuthService} from "angularx-social-login";
 import {SocialMediaToken} from "../../model/SocialMediaToken.model";
@@ -20,31 +19,39 @@ export class LoginComponent implements OnInit {
   user: User = new User();
   token: string;
 
-  constructor(private _formBuilder: FormBuilder, private _userService: UserService,
+  constructor(private _formBuilder: FormBuilder,
               private _authenticationService: AuthenticationService,
               private _routerService: Router,
               private authService: SocialAuthService,
               private _socialMediaService: SocialMediaService) {
-    this.getAllUsers();
+
   }
+
+  // constructor(private _formBuilder: FormBuilder,
+  //             private _routerService: Router,
+  //             private authService: SocialAuthService,
+  //             private _socialMediaService: SocialMediaService) {
+  //
+  // }
+
 
   ngOnInit(): void {
     this.formLogin = this._formBuilder.group({
       email: ['', [Validators.email, Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
       password: ['', [Validators.required]]
     });
-    this.getAllUsers();
+
   }
 
 
   public login() {
     Object.assign(this.user, this.formLogin.value);
 
-    this._authenticationService.login(this.user).subscribe((response: any) => {
+    this._authenticationService.authenticate(this.user).subscribe((response: any) => {
 
       console.log(response);
       if (response.jwtToken) {
-        localStorage.setItem("token", response.jwtToken);
+        this._authenticationService.login(response.jwtToken);
         this._routerService.navigate(['/home']);
       }
     }, (error: Error) => {
@@ -58,11 +65,11 @@ export class LoginComponent implements OnInit {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((response) => {
       let token = new SocialMediaToken();
       token.token = response.idToken;
-      this._socialMediaService.loginWithGoogle(token).subscribe((response:AuthenticationResponse)=>{
+      this._socialMediaService.loginWithGoogle(token).subscribe((response: AuthenticationResponse) => {
         console.log(response.jwtToken);
-        localStorage.setItem("token", response.jwtToken );
+        this._authenticationService.login(response.jwtToken);
         this._routerService.navigate(['/home']);
-      }, (error)=>{
+      }, (error) => {
 
         console.log(error);
       })
@@ -78,7 +85,7 @@ export class LoginComponent implements OnInit {
       token.token = response.authToken;
       this._socialMediaService.loginWithFacebook(token).subscribe((response: AuthenticationResponse) => {
         console.log(response.jwtToken);
-        localStorage.setItem("token", response.jwtToken);
+        this._authenticationService.login(response.jwtToken);
         this._routerService.navigate(['/home']);
       }, (error) => {
 
@@ -90,9 +97,4 @@ export class LoginComponent implements OnInit {
   }
 
 
-  public getAllUsers() {
-    this._userService.getUsers().subscribe((response: Response) => {
-      console.log("response.headers ", response.headers.get("authorization"));
-    });
-  }
 }
