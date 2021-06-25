@@ -47,8 +47,8 @@
                   </ng-template>
               </div> -->
               <div class="product-gallery__featured">
-                <owl-carousel-o [options]="customOptions">
-                  <ng-template carouselSlide *ngFor="let image of product.images">
+                <owl-carousel-o [options]="firstCarouselOptions" #firstCarousel>
+                  <ng-template carouselSlide *ngFor="let image of product.images" [id]="image.id!.toString()">
                     <img [src]="image.url">
                   </ng-template>
                 </owl-carousel-o>
@@ -56,7 +56,7 @@
               <div class="product-gallery__carousel">
                 <owl-carousel-o [options]="customOptions">
                   <ng-template carouselSlide *ngFor="let image of product.images">
-                    <img [src]="image.url">
+                    <img [src]="image.url" (click)="firstCarousel.to(image.id!.toString())">
                   </ng-template>
                 </owl-carousel-o>
               </div>
@@ -83,7 +83,9 @@
             </div>
             <h1 class="product__name">
               {{product.name}}
-              <div *ngIf="product.discount > 0" class="d-inline-block align-text-top product-card__badge product-card__badge--sale">Sale</div>
+              <div *ngIf="product.discount > 0"
+                   class="d-inline-block align-text-top product-card__badge product-card__badge--sale">Sale
+              </div>
             </h1>
             <div class="product__rating">
               <div class="product__rating-stars">
