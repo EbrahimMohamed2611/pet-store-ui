@@ -66,7 +66,9 @@
                     <div class="product__rating">
                         <div class="product__rating-stars">
                             <div class="rating">
-                                <div class="rating__body"><svg class="rating__star rating__star--active" width="13px"
+                                <div class="rating__body">
+                                    <ng-template ngFor let-loop [ngForOf]="[].constructor(getAvgRate(product.rates)) ">
+                                    <svg class="rating__star rating__star--active" width="13px"
                                         height="12px">
                                         <g class="rating__fill">
                                             <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
@@ -83,71 +85,27 @@
                                         <div class="rating__stroke">
                                             <div class="fake-svg-icon"></div>
                                         </div>
-                                    </div><svg class="rating__star rating__star--active" width="13px" height="12px">
-                                        <g class="rating__fill">
-                                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                                        </g>
-                                        <g class="rating__stroke">
-                                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                                            </use>
-                                        </g>
-                                    </svg>
-                                    <div class="rating__star rating__star--only-edge rating__star--active">
-                                        <div class="rating__fill">
-                                            <div class="fake-svg-icon"></div>
-                                        </div>
-                                        <div class="rating__stroke">
-                                            <div class="fake-svg-icon"></div>
-                                        </div>
-                                    </div><svg class="rating__star rating__star--active" width="13px" height="12px">
-                                        <g class="rating__fill">
-                                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                                        </g>
-                                        <g class="rating__stroke">
-                                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                                            </use>
-                                        </g>
-                                    </svg>
-                                    <div class="rating__star rating__star--only-edge rating__star--active">
-                                        <div class="rating__fill">
-                                            <div class="fake-svg-icon"></div>
-                                        </div>
-                                        <div class="rating__stroke">
-                                            <div class="fake-svg-icon"></div>
-                                        </div>
-                                    </div><svg class="rating__star rating__star--active" width="13px" height="12px">
-                                        <g class="rating__fill">
-                                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                                        </g>
-                                        <g class="rating__stroke">
-                                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                                            </use>
-                                        </g>
-                                    </svg>
-                                    <div class="rating__star rating__star--only-edge rating__star--active">
-                                        <div class="rating__fill">
-                                            <div class="fake-svg-icon"></div>
-                                        </div>
-                                        <div class="rating__stroke">
-                                            <div class="fake-svg-icon"></div>
-                                        </div>
-                                    </div><svg class="rating__star rating__star--active" width="13px" height="12px">
-                                        <g class="rating__fill">
-                                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                                        </g>
-                                        <g class="rating__stroke">
-                                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                                            </use>
-                                        </g>
-                                    </svg>
-                                    <div class="rating__star rating__star--only-edge rating__star--active">
-                                        <div class="rating__fill">
-                                            <div class="fake-svg-icon"></div>
-                                        </div>
-                                        <div class="rating__stroke">
-                                            <div class="fake-svg-icon"></div>
-                                        </div>
                                     </div>
+                                </ng-template>
+                                <ng-template ngFor let-loop [ngForOf]="[].constructor(5-getAvgRate(product.rates)) ">
+                                    <svg class="rating__star" width="13px" height="12px">
+                                       <g class="rating__fill">
+                                           <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                                       </g>
+                                       <g class="rating__stroke">
+                                           <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                                           </use>
+                                       </g>
+                                   </svg> 
+                                   <div class="rating__star rating__star--only-edge">
+                                       <div class="rating__fill">
+                                           <div class="fake-svg-icon"></div>
+                                       </div>
+                                       <div class="rating__stroke">
+                                           <div class="fake-svg-icon"></div>
+                                       </div>
+                                   </div>
+                               </ng-template>
                                 </div>
                             </div>
                         </div>

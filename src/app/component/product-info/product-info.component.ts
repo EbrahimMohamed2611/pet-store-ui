@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/model/Product.model';
 import { ProductService } from 'src/app/service/product/product.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Rate } from 'src/app/model/Rate.model';
 @Component({
   selector: 'app-product-info',
   templateUrl: './product-info.component.html',
@@ -52,5 +53,13 @@ export class ProductInfoComponent implements OnInit {
       });
     });
   }
+  getAvgRate(rates: Rate[]): number {
+    if (rates !== null) {
+      const rating = Math.floor(rates.map(rate => rate.rateNumber).reduce((p, c) => p + c, 0) / rates.length);
+      return Number.isNaN(rating) ? 0 : rating;
+    } else {
+      return 0;
+    }
 
+}
 }

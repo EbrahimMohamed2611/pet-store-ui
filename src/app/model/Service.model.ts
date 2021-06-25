@@ -1,3 +1,4 @@
+import { Rate } from "./Rate.model";
 import { ServiceProvider } from "./ServiceProvider.model";
 import { ServiceType } from "./ServiceType.model";
 
@@ -10,6 +11,7 @@ export class Service{
   discount:number;
   startTime:Date;
   endTime:Date;
+  rates: Rate[] = [];
   //TODO how to calculate time difference
   timePerService:Date;
   deliverable:boolean;
