@@ -1,4 +1,29 @@
 .card{
-  width: 55%;
-  margin: 50px auto 50px;
+  width: 50%;
+  margin: auto;
+  margin-top: 40px;
+}
+.card-body {
+  display: block;
+  text-align: center;
+}
+form {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  width: 100%;
+}
+
+
+.buttn{
+  text-align: center;
+}
+
+.center-btn{
+  width: 50%;
+}
+
+.or{
+  text-align: center;
 }

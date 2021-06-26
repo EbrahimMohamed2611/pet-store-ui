@@ -9,10 +9,6 @@
                                                                            width="6px" height="9px">
               <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-right-6x9"></use>
             </svg></li>
-            <li class="breadcrumb-item"><a href="#">Breadcrumb</a> <svg class="breadcrumb-arrow"
-                                                                        width="6px" height="9px">
-              <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
-            </svg></li>
             <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
           </ol>
         </nav>
@@ -39,8 +35,8 @@
         <tbody class="cart-table__body">
         <tr *ngFor="let item of cartItems; let i = index;" class="cart-table__row">
           <td class="cart-table__column cart-table__column--image">
-            <a *ngFor="let img of item.product.images; let i = index;">
-              <img *ngIf="img.id == 1" [src]="img.url"  [alt]="item.product.name">
+            <a >
+              <img [src]="item.product.images[1].url"  [alt]="item.product.name">
             </a>
           </td>
 
@@ -97,25 +93,25 @@
                 <thead class="cart__totals-header">
                 <tr>
                   <th>Subtotal</th>
-                  <td>$5,877.00</td>
+                  <td>{{total | currency: 'EGP':true:'2.0'}}</td>
                 </tr>
                 </thead>
                 <tbody class="cart__totals-body">
-                <tr>
-                  <th>Shipping</th>
-                  <td>$25.00<div class="cart__calc-shipping"><a href="#">Calculate
-                    Shipping</a></div>
-                  </td>
-                </tr>
-                <tr>
-                  <th>Tax</th>
-                  <td>$0.00</td>
-                </tr>
+<!--                <tr>-->
+<!--                  <th>Shipping</th>-->
+<!--                  <td>$25.00<div class="cart__calc-shipping"><a href="#">Calculate-->
+<!--                    Shipping</a></div>-->
+<!--                  </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <th>Tax</th>-->
+<!--                  <td>$0.00</td>-->
+<!--                </tr>-->
                 </tbody>
                 <tfoot class="cart__totals-footer">
                 <tr>
                   <th>Total</th>
-                  <td>$5,902.00</td>
+                  <td>{{total | currency: 'EGP':true:'2.0'}}</td>
                 </tr>
                 </tfoot>
               </table><a class="btn btn-primary btn-xl btn-block cart__checkout-button"

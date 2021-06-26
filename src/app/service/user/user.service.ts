@@ -13,7 +13,9 @@ export class UserService {
   URL: string = environment.apiUrl;
 
   constructor(private httpClient: HttpClient,
-              private jwtHelper: JwtHelperService)  {
+
+              private _jwtHelperService:JwtHelperService) {
+
 
   }
 
@@ -31,8 +33,9 @@ export class UserService {
 
 
   public getUserId(): number {
-    const TOKEN = localStorage.getItem('token');
-    const userId = +this.jwtHelper.decodeToken(TOKEN ? TOKEN : undefined).id;
-    return userId;
+
+    const TOKEN = localStorage.getItem("token");
+    return +this._jwtHelperService.decodeToken(TOKEN ? TOKEN : undefined).id;
+
   }
 }

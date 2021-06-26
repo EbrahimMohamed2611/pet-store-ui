@@ -34,8 +34,16 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule
 } from 'angularx-social-login';
+
 import { SuccessComponent } from './component/success/success.component';
 import { FailedComponent } from './component/failed/failed.component';
+
+import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
+
+export function getToken(): string {
+  return localStorage.getItem('token')!;
+}
+
 
 
 @NgModule({
@@ -78,10 +86,15 @@ import { FailedComponent } from './component/failed/failed.component';
     NgxPaginationModule,
     ToastrModule.forRoot(),
     SocialLoginModule,
-
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: getToken
+      }
+    })
 
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true},
+    JwtHelperService,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

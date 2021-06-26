@@ -1,6 +1,9 @@
 <div class="container">
   <div class="card">
     <div class="card-body">
+      <div class="col sm-12">
+        <img src="../../../assets/images/logos/logo4.png">
+      </div>
       <h5 class="card-title">Registration Form</h5>
 
       <form [formGroup]="formLogin">
@@ -9,7 +12,7 @@
           <div class="col">
             <div class="mb-3">
               <label for="firstName" class="form-label">First Name </label>
-              <input formControlName="firstName" type="text" class="form-control" id="firstName"/>
+              <input formControlName="firstName" type="text" class="form-control" id="firstName" />
               <!--              <small *ngIf="formLogin.controls['Email']" class="aler aler-danger">-->
               <!--                Invalid Email-->
               <!--              </small>-->
@@ -18,7 +21,7 @@
           <div class="col">
             <div class="mb-3">
               <label for="lastName" class="form-label">Last Name </label>
-              <input formControlName="lastName" type="text" class="form-control" id="lastName"/>
+              <input formControlName="lastName" type="text" class="form-control" id="lastName" />
               <!--              <small *ngIf="formLogin.controls['Email']" class="aler aler-danger">-->
               <!--                Invalid Email-->
               <!--              </small>-->
@@ -28,19 +31,13 @@
 
         <div class="mb-3">
           <label for="userName" class="form-label">User Name</label>
-          <input
-            formControlName="userName"
-            type="text"
-            class="form-control"
-            id="userName"
-          />
+          <input formControlName="userName" type="text" class="form-control" id="userName" />
         </div>
 
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email </label>
           <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
-                 aria-describedby="emailHelp"
-          />
+                 aria-describedby="emailHelp" />
           <small *ngIf="formLogin.controls['Email']" class="aler aler-danger">
             Invalid Email
           </small>
@@ -49,46 +46,30 @@
 
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input
-            formControlName="password"
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-          />
+          <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" />
+        </div>
+
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Phone Number</label>
+          <input formControlName="phoneNumber" type="number" class="form-control" id="phoneNumber" />
         </div>
 
         <div class="row">
           <div class="col">
             <div class="mb-3">
-              <label for="phoneNumber" class="form-label">Phone Number</label>
-              <input
-                formControlName="phoneNumber"
-                type="number"
-                class="form-control"
-                id="phoneNumber"
-              />
+              <label >Gender</label>
+              <select formControlName="gender" class="form-control" >
+                <option value="MALE" [selected]="true" >Select ..</option>
+                <option value="MALE" >Male</option>
+                <option value="FEMALE">Female</option>
+              </select>
             </div>
-          </div>
-          <div class="col">
-            <div class="mb-3">
-              <label for="gender" class="form-label">Gender</label>
-              <input
-                formControlName="gender"
-                type="text"
-                class="form-control"
-                id="gender"
-              />
-            </div>
+
           </div>
           <div class="col">
             <div class="mb-3">
               <label for="birthDate" class="form-label">Birth Date</label>
-              <input
-                formControlName="birthDate"
-                type="date"
-                class="form-control"
-                id="birthDate"
-              />
+              <input formControlName="birthDate" type="date" class="form-control" id="birthDate" />
             </div>
           </div>
         </div>
@@ -99,34 +80,19 @@
           <div class="col">
             <div class="mb-3">
               <label for="country" class="form-label">Country</label>
-              <input
-                formControlName="country"
-                type="text"
-                class="form-control"
-                id="country"
-              />
+              <input formControlName="country" type="text" class="form-control" id="country" />
             </div>
           </div>
           <div class="col">
             <div class="mb-3">
               <label for="city" class="form-label">City</label>
-              <input
-                formControlName="city"
-                type="text"
-                class="form-control"
-                id="city"
-              />
+              <input formControlName="city" type="text" class="form-control" id="city" />
             </div>
           </div>
           <div class="col">
             <div class="mb-3">
               <label for="street" class="form-label">Street</label>
-              <input
-                formControlName="street"
-                type="text"
-                class="form-control"
-                id="street"
-              />
+              <input formControlName="street" type="text" class="form-control" id="street" />
             </div>
           </div>
 
@@ -135,29 +101,19 @@
         </div>
 
 
-        <div class="row">
 
-          <div class="col">
-            <div class="mb-3">
-              <label for="exampleFormControlSelect1">You Are a : </label>
-              <select formControlName="role" class="form-control" id="exampleFormControlSelect1">
-                <option value="ROLE_CUSTOMER" selected>Customer</option>
-                <option value="ROLE_SELLER">Seller</option>
-                <option value="ROLE_SERVICE_PROVIDER" >Service Provider</option>
-              </select>
-            </div>
-          </div>
+
+        <div class="col-sm-12 buttn mb-3">
+          <button (click)="signUp()" class="btn btn-primary center-btn"> signup</button>
         </div>
+        <div class="or">
+          OR
+        </div>
+        <div class="col-sm-12 buttn mb-3">
 
-
-        <button
-          (click)="signUp()"
-          [disabled]="formLogin.invalid"
-          type="button"
-          class="btn btn-primary"
-        >
-          SignUp
-        </button>
+          <button [routerLink]="['/login']" routerLinkActive="router-link-active" class="center-btn btn btn-outline-warning">
+            login</button>
+        </div>
       </form>
     </div>
   </div>

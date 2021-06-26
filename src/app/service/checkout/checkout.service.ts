@@ -3,7 +3,11 @@ import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
-import {Order} from '../../model/Order.model';
+
+
+import {Order} from "../../model/Order.model";
+import {UserService} from "../user/user.service";
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +15,16 @@ import {Order} from '../../model/Order.model';
 export class CheckoutService {
   private URL = environment.apiUrl + 'customers/';
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private _userService:UserService) {
   }
 
 
   public createOrder(order: Order, userId: number): Observable<Order> {
     // let userId = this.userService.getUserId();
+
+    let userId = this._userService.getUserId();
+
     // @ts-ignore
     return this.httpClient.post(this.URL + `${userId}/orders`, order);
   }

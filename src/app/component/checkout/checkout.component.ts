@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+
 import {CustomerService} from '../../service/customer/customer.service';
 import {CheckoutService} from '../../service/checkout/checkout.service';
 import {Customer} from '../../model/Customer.model';
@@ -10,6 +11,17 @@ import {Order} from '../../model/Order.model';
 import {loadStripe} from '@stripe/stripe-js/pure';
 import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
+
+import {CustomerService} from "../../service/customer/customer.service";
+import {CheckoutService} from "../../service/checkout/checkout.service";
+import {Customer} from "../../model/Customer.model";
+import {HttpErrorResponse} from "@angular/common/http";
+import {ToastrService} from "ngx-toastr";
+import {ShoppingCartService} from "../../service/shoppingCart/shopping-cart.service";
+import {CartItem} from "../../model/CartItem.model";
+import {Order} from "../../model/Order.model";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-checkout',
@@ -34,8 +46,17 @@ export class CheckoutComponent implements OnInit {
   public order: Order = new Order();
   public payWithVisa = false;
 
+
   private stripePromise = loadStripe(environment.stripe);
   private userId = 1;
+
+  constructor(private customerService: CustomerService,
+              private checkoutService: CheckoutService,
+              private shoppingCartService: ShoppingCartService,
+              private toasterService: ToastrService,
+              private _routerService:Router) {
+  }
+
 
   ngOnInit(): void {
     this.getShoppingCart();
@@ -51,7 +72,7 @@ export class CheckoutComponent implements OnInit {
       });
       console.log(cartItems);
     }, (error: HttpErrorResponse) => {
-      this.toasterService.error(error.message);
+      this.toasterService.error(error.error.message);
     });
   }
 
@@ -60,8 +81,13 @@ export class CheckoutComponent implements OnInit {
       this.customer = customer;
       console.log('this.customer ', this.customer);
     }, (error: HttpErrorResponse) => {
+
       this.toasterService.error(error.message);
     });
+
+      this.toasterService.error(error.error.message);
+    })
+
   }
 
   public agreeOnTermsAndCondition(): void {
@@ -79,6 +105,7 @@ export class CheckoutComponent implements OnInit {
   public createOrder(): void {
     this.checkoutService.createOrder(this.order, this.userId).subscribe((orderResponse: Order) => {
       console.log(orderResponse);
+
       this.toasterService.success('Your Order is Completed Please Check your Email For More Details');
     }, (error: HttpErrorResponse) => {
       console.log(error.message);
@@ -91,6 +118,13 @@ export class CheckoutComponent implements OnInit {
     } else {
       this.router.navigate(['/success']);
     }
+
+      this.toasterService.success("Your Order is Completed Please Check your Email For More Details")
+      this._routerService.navigate(["/home"])
+    }, (error:HttpErrorResponse)=>{
+      this.toasterService.error(error.error.message);
+    })
+
   }
 
   async pay(): Promise<void> {
