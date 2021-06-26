@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {JwtHelperService} from "@auth0/angular-jwt";
-import {Observable} from "rxjs";
-import {environment} from "../../../environments/environment";
-import {UserDetails} from "../../model/UserDetails.model";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {environment} from '../../../environments/environment';
+import {UserDetails} from '../../model/UserDetails.model';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,9 @@ export class UserService {
   URL: string = environment.apiUrl;
 
   constructor(private httpClient: HttpClient,
+
               private _jwtHelperService:JwtHelperService) {
+
 
   }
 
@@ -25,14 +27,15 @@ export class UserService {
     return this.httpClient.get<UserDetails[]>(this.URL + 'users');
   }
 
-  //todo
   public getUserOrder(id: number): Observable<any> {
     return this.httpClient.get<any>(this.URL + 'users');
   }
 
 
   public getUserId(): number {
+
     const TOKEN = localStorage.getItem("token");
     return +this._jwtHelperService.decodeToken(TOKEN ? TOKEN : undefined).id;
+
   }
 }

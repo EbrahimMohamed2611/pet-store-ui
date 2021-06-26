@@ -1,4 +1,4 @@
-import {Address} from "./Address.model";
+import {Address} from './Address.model';
 
 export class Order {
   customerNotes: string;

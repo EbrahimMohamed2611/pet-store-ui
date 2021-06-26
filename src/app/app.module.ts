@@ -34,11 +34,16 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule
 } from 'angularx-social-login';
+
+import { SuccessComponent } from './component/success/success.component';
+import { FailedComponent } from './component/failed/failed.component';
+
 import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
 
 export function getToken(): string {
   return localStorage.getItem('token')!;
 }
+
 
 
 @NgModule({
@@ -64,7 +69,9 @@ export function getToken(): string {
     ContactUsComponent,
     ShoppingCartComponent,
     CheckoutComponent,
-    LayoutComponent
+    LayoutComponent,
+    SuccessComponent,
+    FailedComponent
 
 
   ],
