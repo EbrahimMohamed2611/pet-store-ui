@@ -34,6 +34,8 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule
 } from 'angularx-social-login';
+import { SuccessComponent } from './component/success/success.component';
+import { FailedComponent } from './component/failed/failed.component';
 
 
 @NgModule({
@@ -59,7 +61,9 @@ import {
     ContactUsComponent,
     ShoppingCartComponent,
     CheckoutComponent,
-    LayoutComponent
+    LayoutComponent,
+    SuccessComponent,
+    FailedComponent
 
 
   ],

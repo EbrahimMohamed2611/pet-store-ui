@@ -21,6 +21,7 @@
     "@angular/router": "~11.2.8",
     "@auth0/angular-jwt": "^5.0.2",
     "@popperjs/core": "^2.9.2",
+    "@stripe/stripe-js": "^1.15.1",
     "angular2-cookie": "^1.2.6",
     "angularx-social-login": "^3.5.7",
     "bootstrap": "^5.0.1",

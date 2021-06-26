@@ -13,6 +13,8 @@ import {ShoppingCartComponent} from "./component/shopping-cart/shopping-cart.com
 import {CheckoutComponent} from "./component/checkout/checkout.component";
 import {LayoutComponent} from "./component/layout/layout.component";
 import {ProductInfoComponent} from "./component/product-info/product-info.component";
+import {SuccessComponent} from './component/success/success.component';
+import {FailedComponent} from './component/failed/failed.component';
 
 const routes: Routes = [
   {
@@ -27,6 +29,8 @@ const routes: Routes = [
       {path: 'shop', component: ShopComponent},
       {path: 'cart', component: ShoppingCartComponent},
       {path: 'checkout', component: CheckoutComponent},
+      {path: 'success', component: SuccessComponent},
+      {path: 'failed', component: FailedComponent},
     ]
   },
   {path: 'signup', component: SignUpComponent},

@@ -15,16 +15,16 @@ export class CheckoutService {
   }
 
 
-  public createOrder(order: Order): Observable<Order> {
+  public createOrder(order: Order, userId: number): Observable<Order> {
     // let userId = this.userService.getUserId();
-    let userId = 1;
     // @ts-ignore
     return this.httpClient.post(this.URL + `${userId}/orders`, order);
   }
 
-  payWithCart(payment: any): Observable<any> {
+  payWithCart(userId: number): Observable<any> {
 
-    return this.httpClient.post(this.URL + 'payment', payment);
+    return this.httpClient.get(this.URL + `${userId}/payment`);
+    // return this.httpClient.post(this.URL + 'payment', payment);
   }
 
 

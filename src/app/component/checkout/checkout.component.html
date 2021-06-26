@@ -142,7 +142,8 @@
                     class="payment-methods__item-radio input-radio"><span
                     class="input-radio__body"><input class="input-radio__input"
                                                      name="checkout_payment_method" type="radio"
-                                                     checked="checked"> <span
+                                                     [checked]="payWithVisa"
+                                                     (click)="onPaymentMethodChange(true)"> <span
                     class="input-radio__circle"></span> </span></span><span
                     class="payment-methods__item-title">Pay with Visa</span></label>
                     <div class="payment-methods__item-container">
@@ -152,25 +153,14 @@
                         the funds have cleared in our account.</div>
                     </div>
                   </li>
-<!--                  <li class="payment-methods__item"><label-->
-<!--                    class="payment-methods__item-header"><span-->
-<!--                    class="payment-methods__item-radio input-radio"><span-->
-<!--                    class="input-radio__body"><input class="input-radio__input"-->
-<!--                                                     name="checkout_payment_method" type="radio"> <span-->
-<!--                    class="input-radio__circle"></span> </span></span><span-->
-<!--                    class="payment-methods__item-title">Check-->
-<!--                                                        payments</span></label>-->
-<!--                    <div class="payment-methods__item-container">-->
-<!--                      <div class="payment-methods__item-description text-muted">Please-->
-<!--                        send a check to Store Name, Store Street, Store Town, Store-->
-<!--                        State / County, Store Postcode.</div>-->
-<!--                    </div>-->
-<!--                  </li>-->
+
                   <li class="payment-methods__item"><label
                     class="payment-methods__item-header"><span
                     class="payment-methods__item-radio input-radio"><span
-                    class="input-radio__body"><input checked class="input-radio__input"
-                                                     name="checkout_payment_method" type="radio"> <span
+                    class="input-radio__body"><input class="input-radio__input"
+                                                     name="checkout_payment_method" type="radio"
+                                                     [checked]="!payWithVisa"
+                                                     (click)="onPaymentMethodChange(false)"> <span
                     class="input-radio__circle"></span> </span></span><span
                     class="payment-methods__item-title">Cash on
                                                         delivery</span></label>
@@ -207,9 +197,9 @@
                   target="_blank" href="terms-and-conditions.html">terms and
                   conditions</a>*</label></div>
               </div>
-              <button (click)="createOrder()" [disabled]="!disableOrEnableOrderButton" type="button" class="btn btn-primary btn-xl btn-block">Place
+              <button (click)="placeOrder()" [disabled]="!disableOrEnableOrderButton" type="button" class="btn btn-primary btn-xl btn-block">Place
               Order</button>
-              <button (click)="pay()"  type="button" class="btn btn-primary btn-xl btn-block">pay</button>
+<!--              <button (click)="pay()"  type="button" class="btn btn-primary btn-xl btn-block">pay</button>-->
             </div>
           </div>
         </div>

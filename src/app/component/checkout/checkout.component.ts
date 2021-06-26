@@ -9,6 +9,7 @@ import {CartItem} from '../../model/CartItem.model';
 import {Order} from '../../model/Order.model';
 import {loadStripe} from '@stripe/stripe-js/pure';
 import {environment} from '../../../environments/environment';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -20,7 +21,9 @@ export class CheckoutComponent implements OnInit {
   constructor(private customerService: CustomerService,
               private checkoutService: CheckoutService,
               private shoppingCartService: ShoppingCartService,
-              private toasterService: ToastrService) {
+              private toasterService: ToastrService,
+              private router: Router
+  ) {
   }
 
   public customer: Customer = new Customer();
@@ -29,8 +32,10 @@ export class CheckoutComponent implements OnInit {
   public disableOrEnableOrderButton: boolean;
   public isDefaultAddress: boolean = true;
   public order: Order = new Order();
+  public payWithVisa = false;
 
   private stripePromise = loadStripe(environment.stripe);
+  private userId = 1;
 
   ngOnInit(): void {
     this.getShoppingCart();
@@ -51,7 +56,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   private getCustomerDetails(): void {
-    this.customerService.getCustomer(1).subscribe((customer: Customer) => {
+    this.customerService.getCustomer(this.userId).subscribe((customer: Customer) => {
       this.customer = customer;
       console.log('this.customer ', this.customer);
     }, (error: HttpErrorResponse) => {
@@ -67,9 +72,12 @@ export class CheckoutComponent implements OnInit {
     this.isDefaultAddress = !this.isDefaultAddress;
   }
 
-  public createOrder() {
-    this.order.address = this.customer.address;
-    this.checkoutService.createOrder(this.order).subscribe((orderResponse: Order) => {
+  public onPaymentMethodChange(payWithPaymentMethod: boolean): void {
+    this.payWithVisa = payWithPaymentMethod;
+  }
+
+  public createOrder(): void {
+    this.checkoutService.createOrder(this.order, this.userId).subscribe((orderResponse: Order) => {
       console.log(orderResponse);
       this.toasterService.success('Your Order is Completed Please Check your Email For More Details');
     }, (error: HttpErrorResponse) => {
@@ -77,26 +85,22 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  public placeOrder(): void {
+    if (this.payWithVisa) {
+      this.pay();
+    } else {
+      this.router.navigate(['/success']);
+    }
+  }
+
   async pay(): Promise<void> {
-    // here we create a payment object
-    const payment = {
-      name: 'Iphone',
-      currency: 'usd',
-      // amount on cents *10 => to be on dollar
-      amount: 99900,
-      quantity: '1',
-      cancelUrl: 'http://localhost:4200/home',
-      successUrl: 'http://localhost:4200/shop',
-    };
-
     const stripe = await this.stripePromise;
-
-    // this is a normal http calls for a backend api
-    this.checkoutService.payWithCart(payment)
+    this.order.address = this.customer.address;
+    localStorage.setItem('customerOrder', JSON.stringify(this.order));
+    this.checkoutService.payWithCart(this.userId)
       .subscribe((data: any) => {
-        // I use stripe to redirect To Checkout page of Stripe platform
         stripe?.redirectToCheckout({
-          sessionId: data.id,
+          sessionId: data.id
         });
       });
   }
