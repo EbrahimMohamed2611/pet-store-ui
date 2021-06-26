@@ -13,6 +13,7 @@ import { CartService } from "../../service/cart/cart.service";
 })
 export class ShoppingCartComponent implements OnInit {
   public cartItems: CartItem[] = [];
+  public total:number=0;
 
   constructor(private shoppingCartService: CartService,
     private toasterService: ToastrService) {
@@ -35,30 +36,39 @@ export class ShoppingCartComponent implements OnInit {
   public getShoppingCart(): void {
     this.shoppingCartService.getShoppingCartForUser().subscribe((cartItems: CartItem[]) => {
       this.cartItems = cartItems;
+      cartItems.forEach((item)=>{
+        this.total += item.product.price * item.quantity;
+      });
       this.cartItems.sort((a, b) => (a.product.name < b.product.name ? -1 : 1));
 
     }, (error: HttpErrorResponse) => {
-      this.toasterService.error(error.message);
+      this.toasterService.error(error.error.message);
     });
   }
 
   public increaseQuantity(product: Product, quantity: number): void {
     this.shoppingCartService.updateShoppingCart(product, quantity).subscribe((cartItems: CartItem[]) => {
       this.cartItems = cartItems;
+      cartItems.forEach((item)=>{
+        this.total += item.product.price * item.quantity;
+      });
       this.cartItems.sort((a, b) => (a.product.name < b.product.name ? -1 : 1));
 
     }, (error: HttpErrorResponse) => {
-      this.toasterService.error(error.message);
+      this.toasterService.error(error.error.message);
     });
   }
 
   public decreaseQuantity(product: Product, quantity: number): void {
     this.shoppingCartService.updateShoppingCart(product, quantity).subscribe((cartItems: CartItem[]) => {
       this.cartItems = cartItems;
+      cartItems.forEach((item)=>{
+        this.total += item.product.price * item.quantity;
+      });
       this.cartItems.sort((a, b) => (a.product.name < b.product.name ? -1 : 1));
 
     }, (error: HttpErrorResponse) => {
-      this.toasterService.error(error.message);
+      this.toasterService.error(error.error.message);
     });
 
   }
@@ -72,9 +82,11 @@ export class ShoppingCartComponent implements OnInit {
     this.shoppingCartService.removeItemFromShoppingCart(productId).subscribe((cartItems: CartItem[]) => {
       this.cartItems = cartItems;
       this.cartItems.sort((a, b) => (a.product.name < b.product.name ? -1 : 1));
-
+      cartItems.forEach((item)=>{
+        this.total += item.product.price * item.quantity;
+      });
     }, (error: HttpErrorResponse) => {
-      this.toasterService.error(error.message);
+      this.toasterService.error(error.error.message);
     });
 
   }

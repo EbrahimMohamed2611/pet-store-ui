@@ -110,7 +110,7 @@
 
                 <tr *ngFor="let item of cartItems; let i = index;">
                   <td>{{item.product.name}} : {{item.product.description}}</td>
-                  <td>{{item.product.price * item.quantity}} L.E </td>
+                  <td>{{item.product.price * item.quantity | currency: 'EGP':true:'2.0'}}  </td>
                 </tr>
 
                 </tbody>

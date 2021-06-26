@@ -7,6 +7,7 @@ import {ToastrService} from "ngx-toastr";
 import {ShoppingCartService} from "../../service/shoppingCart/shopping-cart.service";
 import {CartItem} from "../../model/CartItem.model";
 import {Order} from "../../model/Order.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-checkout',
@@ -24,7 +25,8 @@ export class CheckoutComponent implements OnInit {
   constructor(private customerService: CustomerService,
               private checkoutService: CheckoutService,
               private shoppingCartService: ShoppingCartService,
-              private toasterService: ToastrService) {
+              private toasterService: ToastrService,
+              private _routerService:Router) {
   }
 
   ngOnInit(): void {
@@ -41,7 +43,7 @@ export class CheckoutComponent implements OnInit {
       })
       console.log(cartItems);
     }, (error: HttpErrorResponse) => {
-      this.toasterService.error(error.message);
+      this.toasterService.error(error.error.message);
     });
   }
 
@@ -50,7 +52,7 @@ export class CheckoutComponent implements OnInit {
       this.customer = customer;
       console.log("this.customer ",this.customer)
     }, (error: HttpErrorResponse) => {
-      this.toasterService.error(error.message)
+      this.toasterService.error(error.error.message);
     })
   }
 
@@ -67,8 +69,9 @@ export class CheckoutComponent implements OnInit {
     this.checkoutService.createOrder(this.order).subscribe((orderResponse: Order) =>{
       console.log(orderResponse);
       this.toasterService.success("Your Order is Completed Please Check your Email For More Details")
+      this._routerService.navigate(["/home"])
     }, (error:HttpErrorResponse)=>{
-      console.log(error.message)
+      this.toasterService.error(error.error.message);
     })
   }
 

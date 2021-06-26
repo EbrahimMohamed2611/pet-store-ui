@@ -34,7 +34,7 @@ export class SignUpComponent implements OnInit {
       .subscribe((response) => {
         this._routerService.navigate(['/login']);
       }, (error: HttpErrorResponse) => {
-        this.toasterService.error(error.message)
+        this.toasterService.error(error.error.message);
       });
   }
 
@@ -63,7 +63,7 @@ export class SignUpComponent implements OnInit {
     this.userSignUp.password = this.formLogin.value.password;
     this.userSignUp.phoneNumber = this.formLogin.value.phoneNumber;
     this.userSignUp.gender = this.formLogin.value.gender;
-    this.userSignUp.role = this.formLogin.value.role;
+    // this.userSignUp.role = this.formLogin.value.role;
     this.userSignUp.birthDate = this.formLogin.value.birthDate;
     this.userSignUp.address.country = this.formLogin.value.country;
     this.userSignUp.address.city = this.formLogin.value.city;

@@ -10,7 +10,7 @@
               <use xlink:href="../../../assets/images/sprite.svg#menu-18x14"></use>
             </svg>
           </button>
-          <a class="mobile-header__logo" href="index.html">
+          <a class="mobile-header__logo" [routerLink]="['/home']">
             <img src="../../../assets/images/logos/original-logo.png" />
           </a>
           <div class="mobile-header__search">
@@ -38,16 +38,16 @@
                     <!--                                                <use xlink:href="../../../assets/images/sprite.svg#search-20"></use>-->
                   </svg></span></button>
             </div>
-            <div class="indicator indicator--mobile d-sm-flex d-none"><a href="wishlist.html"
+            <!-- <div class="indicator indicator--mobile d-sm-flex d-none"><a href="wishlist.html"
                 class="indicator__button"><span class="indicator__area"><svg width="20px" height="20px">
                     <use xlink:href="../../../assets/images/sprite.svg#heart-20"></use>
-                  </svg> <span class="indicator__value">0</span></span></a></div>
-            <div class="indicator indicator--mobile">
-              <a href="cart.html" class="indicator__button"><span class="indicator__area">
-                  <svg width="20px" height="20px">
-                    <use xlink:href="../../../assets/images/sprite.svg#cart-20"></use>
-                  </svg> <span class="indicator__value">3</span></span></a>
-            </div>
+                  </svg> <span class="indicator__value">0</span></span></a></div> -->
+<!--            <div class="indicator indicator&#45;&#45;mobile">-->
+<!--              <a [routerLink]="['/cart']" class="indicator__button"><span class="indicator__area">-->
+<!--                  <svg width="20px" height="20px">-->
+<!--                    <use xlink:href="../../../assets/images/sprite.svg#cart-20"></use>-->
+<!--                  </svg> <span class="indicator__value">3</span></span></a>-->
+<!--            </div>-->
 
           </div>
         </div>
@@ -62,8 +62,8 @@
     <div class="site-header__topbar topbar">
       <div class="topbar__container container">
         <div class="topbar__row">
-          <div class="topbar__item topbar__item--link"><a class="topbar-link" href="about-us">About Us</a></div>
-          <div class="topbar__item topbar__item--link"><a class="topbar-link" href="contact-us.html">Contacts</a></div>
+          <div class="topbar__item topbar__item--link"><a class="topbar-link" [routerLink]="['/about-us']">About Us</a></div>
+          <div class="topbar__item topbar__item--link"><a class="topbar-link" [routerLink]="['/contacts']">Contacts</a></div>
 
           <div class="topbar__item topbar__item--link"><a class="topbar-link" href="#">Store Location</a></div>
           <!-- <div class="topbar__item topbar__item--link"><a class="topbar-link" href="track-order.html">Track Order</a>
@@ -72,7 +72,7 @@
           <div class="topbar__spring"></div>
           <div class="topbar__item">
 
-            <div class="topbar-dropdown">
+            <div *ngIf="isLoggin()" class="topbar-dropdown">
               <button class="topbar-dropdown__btn" type="button">MyAccount
                 <svg width="7px" height="5px">
                   <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-down-7x5"></use>
@@ -92,7 +92,7 @@
 
           <div class="topbar__item">
 
-            <div class="topbar-dropdown">
+            <!-- <div class="topbar-dropdown">
               <button class="topbar-dropdown__btn" type="button">Language: <span class="topbar__item-value">EN</span>
                 <svg width="7px" height="5px">
                   <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-down-7x5"></use>
@@ -100,14 +100,14 @@
               </button>
 
 
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
     </div><!-- .topbar / end -->
     <div class="site-header__middle container">
 
-      <div class="site-header__logo"><a href="index.html">
+      <div class="site-header__logo"><a [routerLink]="['/home']">
           <img src="../../../assets/images/logos/original-logo.png" />
         </a></div>
       <div class="site-header__search">
@@ -141,8 +141,7 @@
 
                 <li class="nav-links__item nav-links__item--with-submenu"><a  routerLink='/home'>
                     <span>Home <svg class="nav-links__arrow" width="9px" height="6px">
-                        <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-down-9x6">
-                        </use>
+
                       </svg></span></a>
 
 
@@ -152,30 +151,29 @@
 
                 <li class="nav-links__item nav-links__item--with-submenu"><a [routerLink]="['/shop']"><span>Shop <svg
                         class="nav-links__arrow" width="9px" height="6px">
-                        <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-down-9x6">
-                        </use>
+
                       </svg></span></a>
 
                 </li>
 
-                <li class="nav-links__item"><a href="contact-us">
+                <li class="nav-links__item"><a [routerLink]="['/contacts']">
                     <span>Services</span></a>
                 </li>
 
-                <li class="nav-links__item"><a href="contact-us">
+                <li class="nav-links__item"><a [routerLink]="['/contacts']">
                     <span>Contact Us</span></a>
                 </li>
               </ul>
             </div><!-- .nav-links / end -->
             <div class="nav-panel__indicators ">
 
-              <div class="indicator">
+              <!-- <div class="indicator">
                 <a href="wishlist.html" class="indicator__button"><span class="indicator__area"><svg width="20px"
                       height="20px">
 
                       <use xlink:href="../../../assets/images/sprite.svg#heart-20"></use>
                     </svg></span></a>
-              </div>
+              </div> -->
               <div (click)="getShoppingCart()" class="indicator indicator--trigger--click">
                 <a class="indicator__button">
                   <span class="indicator__area">
@@ -194,8 +192,8 @@
                       <div class="dropcart__product">
 
                         <div class="dropcart__product-image">
-                          <a *ngFor="let img of item.product.images;">
-                            <img *ngIf="img.id == 1" [src]="img.url" [alt]="item.product.name"></a>
+                          <a >
+                            <img  [src]="item.product.images[1].url" [alt]="item.product.name"></a>
                         </div>
                         <div class="dropcart__product-info">
                           <div class="dropcart__product-name"><a>{{item.product.name}}</a></div>
@@ -207,7 +205,7 @@
 
                           <div class="dropcart__product-meta"><span
                               class="dropcart__product-quantity">{{item.quantity}}</span> x <span
-                              class="dropcart__product-price">{{item.product.price | currency :'LE'}}</span></div>
+                              class="dropcart__product-price">{{item.product.price | currency: 'EGP':true:'2.0'}}</span></div>
                         </div>
 
                         <button (click)="removeItemFromShoppingCart(item.product.id?item.product.id: 0)" type="button"
@@ -225,21 +223,14 @@
 
                     <div class="dropcart__totals">
                       <table>
-                        <tr>
+                        <!-- <tr>
                           <th>Subtotal</th>
                           <td>$5,877.00</td>
-                        </tr>
-                        <tr>
-                          <th>Shipping</th>
-                          <td>$25.00</td>
-                        </tr>
-                        <tr>
-                          <th>Tax</th>
-                          <td>$0.00</td>
-                        </tr>
+                        </tr>                       -->
+
                         <tr>
                           <th>Total</th>
-                          <td>$5,902.00</td>
+                          <td>{{total | currency: 'EGP':true:'2.0'}}</td>
                         </tr>
                       </table>
                     </div>
@@ -247,7 +238,7 @@
                     <div class="dropcart__buttons">
 
                       <a class="btn btn-secondary" [routerLink]="['/cart']">View Cart</a>
-                      <a class="btn btn-primary" href="checkout.html">Checkout</a>
+                      <a class="btn btn-primary" [routerLink]="['/checkout']">Checkout</a>
                     </div>
 
                   </div><!-- .dropcart / end -->
@@ -255,7 +246,7 @@
 
               </div>
 
-              <span *ngIf="!isLogged">
+              <span *ngIf="!isLoggin()">
 
                 <li  class="nav-links__item nav-panel__nav-links nav-links" style=" list-style: none;">
                   <button class="customButtons" routerLink='/signup'>
@@ -263,13 +254,13 @@
                 </li>
               </span>
 
-              <li *ngIf="!isLogged" class="nav-links__item nav-panel__nav-links nav-links" style=" list-style: none;">
+              <li *ngIf="!isLoggin()" class="nav-links__item nav-panel__nav-links nav-links" style=" list-style: none;">
                 <button class="customButtons" routerLink='/login'>
                   <span>Login</span></button>
-                  
+
               </li>
 
-              <li *ngIf="isLogged" class="nav-links__item nav-panel__nav-links nav-links" style=" list-style: none;">
+              <li *ngIf="isLoggin()" class="nav-links__item nav-panel__nav-links nav-links" style=" list-style: none;">
                 <button class="customButtons" (click)="logOut()" >
                   <span>log out</span></button>
               </li>

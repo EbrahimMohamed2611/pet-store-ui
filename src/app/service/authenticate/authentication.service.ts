@@ -22,7 +22,7 @@ export class AuthenticationService {
   }
 
   public signUp(userSignUp: UserSignUp): Observable<any> {
-    return this.httpClient.post<UserSignUp>(`${environment.apiUrl}` + 'auth/signUp', userSignUp);
+    return this.httpClient.post<UserSignUp>(`${environment.apiUrl}` + 'customers/signUp', userSignUp);
   }
 
   public logOut() {
@@ -45,12 +45,7 @@ export class AuthenticationService {
 
   public isLoggedIn(): boolean {
     const TOKEN = localStorage.getItem("token");
-    if (TOKEN == null) {
-      return false;
-
-    } else {
-      return true;
-    }
+    return TOKEN != null;
   }
 
   changeLoggedStatus(status: boolean): void {

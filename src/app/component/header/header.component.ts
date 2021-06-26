@@ -15,6 +15,7 @@ import { AuthenticationService } from 'src/app/service/authenticate/authenticati
 export class HeaderComponent implements OnInit {
 
   isLogged = false;
+  total:number= 0;
   public cartItems: CartItem[] = [];
 
   constructor(private shoppingCartService: CartService,
@@ -43,9 +44,12 @@ export class HeaderComponent implements OnInit {
   public getShoppingCart(): void {
     this.shoppingCartService.getShoppingCartForUser().subscribe((cartItems: CartItem[]) => {
       this.cartItems = cartItems;
+      cartItems.forEach((item)=>{
+        this.total += item.product.price * item.quantity;
+      });
       console.log(cartItems);
     }, (error: HttpErrorResponse) => {
-      this.toasterService.error(error.message);
+      this.toasterService.error(error.error.message);
     });
   }
 
@@ -53,8 +57,11 @@ export class HeaderComponent implements OnInit {
     this.shoppingCartService.removeItemFromShoppingCart(productId).subscribe((cartItems: CartItem[]) => {
       this.cartItems = cartItems;
       console.log(cartItems);
+      cartItems.forEach((item)=>{
+        this.total += item.product.price * item.quantity;
+      });
     }, (error: HttpErrorResponse) => {
-      this.toasterService.error(error.message);
+      this.toasterService.error(error.error.message);
     });
 
   }
@@ -65,5 +72,8 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  public isLoggin(): boolean {
+    return this._authenticationService.isLoggedIn();
+  }
 
 }

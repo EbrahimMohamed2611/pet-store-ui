@@ -1,8 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Product} from 'src/app/model/Product.model';
 import {ProductService} from 'src/app/service/product/product.service';
 import {OwlOptions} from 'ngx-owl-carousel-o';
+import {CartItem} from "../../model/CartItem.model";
+import {HttpErrorResponse} from "@angular/common/http";
+import {ToastrService} from "ngx-toastr";
+import {AuthenticationService} from "../../service/authenticate/authentication.service";
+import {CartService} from "../../service/cart/cart.service";
 
 @Component({
   selector: 'app-product-info',
@@ -46,7 +51,11 @@ export class ProductInfoComponent implements OnInit {
 
   // relatedProducts: Product[];
 
-  constructor(private _activatedRoute: ActivatedRoute, private _productService: ProductService) {
+  constructor(private _activatedRoute: ActivatedRoute, private _productService: ProductService,
+              private notification: ToastrService,
+              private shoppingCartService: CartService,
+              private _authService:AuthenticationService,
+              private _routerService:Router) {
   }
 
   ngOnInit(): void {
@@ -62,4 +71,24 @@ export class ProductInfoComponent implements OnInit {
     });
   }
 
+
+  public addToShoppingCart(product: Product): void {
+    if (!this._authService.isLoggedIn()){
+      this._routerService.navigateByUrl("/login");
+    }else{
+
+      this.shoppingCartService.updateShoppingCart(product, 1)
+        .subscribe((cartItems: CartItem[]) => {
+          console.log("cartItems " ,cartItems)
+          cartItems.forEach(items => {
+            if (items.product.id == product.id) {
+              this.notification.info('your cart has ' + items.quantity + ' from ' + items.product.name);
+            }
+          });
+        }, (error: HttpErrorResponse) => {
+          // console.error("error " ,error)
+          this.notification.error(error.error.message)
+        });
+    }
+  }
 }

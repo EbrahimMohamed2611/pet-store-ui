@@ -7,6 +7,8 @@ import {SocialMediaService} from "../../service/socialMedia/social-media.service
 import {FacebookLoginProvider, GoogleLoginProvider, SocialAuthService} from "angularx-social-login";
 import {SocialMediaToken} from "../../model/SocialMediaToken.model";
 import {AuthenticationResponse} from "../../model/AuthenticationResponse";
+import {HttpErrorResponse} from "@angular/common/http";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -23,7 +25,8 @@ export class LoginComponent implements OnInit {
               private _authenticationService: AuthenticationService,
               private _routerService: Router,
               private authService: SocialAuthService,
-              private _socialMediaService: SocialMediaService) {
+              private _socialMediaService: SocialMediaService,
+              private toasterService: ToastrService) {
 
   }
 
@@ -48,15 +51,13 @@ export class LoginComponent implements OnInit {
     Object.assign(this.user, this.formLogin.value);
 
     this._authenticationService.authenticate(this.user).subscribe((response: any) => {
-
-      console.log(response);
       if (response.jwtToken) {
         this._authenticationService.login(response.jwtToken);
         this._routerService.navigate(['/home']);
       }
-    }, (error: Error) => {
+    }, (error:HttpErrorResponse) => {
 
-      console.log(error);
+      this.toasterService.error(error.error.message);
     })
 
   }
@@ -69,13 +70,13 @@ export class LoginComponent implements OnInit {
         console.log(response.jwtToken);
         this._authenticationService.login(response.jwtToken);
         this._routerService.navigate(['/home']);
-      }, (error) => {
+      }, (error: HttpErrorResponse) => {
 
-        console.log(error);
+        this.toasterService.error(error.error.message);
       })
 
-    }, (err) => {
-      console.log(err);
+    }, (error: HttpErrorResponse) => {
+      this.toasterService.error(error.error.message);
     })
   }
 
@@ -87,12 +88,11 @@ export class LoginComponent implements OnInit {
         console.log(response.jwtToken);
         this._authenticationService.login(response.jwtToken);
         this._routerService.navigate(['/home']);
-      }, (error) => {
-
-        console.log(error);
+      }, (error: HttpErrorResponse) => {
+        this.toasterService.error(error.error.message);
       })
-    }, (err) => {
-      console.log(err);
+    }, (error: HttpErrorResponse) => {
+      this.toasterService.error(error.error.message);
     })
   }
 
