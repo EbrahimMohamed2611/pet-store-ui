@@ -23,7 +23,6 @@ export class CheckoutService {
   public createOrder(order: Order, userId: number): Observable<Order> {
     // let userId = this.userService.getUserId();
 
-    let userId = this._userService.getUserId();
 
     // @ts-ignore
     return this.httpClient.post(this.URL + `${userId}/orders`, order);
