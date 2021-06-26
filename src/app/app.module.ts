@@ -58,7 +58,7 @@ import {
     AboutUsComponent,
     ServicesShopComponent,
     ServiceComponent,
-    ServiceInfoComponent
+    ServiceInfoComponent,
     ContactUsComponent,
     ShoppingCartComponent,
     CheckoutComponent,

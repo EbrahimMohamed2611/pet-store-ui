@@ -1,9 +1,12 @@
 <div class="product-card">
+    <div *ngIf="service.discount > 0" class="product-card__badges-list">
+        <div class="product-card__badge product-card__badge--sale">Sale</div>
+    </div>
     <div class="product-card__image">
         <!-- <a href="/product/{{product.id}}"> -->
-            <a [routerLink]="['/service', service.id]">
-                <img src="https://vetwork.co/store/wp-content/uploads/2020/12/persian-kitty-2kg-470-300x300.jpeg" alt="Service image">
-            </a>
+        <a [routerLink]="['/service', service.id]">
+            <img [src]="service.imageUrl" alt="Product image">
+        </a>
     </div>
     <div class="product-card__info">
         <div class="product-card__name">
@@ -63,13 +66,25 @@
     </div>
     <div class="product-card__actions">
         <div class="product-card__availability">Availability: <span class="text-success">In Stock</span></div>
-        <div class="product-card__prices">{{service.price | currency:'EGP':true}}</div>
+        <div class="product-card__prices">
+            <div *ngIf="service.discount != 0; then salePrice else normalPrice"></div>
+            <ng-template #salePrice>
+                <span class="product-card__new-price">{{(service.price - (service.price * service.discount)) |
+                    currency:'EGP':true}}</span>
+                <span class="pl-1 product-card__old-price">{{service.price | currency:'EGP':true}}</span>
+            </ng-template>
+            <ng-template #normalPrice>
+                {{service.price | currency:'EGP':true}}
+            </ng-template>
+        </div>
         <div class="product-card__buttons">
-            <button (click)="addProductToShoppingCart(product,1)" class="btn btn-primary product-card__addtocart" type="button">Add To Cart
+            <!-- <button (click)="addProductToShoppingCart(product,1)" class="btn btn-primary product-card__addtocart"
+                type="button">Add To Cart
             </button>
-            <button (click)="addProductToShoppingCart(product,1)" class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">Add To
+            <button (click)="addProductToShoppingCart(product,1)"
+                class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">Add To
                 Cart
-            </button>
+            </button> -->
         </div>
     </div>
 </div>

@@ -13,9 +13,6 @@ export class ServiceService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllServices(): Observable<Service[]> {
-    return this.httpClient.get<Service[]>(this.url);
-  }
 
   getService(id: number): Observable<Service> {
     return this.httpClient.get<Service>(this.url + "/" + id);
@@ -37,7 +34,7 @@ export class ServiceService {
   }
 
 
-  getServicePaginated(page?: number, pageLimit?: number, minPrice?: number, maxPrice?: number): Observable<ServicePage> {
+  getAllServices(page?: number, pageLimit?: number, minPrice?: number, maxPrice?: number): Observable<ServicePage> {
     let parameters = new HttpParams();
     if (page != undefined && pageLimit != undefined) {
       parameters = parameters.set('page', page.toString()).append('pageLimit', pageLimit.toString());
@@ -49,7 +46,7 @@ export class ServiceService {
   }
 
 
-  getServiceByTypePaginated(serviceTypeId: number, page?: number, pageLimit?: number, minPrice?: number, maxPrice?: number): Observable<ServicePage> {
+  getServicesByType(serviceTypeId: number, page?: number, pageLimit?: number, minPrice?: number, maxPrice?: number): Observable<ServicePage> {
     let parameters = new HttpParams().set('serviceTypeId', serviceTypeId.toString());
     if (page != undefined && pageLimit != undefined) {
       parameters = parameters.append('page', page.toString()).append('pageLimit', pageLimit.toString());

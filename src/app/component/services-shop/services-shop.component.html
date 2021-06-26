@@ -46,19 +46,19 @@
                                                               <span class="input-radio__body">
                                                                   <input class="input-radio__input"
                                                                       name="category_filter_radio" type="radio"
-                                                                      (click)="selectedServiceType = undefined" checked>
+                                                                      (click)="selectedType = undefined" checked>
                                                                   <span class="input-radio__circle"></span>
                                                               </span>
                                                           </span>
                                                           <span class="filter-list__title">All Services Types</span>
                                                       </label>
-                                                      <label *ngFor="let serviceType of servicesTypes"
+                                                      <label *ngFor="let serviceType of types"
                                                           class="filter-list__item">
                                                           <span class="filter-list__input input-radio">
                                                               <span class="input-radio__body">
                                                                   <input class="input-radio__input"
                                                                       name="category_filter_radio" type="radio"
-                                                                      (click)="selectedServiceType = serviceType.id">
+                                                                      (click)="selectedType = serviceType.id">
                                                                   <span class="input-radio__circle"></span>
                                                               </span>
                                                           </span>

@@ -14,72 +14,55 @@ import { ServiceService } from 'src/app/service/service/service.service';
 export class ServicesShopComponent implements OnInit {
 
   services: Service[];
-  servicesTypes: ServiceType[];
-
+  types: ServiceType[];
   count: number;
   pageLimit = 12;
   page = 1;
-  selectedServiceType: any;
-
+  selectedType: any;
   minPriceSelected: number;
   maxPriceSelected: number;
   math = Math;
 
-  constructor(private serviceService: ServiceService, private serviceTypeService: ServiceTypeService) { }
+  constructor(private _serviceService: ServiceService, private _typeService: ServiceTypeService) { }
 
   ngOnInit(): void {
-    this.serviceTypeService.getAllServicesTypes().subscribe(
-      (response) => {
-        this.servicesTypes = response;
-        console.log('response => ', response);
-      },
-      (error: HttpErrorResponse) => {
-        console.log('error => ', error);
-      }
-    );
-
-
-    this.getServicePage(1);
+    this._typeService.getAllServicesTypes().subscribe(types => this.types = types, error => console.log(error.message));
+    this._serviceService.getAllServices(this.page - 1, this.pageLimit).subscribe(response => {
+      this.services = response.allServices;
+      this.count = response.count;
+    }
+      , error => console.log(error.message));
   }
-
-
 
   applyFilters(): void {
-    
-    if (this.selectedServiceType == undefined) {
-      this.getServicePage(1);
-
-    } else if (this.selectedServiceType != undefined) {
-      this.serviceService.getServiceByTypePaginated(this.selectedServiceType as number, this.page - 1, this.pageLimit, this.minPriceSelected, this.maxPriceSelected)
-        .subscribe(
-          (response) => {
-            this.services = response.services;
-            this.count = response.numberOfServices;
-          }
-          , (error) => console.log(error.message)
-        );
+    this.page = 1;
+    if (this.selectedType == undefined) {
+      this._serviceService.getAllServices(this.page - 1, this.pageLimit, this.minPriceSelected, this.maxPriceSelected).subscribe(response => {
+        this.services = response.allServices;
+        this.count = response.count;
+      }, error => console.log(error.message));
+    } else if (this.selectedType != undefined ) {
+      this._serviceService.getServicesByType(this.selectedType as number, this.page - 1, this.pageLimit, this.minPriceSelected, this.maxPriceSelected).subscribe(response => {
+        this.services = response.allServices;
+        this.count = response.count;
+      }, error => console.log(error.message));
     }
   }
 
-    pageChanged(pageNumber: number): void {
-      
-      this.getServicePage(pageNumber);
+  pageChanged(newPage: number): void {
+    this.page = newPage;
+    this._serviceService.getAllServices(this.page - 1, this.pageLimit).subscribe(response => {
+      this.services = response.allServices;
+      this.count = response.count;
     }
-
-    priceValueChanged(): void {
-      let minPrice = document.querySelector(".noUi-handle.noUi-handle-lower");
-      let maxPrice = document.querySelector(".noUi-handle.noUi-handle-upper");
-      this.minPriceSelected = Number(minPrice?.getAttribute("aria-valuenow"));
-      this.maxPriceSelected = Number(maxPrice?.getAttribute("aria-valuenow"));
-    }
-
-
-    private getServicePage(pageNumber: number) {
-      this.serviceService.getServicePaginated(pageNumber - 1, this.pageLimit).subscribe(
-        (response) => {
-          this.services = response.services;
-          this.count = response.numberOfServices;
-        },
-        error => console.log(error.message));
-    }
+      , error => console.log(error.message));
   }
+
+  priceValueChanged(): void {
+    let minPrice = document.querySelector(".noUi-handle.noUi-handle-lower");
+    let maxPrice = document.querySelector(".noUi-handle.noUi-handle-upper");
+    this.minPriceSelected = Number(minPrice?.getAttribute("aria-valuenow"));
+    this.maxPriceSelected = Number(maxPrice?.getAttribute("aria-valuenow"));
+  }
+
+}
