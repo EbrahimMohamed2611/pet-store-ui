@@ -81,13 +81,7 @@
                                       </button>
                                       <div class="filter__body" data-collapse-content>
                                           <div class="filter__container">
-                                              <div class="filter-price" data-min="0" data-max="10000" data-from="0"
-                                                  data-to="10000" (mouseup)="priceValueChanged()">
-                                                  <div class="filter-price__slider"></div>
-                                                  <div class="filter-price__title">Price: EGP<span
-                                                          class="filter-price__min-value"></span> – EGP<span
-                                                          class="filter-price__max-value"></span></div>
-                                              </div>
+                                            <ngx-slider [value]="0" [highValue]="100000" [options]="options" (userChange)="priceValueChanged($event)"></ngx-slider>
                                           </div>
                                       </div>
                                   </div>

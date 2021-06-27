@@ -40,6 +40,7 @@ import { SuccessComponent } from './component/success/success.component';
 import { FailedComponent } from './component/failed/failed.component';
 
 import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
+import {NgxSliderModule} from '@angular-slider/ngx-slider';
 
 export function getToken(): string {
   return localStorage.getItem('token')!;
@@ -78,24 +79,25 @@ export function getToken(): string {
 
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    CarouselModule,
-    NgxPaginationModule,
-    ToastrModule.forRoot(),
-    SocialLoginModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: getToken
-      }
-    })
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        CarouselModule,
+        NgxPaginationModule,
+        ToastrModule.forRoot(),
+        SocialLoginModule,
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: getToken
+            }
+        }),
+        NgxSliderModule
 
-  ],
+    ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true},
     JwtHelperService,
     {

@@ -77,16 +77,15 @@ export class ProductInfoComponent implements OnInit {
     } else {
       return 0;
     }
+  }
 
 
   public addToShoppingCart(product: Product): void {
     if (!this._authService.isLoggedIn()){
-      this._routerService.navigateByUrl("/login");
+      this._routerService.navigateByUrl('/login');
     }else{
-
       this.shoppingCartService.updateShoppingCart(product, 1)
         .subscribe((cartItems: CartItem[]) => {
-          console.log("cartItems " ,cartItems)
           cartItems.forEach(items => {
             if (items.product.id == product.id) {
               this.notification.info('your cart has ' + items.quantity + ' from ' + items.product.name);
@@ -98,5 +97,4 @@ export class ProductInfoComponent implements OnInit {
         });
     }
   }
-}
 }
