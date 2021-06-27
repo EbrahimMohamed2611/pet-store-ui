@@ -46,7 +46,7 @@ export class ProductInfoComponent implements OnInit {
     },
     nav: true
   };
-  product: Product;
+  product: Product = new Product();
   selectedTab = 'description';
 
   // relatedProducts: Product[];
