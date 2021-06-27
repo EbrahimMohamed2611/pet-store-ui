@@ -56,4 +56,8 @@ export class AuthenticationService {
     return this.logged.asObservable();
   }
 
+  public checkEmailExist(email:any):Observable<boolean>{
+    return this.httpClient.post<boolean>(`${environment.apiUrl}` + 'auth/email',email);
+  }
+
 }

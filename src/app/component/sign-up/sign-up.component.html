@@ -13,18 +13,22 @@
             <div class="mb-3">
               <label for="firstName" class="form-label">First Name </label>
               <input formControlName="firstName" type="text" class="form-control" id="firstName" />
-              <!--              <small *ngIf="formLogin.controls['Email']" class="aler aler-danger">-->
-              <!--                Invalid Email-->
-              <!--              </small>-->
+              <div *ngIf="formLogin.controls['firstName'].invalid && formLogin.controls['firstName'].dirty" class="text-danger">
+                <span *ngIf="formLogin.controls['firstName'].errors?.required" >
+                  Your First name is required
+                </span>
+              </div>
             </div>
           </div>
           <div class="col">
             <div class="mb-3">
               <label for="lastName" class="form-label">Last Name </label>
               <input formControlName="lastName" type="text" class="form-control" id="lastName" />
-              <!--              <small *ngIf="formLogin.controls['Email']" class="aler aler-danger">-->
-              <!--                Invalid Email-->
-              <!--              </small>-->
+              <div *ngIf="formLogin.controls['lastName'].invalid && formLogin.controls['lastName'].dirty" class="text-danger">
+                <span *ngIf="formLogin.controls['lastName'].errors?.required" >
+                  Your Last name is required
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -32,26 +36,85 @@
         <div class="mb-3">
           <label for="userName" class="form-label">User Name</label>
           <input formControlName="userName" type="text" class="form-control" id="userName" />
+          <div *ngIf="formLogin.controls['userName'].invalid && formLogin.controls['userName'].dirty" class="text-danger">
+            <span *ngIf="formLogin.controls['userName'].errors?.required" class="text text-danger">
+              Your User name is required
+            </span>
+            <span *ngIf="formLogin.controls['userName'].errors?.minlength" >
+              User name should contain at least 8 characters
+            </span>
+            <span *ngIf="formLogin.controls['userName'].errors?.maxlength" >
+              User name should not be more than 50 characters
+            </span>
+            <span *ngIf="formLogin.controls['userName'].errors?.pattern" >
+              User name should contain special characters
+            </span>
+
+          </div>
+
         </div>
 
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email </label>
-          <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
+          <input (blur)="checkIfEmailExist($event)" formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
                  aria-describedby="emailHelp" />
-          <small *ngIf="formLogin.controls['Email']" class="aler aler-danger">
-            Invalid Email
-          </small>
+          <div *ngIf="formLogin.controls['email'].invalid && formLogin.controls['email'].dirty" class="text-danger">
+            <span *ngIf="formLogin.controls['email'].errors?.required" >
+             Email is required
+            </span>
+            <span *ngIf="formLogin.controls['email'].errors?.email" >
+              This is not email
+            </span>
+            <span *ngIf="formLogin.controls['email'].errors?.maxlength" >
+             Email should not be more than 50 characters
+            </span>
+            <span *ngIf="formLogin.controls['email'].errors?.minlength" >
+              Email should  be more than 10 characters
+            </span>
+
+          </div>
+          <div *ngIf="isExist" class="text-danger">
+            This Email already Exist
+          </div>
         </div>
 
 
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
           <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" />
+          <div *ngIf="formLogin.controls['password'].invalid && formLogin.controls['password'].dirty" class="text-danger">
+            <span *ngIf="formLogin.controls['lastName'].errors?.required" >
+              Password is required
+            </span>
+
+            <span *ngIf="formLogin.controls['password'].errors?.minlength" >
+              Password should be more than 10 characters
+            </span>
+
+            <span *ngIf="formLogin.controls['password'].errors?.maxlength" >
+              Password should not be more than 50 characters
+            </span>
+
+          </div>
         </div>
 
         <div class="mb-3">
           <label for="phoneNumber" class="form-label">Phone Number</label>
           <input formControlName="phoneNumber" type="number" class="form-control" id="phoneNumber" />
+          <div *ngIf="formLogin.controls['phoneNumber'].invalid && formLogin.controls['phoneNumber'].dirty" class="text-danger">
+            <span *ngIf="formLogin.controls['phoneNumber'].errors?.required" >
+              Phone Number is required
+            </span>
+
+            <span *ngIf="formLogin.controls['phoneNumber'].errors?.minlength" >
+              Phone Number should be more than 11 characters
+            </span>
+
+            <span *ngIf="formLogin.controls['phoneNumber'].errors?.maxlength" >
+              Phone Number should not be more than 11 characters
+            </span>
+
+          </div>
         </div>
 
         <div class="row">
@@ -63,6 +126,11 @@
                 <option value="MALE" >Male</option>
                 <option value="FEMALE">Female</option>
               </select>
+              <div *ngIf="formLogin.controls['gender'].invalid && formLogin.controls['gender'].dirty"  class="text-danger">
+                <span *ngIf="formLogin.controls['gender'].errors?.required" >
+                  Phone Number is required
+                </span>
+              </div>
             </div>
 
           </div>
@@ -71,6 +139,11 @@
               <label for="birthDate" class="form-label">Birth Date</label>
               <input formControlName="birthDate" type="date" class="form-control" id="birthDate" />
             </div>
+<!--            <div *ngIf="formLogin.controls['birthDate'].invalid" class="text-danger">-->
+<!--              <span *ngIf="formLogin.controls['birthDate'].errors?.required" >-->
+<!--                BirthDate is required-->
+<!--              </span>-->
+<!--            </div>-->
           </div>
         </div>
 
