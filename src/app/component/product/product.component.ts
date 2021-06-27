@@ -4,6 +4,7 @@ import {ShoppingCartService} from '../../service/shoppingCart/shopping-cart.serv
 import {ToastrService} from 'ngx-toastr';
 import {CartItem} from '../../model/CartItem.model';
 import {HttpErrorResponse} from '@angular/common/http';
+import { Rate } from 'src/app/model/Rate.model';
 
 @Component({
   selector: 'app-product',
@@ -20,7 +21,7 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Product Component');
+    // console.log('Product Component');
   }
 
   public addProductToShoppingCart(product: Product, quantity: number) {
@@ -37,5 +38,13 @@ export class ProductComponent implements OnInit {
       console.log(error);
       this.toasterService.error(error.message);
     });
+  }
+  getAvgRate(rates: Rate[]): number {
+    if (rates !== null) {
+      const rating = Math.floor(rates.map(rate => rate.rateNumber).reduce((p, c) => p + c, 0) / rates.length);
+      return Number.isNaN(rating) ? 0 : rating;
+    } else {
+      return 0;
+    }
   }
 }

@@ -1,6 +1,6 @@
 export class Species{
 
-    public speciesId:number;
-    public speciesName:string;
+    public speciesId:number = 0;;
+    public speciesName:string = "";
 
 }

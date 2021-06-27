@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Brand } from 'src/app/model/Brand.model';
-import { Category } from 'src/app/model/Category.model';
-import { Product } from 'src/app/model/Product.model';
-import { BrandService } from 'src/app/service/brand/brand.service';
-import { CategoryService } from 'src/app/service/category/category.service';
-import { ProductService } from 'src/app/service/product/product.service';
+import {Component, OnInit} from '@angular/core';
+import {Brand} from 'src/app/model/Brand.model';
+import {Category} from 'src/app/model/Category.model';
+import {Product} from 'src/app/model/Product.model';
+import {BrandService} from 'src/app/service/brand/brand.service';
+import {CategoryService} from 'src/app/service/category/category.service';
+import {ProductService} from 'src/app/service/product/product.service';
+import {ChangeContext, LabelType, Options} from '@angular-slider/ngx-slider';
 
 @Component({
   selector: 'app-shop',
@@ -24,16 +25,31 @@ export class ShopComponent implements OnInit {
   minPriceSelected: number;
   maxPriceSelected: number;
   math = Math;
+  options: Options = {
+    floor: 0,
+    ceil: 100000,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return `<b  class="price-min-value">Min: EGP${value}</b>`;
+        case LabelType.High:
+          return `<b  class="price-max-value">Max: EGP${value}</b>`;
+        default:
+          return `EGP${value}`;
+      }
+    }
+  };
 
-  constructor(private _productService: ProductService, private _categoryService: CategoryService, private _brandService: BrandService) { }
+  constructor(private _productService: ProductService, private _categoryService: CategoryService, private _brandService: BrandService) {
+  }
 
   ngOnInit(): void {
     this._categoryService.getAllCategory().subscribe(categories => this.categories = categories, error => console.log(error.message));
-    // this._brandService.getAllBrands().subscribe(brands => this.brands = brands, error => console.log(error.message));
+    this._brandService.getAllBrands().subscribe(brands => this.brands = brands, error => console.log(error.message));
     this._productService.getProducts(this.page - 1, this.pageLimit).subscribe(response => {
-      this.products = response.products;
-      this.count = response.count;
-    }
+        this.products = response.products;
+        this.count = response.count;
+      }
       , error => console.log(error.message));
   }
 
@@ -65,17 +81,15 @@ export class ShopComponent implements OnInit {
   pageChanged(newPage: number): void {
     this.page = newPage;
     this._productService.getProducts(this.page - 1, this.pageLimit).subscribe(response => {
-      this.products = response.products;
-      this.count = response.count;
-    }
+        this.products = response.products;
+        this.count = response.count;
+      }
       , error => console.log(error.message));
   }
 
-  priceValueChanged(): void {
-    let minPrice = document.querySelector(".noUi-handle.noUi-handle-lower");
-    let maxPrice = document.querySelector(".noUi-handle.noUi-handle-upper");
-    this.minPriceSelected = Number(minPrice?.getAttribute("aria-valuenow"));
-    this.maxPriceSelected = Number(maxPrice?.getAttribute("aria-valuenow"));
+  priceValueChanged(changeContext: ChangeContext): void {
+    this.minPriceSelected = changeContext.value;
+    this.maxPriceSelected = changeContext.highValue as number;
   }
 
 }

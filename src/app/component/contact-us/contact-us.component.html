@@ -1,0 +1,72 @@
+<div class="container contact-form">
+  <div class="card-container">
+    <div class="card-flip">
+      <div class="card front">
+        <div class="contact-image">
+          <img src="assets/images/contact-us/dog-carrying-message.jpg" alt="receive_contact"/>
+        </div>
+        <form class="text-center border border-light p-5 front" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col">
+
+              <input type="text" formControlName="contactFormName" id="defaultContactFormName"
+                     class="form-control mb-4" placeholder="Name *">
+              <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                   class="alert alert-danger small">
+                <div *ngIf="name.errors?.required">Name is required.</div>
+              </div>
+
+              <!-- Email -->
+              <input type="email" formControlName="contactFormEmail" id="defaultContactFormEmail"
+                     class="form-control mb-4" placeholder="E-mail *">
+              <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                   class="alert alert-danger small">
+                <div *ngIf="email.errors?.required">Email is required.</div>
+                <div *ngIf="email.errors?.email">Invalid Email Format.</div>
+              </div>
+
+              <label>Subject</label>
+              <select formControlName="contactFormSubjects" class="browser-default custom-select mb-4">
+                <option value="" disabled selected>Select a subject</option>
+                <option *ngFor="let option of optionsSelect; let i = index" [value]="optionsSelect[i].value">
+                  {{optionsSelect[i].value}}
+                </option>
+              </select>
+              <div *ngIf="subjects.invalid && (subjects.dirty || subjects.touched)"
+                   class="alert alert-danger small">
+                <div *ngIf="subjects.errors?.required">Subject is required.</div>
+              </div>
+            </div>
+
+            <div class="col">
+               <textarea name="txtMsg" class="form-control" placeholder="Your Message *"
+                         formControlName="contactFormMessage" style="width: 100%; height: 150px;"></textarea>
+              <div *ngIf="message.invalid && (message.dirty || message.touched)"
+                   class="alert alert-danger small">
+                <div *ngIf="message.errors?.required">Message is required.</div>
+              </div>
+              <br>
+              <div class="form-group d-flex justify-content-center">
+                <input type="submit" name="btnSubmit" class="btnContact" value="Send Message"
+                       [disabled]="disabledSubmitButton"/>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class=" card back justify-content-center text-center">
+        <div class="content-sent">
+          <img src="assets/images/contact-us/rabbit-receive-message.jpg" alt="message-sent"/>
+        </div>
+        <h1>Thank you for contacting us.</h1>
+        <p>
+        <h4 class="font-weight-light text-secondary">We appreciate that you have taken the time to write us.<p>We'll get
+          back to you very soon.</p></h4>
+        <br>
+        <input type="submit" name="btnSubmit" class="btn btn-outline-warning btn-lg" style="align-self: center"
+               value="Submit Another Message"
+               (click)="flip()"/>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,47 +1,58 @@
 <div class="container">
   <div class="card">
-<!--    <img src="..." class="card-img-top" alt="..." />-->
-    <div  class="card-body">
+    <!--    <img src="..." class="card-img-top" alt="..." />-->
+    <div class="card-body">
+      <div class="col sm-12">
+        <img src="../../../assets/images/logos/logo4.png">
+      </div>
       <h5 class="card-title">Login Form</h5>
       <form [formGroup]="formLogin">
+        <div *ngIf="isBadCredential" class="mb-3" style="text-align: center;">
+          <div class="alert alert-danger">
+            {{badCredentialMessage}}
+          </div>
+        </div>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label"
-            >Email address</label
-          >
-          <input
-            formControlName="email"
-            type="email"
-            class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-          />
-          <small *ngIf="formLogin.controls['Email']" class="aler aler-danger">
+
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
+                 aria-describedby="emailHelp" />
+          <div *ngIf="formLogin.controls['Email'] && formLogin.controls['Email'].dirty" class="aler aler-danger">
             Invalid Email
-          </small>
+          </div>
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input
-            formControlName="password"
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-          />
+          <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" />
         </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1"
-            >Check me out</label
-          >
+
+        <div class="col-sm-12 buttn mb-3">
+          <button (click)="login()" class="center-btn center-btn btn btn-primary"> Login</button>
         </div>
-        <button
-          (click)="login()"
-          [disabled]="formLogin.invalid"
-          type="submit"
-          class="btn btn-primary"
-        >
-          Login
-        </button>
+
+        <div class="or">
+          Login with social media
+        </div>
+
+        <div class="col-sm-12 buttn mb-3">
+          <button  (click)="signInWithFB()" routerLinkActive="router-link-active"  class="center-btn btn btn-primary" style="
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+"><i class="fab fa-facebook-f"></i>login with facebook</button>
+        </div>
+
+        <div class="col-sm-12 buttn mb-3">
+          <button  (click)="signInWithGoogle()" routerLinkActive="router-link-active"  class="center-btn btn btn-danger"><i class="fab fa-google"></i> login with google</button>
+        </div>
+
+        <div class="or">
+          OR
+        </div>
+        <div class="col-sm-12 buttn mb-3">
+          <button  [routerLink]="['/signup']" routerLinkActive="router-link-active"  class="center-btn btn btn-outline-secondary"> signup</button>
+        </div>
+
       </form>
     </div>
   </div>
