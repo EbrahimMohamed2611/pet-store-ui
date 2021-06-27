@@ -1,0 +1,4 @@
+li > div:hover {
+  cursor: pointer;
+  color: #1a66ff;
+}

@@ -8,15 +8,14 @@ import {CustomerComponent} from './component/customer/customer.component';
 import {SignUpComponent} from './component/sign-up/sign-up.component';
 import {SpeciesComponent} from './component/species/species.component';
 import {ShopComponent} from './component/shop/shop.component';
-
 import {ShoppingCartComponent} from './component/shopping-cart/shopping-cart.component';
 import {CheckoutComponent} from './component/checkout/checkout.component';
 import {LayoutComponent} from './component/layout/layout.component';
 import {ProductInfoComponent} from './component/product-info/product-info.component';
-
+import {ServicesShopComponent} from './component/services-shop/services-shop.component';
+import {ServiceInfoComponent} from './component/service-info/service-info.component';
 import {SuccessComponent} from './component/success/success.component';
 import {FailedComponent} from './component/failed/failed.component';
-
 import {AuthenticationGuard} from './guards/authentication/authentication.guard';
 import {LoginGuard} from './guards/login/login.guard';
 import {ContactUsComponent} from './component/contact-us/contact-us.component';
@@ -25,7 +24,6 @@ import {TopRatedResolverService} from './resolvers/top-rated-resolver.service';
 import {TopCategoriesResolverService} from './resolvers/top-categories-resolver.service';
 import {TopOffersResolverService} from './resolvers/top-offers-resolver.service';
 import {HomeProductsResolverService} from './resolvers/home-products-resolver.service';
-
 
 const routes: Routes = [
   {
@@ -43,12 +41,12 @@ const routes: Routes = [
       {path: 'species', component: SpeciesComponent},
       {path: 'product/:id', component: ProductInfoComponent},
       {path: 'shop', component: ShopComponent},
-
+      {path: 'services', component: ServicesShopComponent},
+      {path: 'service/:id', component: ServiceInfoComponent},
       {path: 'cart', component: ShoppingCartComponent},
       {path: 'checkout', component: CheckoutComponent},
       {path: 'success', component: SuccessComponent},
       {path: 'failed', component: FailedComponent},
-
       {path: 'contacts', component: ContactUsComponent},
       {path: 'about-us', component: AboutUsComponent},
       {path: 'cart', component: ShoppingCartComponent, canActivate: [AuthenticationGuard]},

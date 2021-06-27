@@ -1,23 +1,23 @@
 <div class="product-card">
-    <div *ngIf="product.discount > 0" class="product-card__badges-list">
+    <div *ngIf="service.discount > 0" class="product-card__badges-list">
         <div class="product-card__badge product-card__badge--sale">Sale</div>
     </div>
     <div class="product-card__image">
         <!-- <a href="/product/{{product.id}}"> -->
-        <a [routerLink]="['/product', product.id]">
-            <img [src]="product.images[0]?.url" alt="Product image">
+        <a [routerLink]="['/service', service.id]">
+            <img [src]="service.imageUrl" alt="Product image">
         </a>
     </div>
     <div class="product-card__info">
         <div class="product-card__name">
-            <a [routerLink]="['/product', product.id]">{{product.name}}</a>
+            <a [routerLink]="['/service', service.id]">{{service.name}}</a>
             <!-- <a href="/product/{{product.id}}">{{product.name}}</a> -->
         </div>
         <div class="product-card__rating">
             <div class="rating">
                 <div class="rating__body">
                     <!--star-->
-                    <ng-template ngFor let-loop [ngForOf]="[].constructor(getAvgRate(product.rates)) ">
+                    <ng-template ngFor let-loop [ngForOf]="[].constructor(getAvgRate(service.rates)) ">
                     <svg class="rating__star rating__star--active" width="13px" height="12px">
                         <g class="rating__fill">
                             <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
@@ -37,7 +37,7 @@
                     </div> 
                 </ng-template>
                     <!--black star-->
-                    <ng-template ngFor let-loop [ngForOf]="[].constructor(5-getAvgRate(product.rates)) ">
+                    <ng-template ngFor let-loop [ngForOf]="[].constructor(5-getAvgRate(service.rates)) ">
                      <svg class="rating__star" width="13px" height="12px">
                         <g class="rating__fill">
                             <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
@@ -58,35 +58,33 @@
                 </ng-template>
                 </div>
             </div>
-            <div class="product-card__rating-legend">{{product.rates.length}} Reviews</div>
+            <div class="product-card__rating-legend">{{service.rates.length}} Reviews</div>
         </div>
         <ul class="product-card__features-list">
-            <li>Category: {{product.category.name}}</li>
-            <li>Brand: {{product.brand.name}}</li>
-            <li>Species: {{product.species.speciesName}}</li>
+            <li>Type: {{service.type.name}}</li>
         </ul>
     </div>
     <div class="product-card__actions">
         <div class="product-card__availability">Availability: <span class="text-success">In Stock</span></div>
         <div class="product-card__prices">
-            <div *ngIf="product.discount != 0; then salePrice else normalPrice"></div>
+            <div *ngIf="service.discount != 0; then salePrice else normalPrice"></div>
             <ng-template #salePrice>
-                <span class="product-card__new-price">{{(product.price - (product.price * product.discount)) |
+                <span class="product-card__new-price">{{(service.price - (service.price * service.discount)) |
                     currency:'EGP':true}}</span>
-                <span class="pl-1 product-card__old-price">{{product.price | currency:'EGP':true}}</span>
+                <span class="pl-1 product-card__old-price">{{service.price | currency:'EGP':true}}</span>
             </ng-template>
             <ng-template #normalPrice>
-                {{product.price | currency:'EGP':true}}
+                {{service.price | currency:'EGP':true}}
             </ng-template>
         </div>
         <div class="product-card__buttons">
-            <button (click)="addProductToShoppingCart(product,1)" class="btn btn-primary product-card__addtocart"
+            <!-- <button (click)="addProductToShoppingCart(product,1)" class="btn btn-primary product-card__addtocart"
                 type="button">Add To Cart
             </button>
             <button (click)="addProductToShoppingCart(product,1)"
                 class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">Add To
                 Cart
-            </button>
+            </button> -->
         </div>
     </div>
 </div>

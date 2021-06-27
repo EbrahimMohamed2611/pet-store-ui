@@ -8,6 +8,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {AuthenticationService} from "../../service/authenticate/authentication.service";
 import {CartService} from "../../service/cart/cart.service";
+import { Rate } from 'src/app/model/Rate.model';
 
 @Component({
   selector: 'app-product-info',
@@ -48,7 +49,6 @@ export class ProductInfoComponent implements OnInit {
   };
   product: Product = new Product();
   selectedTab = 'description';
-
   // relatedProducts: Product[];
 
   constructor(private _activatedRoute: ActivatedRoute, private _productService: ProductService,
@@ -70,6 +70,13 @@ export class ProductInfoComponent implements OnInit {
       });
     });
   }
+  getAvgRate(rates: Rate[]): number {
+    if (rates !== null) {
+      const rating = Math.floor(rates.map(rate => rate.rateNumber).reduce((p, c) => p + c, 0) / rates.length);
+      return Number.isNaN(rating) ? 0 : rating;
+    } else {
+      return 0;
+    }
 
 
   public addToShoppingCart(product: Product): void {
@@ -91,4 +98,5 @@ export class ProductInfoComponent implements OnInit {
         });
     }
   }
+}
 }

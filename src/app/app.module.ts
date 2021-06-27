@@ -24,9 +24,10 @@ import {ProductInfoComponent} from './component/product-info/product-info.compon
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {AboutUsComponent} from './component/about-us/about-us.component';
-
+import { ServicesShopComponent } from './component/services-shop/services-shop.component';
+import { ServiceComponent } from './component/service/service.component';
+import { ServiceInfoComponent } from './component/service-info/service-info.component';
 import {ContactUsComponent} from './component/contact-us/contact-us.component';
-
 import {ShoppingCartComponent} from './component/shopping-cart/shopping-cart.component';
 import {CheckoutComponent} from './component/checkout/checkout.component';
 import {LayoutComponent} from './component/layout/layout.component';
@@ -65,7 +66,9 @@ export function getToken(): string {
     ShopComponent,
     ProductInfoComponent,
     AboutUsComponent,
-
+    ServicesShopComponent,
+    ServiceComponent,
+    ServiceInfoComponent,
     ContactUsComponent,
     ShoppingCartComponent,
     CheckoutComponent,
@@ -116,5 +119,4 @@ export function getToken(): string {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
