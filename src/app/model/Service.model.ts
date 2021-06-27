@@ -12,7 +12,6 @@ export class Service{
   discount: number;
   startTime: Date;
   endTime: Date;
-  timePerService: Date;
   deliverable: boolean;
   imageUrl: string;
   provider: ServiceProvider = new ServiceProvider();

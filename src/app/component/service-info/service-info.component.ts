@@ -22,26 +22,7 @@ export class ServiceInfoComponent implements OnInit {
     items: 1,
     nav: false
   };
-  customOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
-    margin: 10,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      1200: {items: 5},
-      992: {items: 4},
-      768: {items: 3},
-      480: {items: 5},
-      380: {items: 4},
-      0: {items: 3}
-    },
-    nav: true
-  };
-  service: Service;
+  service = new Service();
   selectedTab = 'description';
 
 
@@ -51,7 +32,7 @@ export class ServiceInfoComponent implements OnInit {
   ngOnInit(): void {
     this._activatedRoute.params.subscribe(params => {
       this._serviceService.getService(+params['id']).subscribe(service => {
-        this.service =service;
+        this.service = service;
         // this._productService.getCategoryProducts(product.category.id).subscribe(products => {
         //   this.relatedProducts = products.products;
         //   let index = this.relatedProducts.indexOf(this.product);
@@ -61,8 +42,8 @@ export class ServiceInfoComponent implements OnInit {
     });
   }
   getAvgRate(rates: ServiceRate[]): number {
-    if (rates !== null) {
-      const rating = Math.floor(rates.map(rate => rate.rateNumber).reduce((p, c) => p + c, 0) / rates.length);
+    if (rates !== undefined && rates !== null) {
+      const rating = Math.floor(rates?.map(rate => rate.rateNumber)?.reduce((p, c) => p + c, 0) / rates?.length);
       return Number.isNaN(rating) ? 0 : rating;
     } else {
       return 0;

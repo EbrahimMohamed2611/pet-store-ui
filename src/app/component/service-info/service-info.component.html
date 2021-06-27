@@ -1,243 +1,234 @@
 <div class="site__body">
-    <div class="page-header">
-      <div class="page-header__container container">
-        <div class="page-header__breadcrumb">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Home</a>
-                <svg class="breadcrumb-arrow"
-                     width="6px" height="9px">
-                  <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-right-6x9"></use>
+  <div class="page-header">
+    <div class="page-header__container container">
+      <div class="page-header__breadcrumb">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a>
+              <svg class="breadcrumb-arrow"
+                   width="6px" height="9px">
+                <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-right-6x9"></use>
+              </svg>
+            </li>
+            <li class="breadcrumb-item"><a [routerLink]="['/services']">Services</a>
+              <svg class="breadcrumb-arrow"
+                   width="6px" height="9px">
+                <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-right-6x9"></use>
+              </svg>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">{{service?.name}}
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="container">
+      <div class="product product--layout--standard" data-layout="standard">
+        <div class="product__content">
+          <!-- .product__gallery -->
+          <div class="product__gallery">
+            <div class="product-gallery">
+              <div class="product-gallery__featured">
+                <owl-carousel-o [options]="firstCarouselOptions" #firstCarousel>
+                  <ng-template carouselSlide>
+                    <img [src]="service?.imageUrl">
+                  </ng-template>
+                </owl-carousel-o>
+              </div>
+            </div>
+          </div>
+          <div class="product__info">
+            <div class="product__wishlist-compare">
+              <button type="button"
+                      class="btn btn-sm btn-light btn-svg-icon" data-toggle="tooltip" data-placement="right"
+                      title="Wishlist">
+                <svg width="16px" height="16px">
+                  <use xlink:href="../../../assets/images/sprite.svg#wishlist-16"></use>
                 </svg>
-              </li>
-              <li class="breadcrumb-item"><a [routerLink]="['/shop']">Shop</a>
-                <svg class="breadcrumb-arrow"
-                     width="6px" height="9px">
-                  <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-right-6x9"></use>
+              </button>
+              <button type="button" class="btn btn-sm btn-light btn-svg-icon"
+                      data-toggle="tooltip" data-placement="right" title="Compare">
+                <svg width="16px"
+                     height="16px">
+                  <use xlink:href="../../../assets/images/sprite.svg#compare-16"></use>
                 </svg>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">{{service.name}}
-              </li>
-            </ol>
-          </nav>
+              </button>
+            </div>
+            <h1 class="product__name">
+              {{service?.name}}
+              <div *ngIf="service?.discount! > 0"
+                   class="d-inline-block align-text-top product-card__badge product-card__badge--sale">Sale
+              </div>
+            </h1>
+            <div class="product__rating">
+              <div class="product__rating-stars">
+                <div class="rating">
+                  <div class="rating__body">
+                    <ng-template ngFor let-loop [ngForOf]="[].constructor(getAvgRate(service?.rates!)) ">
+                      <svg class="rating__star rating__star--active" width="13px"
+                           height="12px">
+                        <g class="rating__fill">
+                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                        </g>
+                        <g class="rating__stroke">
+                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                          </use>
+                        </g>
+                      </svg>
+                      <div class="rating__star rating__star--only-edge rating__star--active">
+                        <div class="rating__fill">
+                          <div class="fake-svg-icon"></div>
+                        </div>
+                        <div class="rating__stroke">
+                          <div class="fake-svg-icon"></div>
+                        </div>
+                      </div>
+                    </ng-template>
+                    <ng-template ngFor let-loop [ngForOf]="[].constructor(5-getAvgRate(service?.rates!)) ">
+                      <svg class="rating__star" width="13px" height="12px">
+                        <g class="rating__fill">
+                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                        </g>
+                        <g class="rating__stroke">
+                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                          </use>
+                        </g>
+                      </svg>
+                      <div class="rating__star rating__star--only-edge">
+                        <div class="rating__fill">
+                          <div class="fake-svg-icon"></div>
+                        </div>
+                        <div class="rating__stroke">
+                          <div class="fake-svg-icon"></div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+              <div class="product__rating-legend">{{service?.rates?.length}} Reviews</div>
+            </div>
+            <div class="product__description">{{service?.description}}</div>
+            <ul class="product__features">
+              <li>Speed: 750 RPM</li>
+              <li>Power Source: Cordless-Electric</li>
+              <li>Battery Cell Type: Lithium</li>
+              <li>Voltage: 20 Volts</li>
+              <li>Battery Capacity: 2 Ah</li>
+            </ul>
+            <ul class="product__meta">
+              <!-- <li class="product__meta-availability">
+                Availability: <span class="text-success">{{service.quantity > 0 ? 'In Stock' : 'Out Of Stock'}}</span>
+              </li> -->
+              <li>Type: <a href="#">{{service?.type!.name}}</a></li>
+              <!-- <li>Species: {{product.species.speciesName}}</li> -->
+            </ul>
+          </div><!-- .product__info / end -->
+          <!-- .product__sidebar -->
+          <div class="product__sidebar">
+            <div class="product__availability">Availability: <span class="text-success">In
+                              Stock</span></div>
+            <div class="product__prices">
+              <div *ngIf="service?.discount! != 0; then salePrice else normalPrice"></div>
+              <ng-template #salePrice>
+                              <span class="product__new-price">{{(service?.price! - (service?.price! * service?.discount!))
+                                |
+                                currency:'EGP':true}}</span>
+                <span class="pl-1 product__old-price">{{service?.price | currency:'EGP':true}}</span>
+              </ng-template>
+              <ng-template #normalPrice>
+                {{service?.price | currency:'EGP':true}}
+              </ng-template>
+            </div>
+            <!-- .product__options -->
+            <form class="product__options">
+              <div class="form-group product__option"><label class="product__option-label"
+                                                             for="product-quantity">Quantity</label>
+                <div class="product__actions">
+                  <div class="product__actions-item">
+                    <div class="input-number product__quantity"><input id="product-quantity"
+                                                                       class="input-number__input form-control form-control-lg"
+                                                                       type="number"
+                                                                       min="1" value="1">
+                      <div class="input-number__add"></div>
+                      <div class="input-number__sub"></div>
+                    </div>
+                  </div>
+                  <div class="product__actions-item product__actions-item--addtocart">
+                    <button
+                      class="btn btn-primary btn-lg">Add to cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="product__footer">
+            <div class="product__tags tags">
+              <div class="tags__list">
+                <a>{{service?.type!.name}}</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="block">
-      <div class="container">
-        <div class="product product--layout--standard" data-layout="standard">
-          <div class="product__content">
-            <!-- .product__gallery -->
-            <div class="product__gallery">
-              <div class="product-gallery">
-                <div class="product-gallery__featured">
-                  <owl-carousel-o [options]="firstCarouselOptions" #firstCarousel>
-                    <!-- <ng-template carouselSlide *ngFor="let image of service.imageUrl" [id]="image.id!.toString()"> -->
-                      <img [src]="service.imageUrl">
-                    <!-- </ng-template> -->
-                  </owl-carousel-o>
-                </div>
-                <div class="product-gallery__carousel">
-                  <owl-carousel-o [options]="customOptions">
-                    <!-- <ng-template carouselSlide *ngFor="let image of product.images"> -->
-                      <img [src]="service.imageUrl" (click)="firstCarousel.to(service.imageUrl)">
-                    <!-- </ng-template> -->
-                  </owl-carousel-o>
-                </div>
-              </div>
-            </div>
-            <div class="product__info">
-              <div class="product__wishlist-compare">
-                <button type="button"
-                        class="btn btn-sm btn-light btn-svg-icon" data-toggle="tooltip" data-placement="right"
-                        title="Wishlist">
-                  <svg width="16px" height="16px">
-                    <use xlink:href="../../../assets/images/sprite.svg#wishlist-16"></use>
-                  </svg>
-                </button>
-                <button type="button" class="btn btn-sm btn-light btn-svg-icon"
-                        data-toggle="tooltip" data-placement="right" title="Compare">
-                  <svg width="16px"
-                       height="16px">
-                    <use xlink:href="../../../assets/images/sprite.svg#compare-16"></use>
-                  </svg>
-                </button>
-              </div>
-              <h1 class="product__name">
-                {{service.name}}
-                <div *ngIf="service.discount > 0"
-                     class="d-inline-block align-text-top product-card__badge product-card__badge--sale">Sale
-                </div>
-              </h1>
-              <div class="product__rating">
-                <div class="product__rating-stars">
-                  <div class="rating">
-                    <div class="rating__body">
-                      <ng-template ngFor let-loop [ngForOf]="[].constructor(getAvgRate(service.rates)) ">
-                        <svg class="rating__star rating__star--active" width="13px"
-                             height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge rating__star--active">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                        </div>
-                      </ng-template>
-                      <ng-template ngFor let-loop [ngForOf]="[].constructor(5-getAvgRate(service.rates)) ">
-                        <svg class="rating__star" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                        </div>
-                      </ng-template>
-                    </div>
-                  </div>
-                </div>
-                <div class="product__rating-legend">{{service.rates.length}} Reviews</div>
-              </div>
-              <div class="product__description">{{service.description}}</div>
-              <ul class="product__features">
-                <li>Speed: 750 RPM</li>
-                <li>Power Source: Cordless-Electric</li>
-                <li>Battery Cell Type: Lithium</li>
-                <li>Voltage: 20 Volts</li>
-                <li>Battery Capacity: 2 Ah</li>
-              </ul>
-              <ul class="product__meta">
-                <!-- <li class="product__meta-availability">
-                  Availability: <span class="text-success">{{service.quantity > 0 ? 'In Stock' : 'Out Of Stock'}}</span>
-                </li> -->
-                <li>Type: <a href="#">{{service.type.name}}</a></li>
-                <!-- <li>Species: {{product.species.speciesName}}</li> -->
-              </ul>
-            </div><!-- .product__info / end -->
-            <!-- .product__sidebar -->
-            <div class="product__sidebar">
-              <div class="product__availability">Availability: <span class="text-success">In
-                              Stock</span></div>
-              <div class="product__prices">
-                <div *ngIf="service.discount != 0; then salePrice else normalPrice"></div>
-                <ng-template #salePrice>
-                              <span class="product__new-price">{{(service.price - (service.price * service.discount))
-                                |
-                                currency:'EGP':true}}</span>
-                  <span class="pl-1 product__old-price">{{service.price | currency:'EGP':true}}</span>
-                </ng-template>
-                <ng-template #normalPrice>
-                  {{service.price | currency:'EGP':true}}
-                </ng-template>
-              </div>
-              <!-- .product__options -->
-              <form class="product__options">
-                <div class="form-group product__option"><label class="product__option-label"
-                                                               for="product-quantity">Quantity</label>
-                  <div class="product__actions">
-                    <div class="product__actions-item">
-                      <div class="input-number product__quantity"><input id="product-quantity"
-                                                                         class="input-number__input form-control form-control-lg"
-                                                                         type="number"
-                                                                         min="1" value="1">
-                        <div class="input-number__add"></div>
-                        <div class="input-number__sub"></div>
-                      </div>
-                    </div>
-                    <div class="product__actions-item product__actions-item--addtocart">
-                      <button
-                        class="btn btn-primary btn-lg">Add to cart
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-                </div>
-            <div class="product__footer">
-              <div class="product__tags tags">
-                <div class="tags__list">
-                  <a>{{service.type.name}}</a>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="product-tabs">
+      <div class="product-tabs__list">
+        <div class="product-tabs__item" [class.product-tabs__item--active]="selectedTab == 'description'"
+             (click)="selectedTab = 'description'">Description
+        </div>
+        <div class="product-tabs__item" [class.product-tabs__item--active]="selectedTab == 'reviews'"
+             (click)="selectedTab = 'reviews'">Reviews
         </div>
       </div>
-      <div class="product-tabs">
-        <div class="product-tabs__list">
-          <div class="product-tabs__item" [class.product-tabs__item--active]="selectedTab == 'description'"
-               (click)="selectedTab = 'description'">Description
-          </div>
-          <div class="product-tabs__item" [class.product-tabs__item--active]="selectedTab == 'reviews'"
-               (click)="selectedTab = 'reviews'">Reviews
+      <div [ngSwitch]="selectedTab" class="product-tabs__content">
+        <div *ngSwitchCase="'description'" class="product-tabs__pane"
+             [class.product-tabs__pane--active]="selectedTab == 'description'" id="tab-description">
+          <div class="typography">
+            <h3>Product Full Description</h3>
+            <p>{{service?.description}}</p>
           </div>
         </div>
-        <div [ngSwitch]="selectedTab" class="product-tabs__content">
-          <div *ngSwitchCase="'description'" class="product-tabs__pane"
-               [class.product-tabs__pane--active]="selectedTab == 'description'" id="tab-description">
-            <div class="typography">
-              <h3>Product Full Description</h3>
-              <p>{{service.description}}</p>
-            </div>
-          </div>
-          <div *ngSwitchCase="'reviews'" class="product-tabs__pane"
-               [class.product-tabs__pane--active]="selectedTab == 'reviews'" id="tab-reviews">
-            <div class="reviews-view">
-              <form class="reviews-view__form">
-                <h3 class="reviews-view__header">Write A Review</h3>
-                <div class="row">
-                  <div class="col-12 col-lg-9 col-xl-8">
-                    <div class="form-row">
-                      <div class="form-group col-md-4"><label for="review-stars">Review
-                        Stars</label> <select id="review-stars" class="form-control">
-                        <option>5 Stars Rating</option>
-                        <option>4 Stars Rating</option>
-                        <option>3 Stars Rating</option>
-                        <option>2 Stars Rating</option>
-                        <option>1 Stars Rating</option>
-                      </select></div>
-                      <div class="form-group col-md-4"><label for="review-author">Your
-                        Name</label> <input type="text" class="form-control" id="review-author"
-                                            placeholder="Your Name"></div>
-                      <div class="form-group col-md-4"><label for="review-email">Email
-                        Address</label> <input type="text" class="form-control"
-                                               id="review-email" placeholder="Email Address"></div>
-                    </div>
-                    <div class="form-group"><label for="review-text">Your Review</label>
-                      <textarea class="form-control" id="review-text" rows="6"></textarea>
-                    </div>
-                    <div class="form-group mb-0">
-                      <button type="submit"
-                              class="btn btn-primary btn-lg">Post Your Review
-                      </button>
-                    </div>
+        <div *ngSwitchCase="'reviews'" class="product-tabs__pane"
+             [class.product-tabs__pane--active]="selectedTab == 'reviews'" id="tab-reviews">
+          <div class="reviews-view">
+            <form class="reviews-view__form">
+              <h3 class="reviews-view__header">Write A Review</h3>
+              <div class="row">
+                <div class="col-12 col-lg-9 col-xl-8">
+                  <div class="form-row">
+                    <div class="form-group col-md-4"><label for="review-stars">Review
+                      Stars</label> <select id="review-stars" class="form-control">
+                      <option>5 Stars Rating</option>
+                      <option>4 Stars Rating</option>
+                      <option>3 Stars Rating</option>
+                      <option>2 Stars Rating</option>
+                      <option>1 Stars Rating</option>
+                    </select></div>
+                    <div class="form-group col-md-4"><label for="review-author">Your
+                      Name</label> <input type="text" class="form-control" id="review-author"
+                                          placeholder="Your Name"></div>
+                    <div class="form-group col-md-4"><label for="review-email">Email
+                      Address</label> <input type="text" class="form-control"
+                                             id="review-email" placeholder="Email Address"></div>
+                  </div>
+                  <div class="form-group"><label for="review-text">Your Review</label>
+                    <textarea class="form-control" id="review-text" rows="6"></textarea>
+                  </div>
+                  <div class="form-group mb-0">
+                    <button type="submit"
+                            class="btn btn-primary btn-lg">Post Your Review
+                    </button>
                   </div>
                 </div>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  
+</div>

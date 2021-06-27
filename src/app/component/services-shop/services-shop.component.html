@@ -99,6 +99,7 @@
                   </div>
               </div>
           </div>
+          </div>
           <div class="shop-layout__content">
               <div class="block">
                   <div class="products-view">
@@ -141,7 +142,7 @@
                           <div class="products-list__body">
                             <app-service
                             *ngFor="let service of services | paginate: {itemsPerPage: pageLimit, currentPage: page, totalItems: count}"
-                            [service-item]="service" class="products-list__item"></app-service> 
+                            [service-item]="service" class="products-list__item"></app-service>
                           </div>
                       </div>
                       <div class="products-view__pagination">
