@@ -259,19 +259,19 @@
               <span *ngIf="!isLoggin()">
 
                 <li  class="nav-links__item nav-panel__nav-links nav-links" style=" list-style: none;">
-                  <button class="customButtons" routerLink='/signup'>
+                  <button type="button" class="customButtons" routerLink='/signup'>
                     <span  >sign up</span></button>
                 </li>
               </span>
 
               <li *ngIf="!isLoggin()" class="nav-links__item nav-panel__nav-links nav-links" style=" list-style: none;">
-                <button class="customButtons" routerLink='/login'>
+                <button class="customButtons" type="button" routerLink='/login'>
                   <span>Login</span></button>
 
               </li>
 
               <li *ngIf="isLoggin()" class="nav-links__item nav-panel__nav-links nav-links" style=" list-style: none;">
-                <button class="customButtons" (click)="logOut()" >
+                <button type="button" class="customButtons" (click)="logOut()" >
                   <span>log out</span></button>
               </li>
 

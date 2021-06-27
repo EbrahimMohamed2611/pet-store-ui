@@ -29,7 +29,7 @@ export class ProductService {
   getAllProducts(): Observable<Product[]> {
     return this.httpClient.get<Product[]>(this.url);
   }
-  
+
 
 
   getProduct(id: number): Observable<Product> {
@@ -85,12 +85,12 @@ export class ProductService {
     return this.httpClient.get<Products>(this.url, { params: parameters });
   }
 
-  public getTopRatedProducts(rateSize: number): Observable<any> {
-    return this.httpClient.get<any>(this.url + `?rateSize=${rateSize}`);
+  public getTopRatedProducts(rateSize: number): Observable<Products> {
+    return this.httpClient.get<Products>(this.url + `?rateSize=${rateSize}`);
   }
 
-  public getSpecialOffersProducts(size: number): Observable<any> {
-    return this.httpClient.get<any>(this.url + `?size=${size}`);
+  public getSpecialOffersProducts(size: number): Observable<Products> {
+    return this.httpClient.get<Products>(this.url + `?size=${size}`);
   }
 
 }

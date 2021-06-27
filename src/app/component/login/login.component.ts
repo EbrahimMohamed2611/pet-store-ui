@@ -20,6 +20,9 @@ export class LoginComponent implements OnInit {
   formLogin: FormGroup;
   user: User = new User();
   token: string;
+  isBadCredential:boolean;
+  badCredentialMessage:string = "";
+
 
   constructor(private _formBuilder: FormBuilder,
               private _authenticationService: AuthenticationService,
@@ -39,6 +42,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.isBadCredential = false;
     this.formLogin = this._formBuilder.group({
       email: ['', [Validators.email, Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
       password: ['', [Validators.required]]
@@ -53,11 +57,20 @@ export class LoginComponent implements OnInit {
     this._authenticationService.authenticate(this.user).subscribe((response: any) => {
       if (response.jwtToken) {
         this._authenticationService.login(response.jwtToken);
-        this._routerService.navigate(['/home']);
+        this._routerService.navigate(['/home']).then(() => {
+          window.location.reload();
+        });
       }
-    }, (error:HttpErrorResponse) => {
-
-      this.toasterService.error(error.error.message);
+    }, (error: HttpErrorResponse) => {
+      if(error.status == 403){
+        this.badCredentialMessage = "This Email dos not Exist you can sign up";
+        // this.toasterService.error(error.error.message);
+        this.isBadCredential = true;
+      }
+      if(error.status == 404)
+      this.badCredentialMessage = error.error.message;
+      // this.toasterService.error(error.error.message);
+      this.isBadCredential = true;
     })
 
   }
@@ -69,7 +82,9 @@ export class LoginComponent implements OnInit {
       this._socialMediaService.loginWithGoogle(token).subscribe((response: AuthenticationResponse) => {
         console.log(response.jwtToken);
         this._authenticationService.login(response.jwtToken);
-        this._routerService.navigate(['/home']);
+        this._routerService.navigate(['/home']).then(() => {
+          window.location.reload();
+        });
       }, (error: HttpErrorResponse) => {
 
         this.toasterService.error(error.error.message);
@@ -87,7 +102,9 @@ export class LoginComponent implements OnInit {
       this._socialMediaService.loginWithFacebook(token).subscribe((response: AuthenticationResponse) => {
         console.log(response.jwtToken);
         this._authenticationService.login(response.jwtToken);
-        this._routerService.navigate(['/home']);
+        this._routerService.navigate(['/home']).then(() => {
+          window.location.reload();
+        });
       }, (error: HttpErrorResponse) => {
         this.toasterService.error(error.error.message);
       })

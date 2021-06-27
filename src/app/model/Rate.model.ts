@@ -1,4 +1,4 @@
 export class Rate {
     userName: string = '';
-    rateNumber: number = 0;;
+    rateNumber: number = 0;
 }

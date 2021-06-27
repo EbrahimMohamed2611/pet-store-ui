@@ -6,6 +6,7 @@ import { Product } from '../../model/Product.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CartService } from "../../service/cart/cart.service";
 import { AuthenticationService } from 'src/app/service/authenticate/authentication.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private shoppingCartService: CartService,
     private toasterService: ToastrService,
+    private _router:Router,
     private _authenticationService: AuthenticationService) {
   }
 
@@ -69,6 +71,7 @@ export class HeaderComponent implements OnInit {
 
     this._authenticationService.logOut();
     this.isLogged = false;
+    this._router.navigateByUrl("/home")
 
   }
 
