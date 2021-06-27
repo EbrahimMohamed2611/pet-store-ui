@@ -8,9 +8,9 @@ https://codepen.io/m1g/pen/wrQdMp
   margin-bottom: 5%;
   width: 70%;
 }
-.contact-form .form-control{
-  border-radius:1rem;
-}
+/*.contact-form .form-control{*/
+/*  border-radius:1rem;*/
+/*}*/
 
 img{
   border-radius: 6rem;
@@ -42,7 +42,7 @@ img{
 .contact-form .btnContact{
   width: 50%;
   border: none;
-  border-radius: 1rem;
+  /*border-radius: 1rem;*/
   padding: 1.5%;
   font-weight: 600;
   color: #fff;

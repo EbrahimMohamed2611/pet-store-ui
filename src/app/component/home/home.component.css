@@ -3,3 +3,24 @@
   background-color: #ffe212;
   color: black;
 }
+
+
+.text-black{
+  color: black;
+}
+
+
+  .carousel-control-next-icon{
+    background-color: black;
+    background-size: 13px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+}
+  .carousel-control-prev-icon{
+    background-color: black;
+    background-size: 13px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+}

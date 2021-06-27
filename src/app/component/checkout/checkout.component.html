@@ -110,7 +110,7 @@
 
                 <tr *ngFor="let item of cartItems; let i = index;">
                   <td>{{item.product.name}} : {{item.product.description}}</td>
-                  <td>{{item.product.price * item.quantity}} L.E </td>
+                  <td>{{item.product.price * item.quantity | currency: 'EGP':true:'2.0'}}  </td>
                 </tr>
 
                 </tbody>
@@ -137,41 +137,30 @@
               </table>
               <div class="payment-methods">
                 <ul class="payment-methods__list">
-<!--                  <li class="payment-methods__item payment-methods__item&#45;&#45;active"><label-->
-<!--                    class="payment-methods__item-header"><span-->
-<!--                    class="payment-methods__item-radio input-radio"><span-->
-<!--                    class="input-radio__body"><input class="input-radio__input"-->
-<!--                                                     name="checkout_payment_method" type="radio"-->
-<!--                                                     checked="checked"> <span-->
-<!--                    class="input-radio__circle"></span> </span></span><span-->
-<!--                    class="payment-methods__item-title">Direct bank-->
-<!--                                                        transfer</span></label>-->
-<!--                    <div class="payment-methods__item-container">-->
-<!--                      <div class="payment-methods__item-description text-muted">Make your-->
-<!--                        payment directly into our bank account. Please use your Order ID-->
-<!--                        as the payment reference. Your order will not be shipped until-->
-<!--                        the funds have cleared in our account.</div>-->
-<!--                    </div>-->
-<!--                  </li>-->
-<!--                  <li class="payment-methods__item"><label-->
-<!--                    class="payment-methods__item-header"><span-->
-<!--                    class="payment-methods__item-radio input-radio"><span-->
-<!--                    class="input-radio__body"><input class="input-radio__input"-->
-<!--                                                     name="checkout_payment_method" type="radio"> <span-->
-<!--                    class="input-radio__circle"></span> </span></span><span-->
-<!--                    class="payment-methods__item-title">Check-->
-<!--                                                        payments</span></label>-->
-<!--                    <div class="payment-methods__item-container">-->
-<!--                      <div class="payment-methods__item-description text-muted">Please-->
-<!--                        send a check to Store Name, Store Street, Store Town, Store-->
-<!--                        State / County, Store Postcode.</div>-->
-<!--                    </div>-->
-<!--                  </li>-->
+                  <li class="payment-methods__item payment-methods__item--active"><label
+                    class="payment-methods__item-header"><span
+                    class="payment-methods__item-radio input-radio"><span
+                    class="input-radio__body"><input class="input-radio__input"
+                                                     name="checkout_payment_method" type="radio"
+                                                     [checked]="payWithVisa"
+                                                     (click)="onPaymentMethodChange(true)"> <span
+                    class="input-radio__circle"></span> </span></span><span
+                    class="payment-methods__item-title">Pay with Visa</span></label>
+                    <div class="payment-methods__item-container">
+                      <div class="payment-methods__item-description text-muted">Make your
+                        payment directly into our bank account. Please use your Order ID
+                        as the payment reference. Your order will not be shipped until
+                        the funds have cleared in our account.</div>
+                    </div>
+                  </li>
+
                   <li class="payment-methods__item"><label
                     class="payment-methods__item-header"><span
                     class="payment-methods__item-radio input-radio"><span
-                    class="input-radio__body"><input checked class="input-radio__input"
-                                                     name="checkout_payment_method" type="radio"> <span
+                    class="input-radio__body"><input class="input-radio__input"
+                                                     name="checkout_payment_method" type="radio"
+                                                     [checked]="!payWithVisa"
+                                                     (click)="onPaymentMethodChange(false)"> <span
                     class="input-radio__circle"></span> </span></span><span
                     class="payment-methods__item-title">Cash on
                                                         delivery</span></label>
@@ -208,8 +197,9 @@
                   target="_blank" href="terms-and-conditions.html">terms and
                   conditions</a>*</label></div>
               </div>
-              <button (click)="createOrder()" [disabled]="!disableOrEnableOrderButton" type="button" class="btn btn-primary btn-xl btn-block">Place
+              <button (click)="placeOrder()" [disabled]="!disableOrEnableOrderButton" type="button" class="btn btn-primary btn-xl btn-block">Place
               Order</button>
+<!--              <button (click)="pay()"  type="button" class="btn btn-primary btn-xl btn-block">pay</button>-->
             </div>
           </div>
         </div>

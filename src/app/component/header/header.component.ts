@@ -6,6 +6,7 @@ import { Product } from '../../model/Product.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CartService } from "../../service/cart/cart.service";
 import { AuthenticationService } from 'src/app/service/authenticate/authentication.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -15,10 +16,12 @@ import { AuthenticationService } from 'src/app/service/authenticate/authenticati
 export class HeaderComponent implements OnInit {
 
   isLogged = false;
+  total:number= 0;
   public cartItems: CartItem[] = [];
 
   constructor(private shoppingCartService: CartService,
     private toasterService: ToastrService,
+    private _router:Router,
     private _authenticationService: AuthenticationService) {
   }
 
@@ -43,9 +46,12 @@ export class HeaderComponent implements OnInit {
   public getShoppingCart(): void {
     this.shoppingCartService.getShoppingCartForUser().subscribe((cartItems: CartItem[]) => {
       this.cartItems = cartItems;
+      cartItems.forEach((item)=>{
+        this.total += item.product.price * item.quantity;
+      });
       console.log(cartItems);
     }, (error: HttpErrorResponse) => {
-      this.toasterService.error(error.message);
+      this.toasterService.error(error.error.message);
     });
   }
 
@@ -53,8 +59,11 @@ export class HeaderComponent implements OnInit {
     this.shoppingCartService.removeItemFromShoppingCart(productId).subscribe((cartItems: CartItem[]) => {
       this.cartItems = cartItems;
       console.log(cartItems);
+      cartItems.forEach((item)=>{
+        this.total += item.product.price * item.quantity;
+      });
     }, (error: HttpErrorResponse) => {
-      this.toasterService.error(error.message);
+      this.toasterService.error(error.error.message);
     });
 
   }
@@ -62,8 +71,12 @@ export class HeaderComponent implements OnInit {
 
     this._authenticationService.logOut();
     this.isLogged = false;
+    this._router.navigateByUrl("/home")
 
   }
 
+  public isLoggin(): boolean {
+    return this._authenticationService.isLoggedIn();
+  }
 
 }

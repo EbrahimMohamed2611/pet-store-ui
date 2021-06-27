@@ -2,6 +2,9 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import * as $ from 'jquery';
 
+import {ContactUs} from "../../model/ContactUs.model";
+import {EmailService} from "../../service/email/email.service";
+
 
 @Component({
   selector: 'app-contact-us',
@@ -14,18 +17,19 @@ export class ContactUsComponent implements OnInit {
   disabledSubmitButton = true;
   optionsSelect: Array<any>;
   selected: any;
+  private contactUs:ContactUs = new ContactUs();
 
   @HostListener('input') onInput(): void {
 
     if (this.contactForm.valid) {
       this.disabledSubmitButton = false;
-      console.log('Valid Form');
+      // console.log('Valid Form');
     }else{
-      console.log('Invalid Form');
+      // console.log('Invalid Form');
     }
   }
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private _emailService:EmailService) {
 
     this.contactForm = fb.group({
       contactFormName: ['', Validators.required],
@@ -68,10 +72,21 @@ export class ContactUsComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('Form data : ', this.contactForm.value);
+    // console.log('Form data : ', this.contactForm.value);
+    this.contactUs.name = this.contactForm.value.contactFormName;
+    this.contactUs.email = this.contactForm.value.contactFormEmail;
+    this.contactUs.message = this.contactForm.value.contactFormMessage;
+    this.contactUs.subject = this.contactForm.value.contactFormSubjects;
     this.contactForm.reset();
     this.disabledSubmitButton = true;
+
+    console.log('Form data : ', this.contactUs);
+    this._emailService.contactUs(this.contactUs).subscribe(()=>{
+      // console.log("this.contactUs ", this.contactUs);
     this.flip();
+    }, (error)=>{
+
+    })
   }
 
   flip(): void {

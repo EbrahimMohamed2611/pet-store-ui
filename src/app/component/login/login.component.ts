@@ -7,6 +7,8 @@ import {SocialMediaService} from "../../service/socialMedia/social-media.service
 import {FacebookLoginProvider, GoogleLoginProvider, SocialAuthService} from "angularx-social-login";
 import {SocialMediaToken} from "../../model/SocialMediaToken.model";
 import {AuthenticationResponse} from "../../model/AuthenticationResponse";
+import {HttpErrorResponse} from "@angular/common/http";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -18,12 +20,16 @@ export class LoginComponent implements OnInit {
   formLogin: FormGroup;
   user: User = new User();
   token: string;
+  isBadCredential:boolean;
+  badCredentialMessage:string = "";
+
 
   constructor(private _formBuilder: FormBuilder,
               private _authenticationService: AuthenticationService,
               private _routerService: Router,
               private authService: SocialAuthService,
-              private _socialMediaService: SocialMediaService) {
+              private _socialMediaService: SocialMediaService,
+              private toasterService: ToastrService) {
 
   }
 
@@ -36,6 +42,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.isBadCredential = false;
     this.formLogin = this._formBuilder.group({
       email: ['', [Validators.email, Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
       password: ['', [Validators.required]]
@@ -48,15 +55,22 @@ export class LoginComponent implements OnInit {
     Object.assign(this.user, this.formLogin.value);
 
     this._authenticationService.authenticate(this.user).subscribe((response: any) => {
-
-      console.log(response);
       if (response.jwtToken) {
         this._authenticationService.login(response.jwtToken);
-        this._routerService.navigate(['/home']);
+        this._routerService.navigate(['/home']).then(() => {
+          window.location.reload();
+        });
       }
-    }, (error: Error) => {
-
-      console.log(error);
+    }, (error: HttpErrorResponse) => {
+      if(error.status == 403){
+        this.badCredentialMessage = "This Email dos not Exist you can sign up";
+        // this.toasterService.error(error.error.message);
+        this.isBadCredential = true;
+      }
+      if(error.status == 404)
+      this.badCredentialMessage = error.error.message;
+      // this.toasterService.error(error.error.message);
+      this.isBadCredential = true;
     })
 
   }
@@ -68,14 +82,16 @@ export class LoginComponent implements OnInit {
       this._socialMediaService.loginWithGoogle(token).subscribe((response: AuthenticationResponse) => {
         console.log(response.jwtToken);
         this._authenticationService.login(response.jwtToken);
-        this._routerService.navigate(['/home']);
-      }, (error) => {
+        this._routerService.navigate(['/home']).then(() => {
+          window.location.reload();
+        });
+      }, (error: HttpErrorResponse) => {
 
-        console.log(error);
+        this.toasterService.error(error.error.message);
       })
 
-    }, (err) => {
-      console.log(err);
+    }, (error: HttpErrorResponse) => {
+      this.toasterService.error(error.error.message);
     })
   }
 
@@ -86,13 +102,14 @@ export class LoginComponent implements OnInit {
       this._socialMediaService.loginWithFacebook(token).subscribe((response: AuthenticationResponse) => {
         console.log(response.jwtToken);
         this._authenticationService.login(response.jwtToken);
-        this._routerService.navigate(['/home']);
-      }, (error) => {
-
-        console.log(error);
+        this._routerService.navigate(['/home']).then(() => {
+          window.location.reload();
+        });
+      }, (error: HttpErrorResponse) => {
+        this.toasterService.error(error.error.message);
       })
-    }, (err) => {
-      console.log(err);
+    }, (error: HttpErrorResponse) => {
+      this.toasterService.error(error.error.message);
     })
   }
 
