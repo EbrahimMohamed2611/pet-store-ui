@@ -100,4 +100,8 @@ export class HeaderComponent implements OnInit {
   closeShoppingCart(): void {
     this.isShoppingCartOpened = false;
   }
+
+  searchProducts(value: string): void {
+    this._router.navigate(['result', value]);
+  }
 }

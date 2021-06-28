@@ -25,6 +25,7 @@ import {TopCategoriesResolverService} from './resolvers/top-categories-resolver.
 import {TopOffersResolverService} from './resolvers/top-offers-resolver.service';
 import {HomeProductsResolverService} from './resolvers/home-products-resolver.service';
 import { ProfileComponent } from './component/profile/profile.component';
+import {SearchResultComponent} from './component/search-result/search-result.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,7 @@ const routes: Routes = [
       {path: 'about-us', component: AboutUsComponent},
       {path: 'cart', component: ShoppingCartComponent, canActivate: [AuthenticationGuard]},
       {path: 'checkout', component: CheckoutComponent, canActivate: [AuthenticationGuard]},
+      {path: 'result/:query', component: SearchResultComponent}
     ]
   },
   {path: 'signup', component: SignUpComponent, canActivate: [LoginGuard]},
