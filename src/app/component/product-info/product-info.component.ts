@@ -110,6 +110,15 @@ export class ProductInfoComponent implements OnInit {
 
 
   public onQuantityChange(productQuantity: any) {
+    console.log(productQuantity.target.value)
     this.quantity = productQuantity.target.value;
+  }
+
+  increaseProductQuantity() {
+    this.quantity++;
+  }
+
+  decreaseProductQuantity() {
+    this.quantity--;
   }
 }
