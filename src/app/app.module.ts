@@ -118,7 +118,6 @@ export function getToken(): string {
       } as SocialAuthServiceConfig,
     },
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
