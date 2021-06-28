@@ -58,7 +58,7 @@ export class CheckoutComponent implements OnInit {
       cartItems.forEach((item) => {
         this.subTotal += item.quantity * item.product.price;
       });
-      console.log(cartItems);
+      //console.log(cartItems);
     }, (error: HttpErrorResponse) => {
       this.toasterService.error(error.error.message);
     });
@@ -67,7 +67,7 @@ export class CheckoutComponent implements OnInit {
   private getCustomerDetails(): void {
     this.customerService.getCustomer(this.userId).subscribe((customer: Customer) => {
       this.customer = customer;
-      console.log('this.customer ', this.customer);
+      //console.log('this.customer ', this.customer);
     }, (error: HttpErrorResponse) => {
 
       this.toasterService.error(error.message);
@@ -89,11 +89,11 @@ export class CheckoutComponent implements OnInit {
 
   public createOrder(): void {
     this.checkoutService.createOrder(this.order, this.userId).subscribe((orderResponse: Order) => {
-      console.log(orderResponse);
+      //console.log(orderResponse);
 
       this.toasterService.success('Your Order is Completed Please Check your Email For More Details');
     }, (error: HttpErrorResponse) => {
-      console.log(error.message);
+      //console.log(error.message);
     });
   }
 

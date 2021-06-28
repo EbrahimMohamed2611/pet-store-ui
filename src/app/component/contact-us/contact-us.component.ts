@@ -23,9 +23,9 @@ export class ContactUsComponent implements OnInit {
 
     if (this.contactForm.valid) {
       this.disabledSubmitButton = false;
-      // console.log('Valid Form');
+      // //console.log('Valid Form');
     }else{
-      // console.log('Invalid Form');
+      // //console.log('Invalid Form');
     }
   }
 
@@ -72,7 +72,7 @@ export class ContactUsComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // console.log('Form data : ', this.contactForm.value);
+    // //console.log('Form data : ', this.contactForm.value);
     this.contactUs.name = this.contactForm.value.contactFormName;
     this.contactUs.email = this.contactForm.value.contactFormEmail;
     this.contactUs.message = this.contactForm.value.contactFormMessage;
@@ -80,9 +80,9 @@ export class ContactUsComponent implements OnInit {
     this.contactForm.reset();
     this.disabledSubmitButton = true;
 
-    console.log('Form data : ', this.contactUs);
+    //console.log('Form data : ', this.contactUs);
     this._emailService.contactUs(this.contactUs).subscribe(()=>{
-      // console.log("this.contactUs ", this.contactUs);
+      // //console.log("this.contactUs ", this.contactUs);
     this.flip();
     }, (error)=>{
 

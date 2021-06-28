@@ -73,7 +73,7 @@ export class ShoppingCartComponent implements OnInit {
 
   }
   public changeQuantity(event: any): void {
-    console.log('changeQuantity ' + event.target.value);
+    //console.log('changeQuantity ' + event.target.value);
 
   }
 

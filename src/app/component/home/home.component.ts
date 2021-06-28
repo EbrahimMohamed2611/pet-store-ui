@@ -40,14 +40,14 @@ export class HomeComponent implements OnInit {
 
       this.shoppingCartService.updateShoppingCart(product, 1)
         .subscribe((cartItems: CartItem[]) => {
-          console.log('cartItems', cartItems);
+          //console.log('cartItems', cartItems);
           cartItems.forEach(items => {
             if (items.product.id == product.id) {
               this.notification.info('your cart has ' + items.quantity + ' from ' + items.product.name);
             }
           });
         }, (error: HttpErrorResponse) => {
-          // console.error("error " ,error)
+          // //console.error("error " ,error)
           this.notification.error(error.error.message);
         });
     }

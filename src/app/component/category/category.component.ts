@@ -24,10 +24,10 @@ export class CategoryComponent implements OnInit {
     this.categoryService.getAllCategory().subscribe((response: Category[]) => {
       this.toasterService.success("All Categories ")
       this.allCategories = response;
-      console.log(this.allCategories);
+      //console.log(this.allCategories);
     }, (error:HttpErrorResponse) => {
       this.toasterService.error(error.message)
-      console.log(error);
+      //console.log(error);
     });
   }
 }

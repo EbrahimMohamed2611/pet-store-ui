@@ -20,13 +20,13 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log('Product Component');
+    // ////console.log('Product Component');
   }
 
   public addProductToShoppingCart(product: Product, quantity: number) {
-    console.log('Before sending To Server ', product, 'Quantity ', quantity);
+    ////console.log('Before sending To Server ', product, 'Quantity ', quantity);
     this.shoppingCartService.addProductToShoppingCart(product, quantity).subscribe((cartItems: CartItem[]) => {
-      console.log(cartItems);
+      ////console.log(cartItems);
       cartItems.forEach(items => {
         if (items.product.id == product.id) {
           this.toasterService.info('your cart has ' + items.quantity + ' from ' + items.product.name);
@@ -34,7 +34,7 @@ export class ProductComponent implements OnInit {
       });
 
     }, (error: HttpErrorResponse) => {
-      console.log(error);
+      ////console.log(error);
       this.toasterService.error(error.message);
     });
   }

@@ -29,9 +29,9 @@ export class SuccessComponent implements OnInit {
     this.order = JSON.parse(localStorage.getItem('customerOrder')!)  ;
     localStorage.removeItem('customerAddress');
     this.checkoutService.createOrder(this.order, this.userId).subscribe((orderResponse: Order) => {
-      console.log(orderResponse);
+      //console.log(orderResponse);
     }, (error: HttpErrorResponse) => {
-      console.log(error.message);
+      //console.log(error.message);
     });
   }
 

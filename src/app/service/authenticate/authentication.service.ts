@@ -26,19 +26,19 @@ export class AuthenticationService {
   }
 
   public logOut() {
-    console.log("from log out " + this.logged)
+    //console.log("from log out " + this.logged)
     localStorage.removeItem('token');
     this.changeLoggedStatus(false);
-    console.log("from log out " + this.logged)
+    //console.log("from log out " + this.logged)
 
   }
 
   public login(token: string) {
-    console.log("from log in " + this.logged)
+    //console.log("from log in " + this.logged)
 
     localStorage.setItem('token', token);
     this.changeLoggedStatus(true);
-    console.log("from log in " + this.logged)
+    //console.log("from log in " + this.logged)
 
   }
 

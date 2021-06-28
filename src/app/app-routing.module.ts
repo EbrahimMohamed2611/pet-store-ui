@@ -32,22 +32,23 @@ const routes: Routes = [
     path: '', component: LayoutComponent,
     children: [
       {path: '', pathMatch: 'full', redirectTo: 'home'},
-      {path: 'home', component: HomeComponent, resolve: {
+      {
+        path: 'home', component: HomeComponent, resolve: {
           topRates: TopRatedResolverService,
           products: HomeProductsResolverService,
           topOffers: TopOffersResolverService,
           topCategories: TopCategoriesResolverService
-        }},
+        }
+      },
       {path: 'customers', component: CustomerComponent},
       {path: 'categories', component: CategoryComponent},
       {path: 'species', component: SpeciesComponent},
       {path: 'product/:id', component: ProductInfoComponent},
       {path: 'shop', component: ShopComponent},
-
       {path: 'cart', component: ShoppingCartComponent},
       {path: 'checkout', component: CheckoutComponent},
       {path: 'success', component: SuccessComponent},
-      {path: 'failed', component: FailedComponent},
+      {path: 'failed', pathMatch: 'full', redirectTo:'cart'},
 
       {path: 'contacts', component: ContactUsComponent},
       {path: 'about-us', component: AboutUsComponent},

@@ -34,7 +34,7 @@ export class CustomerComponent implements OnInit {
   // tslint:disable-next-line:typedef
   public addNewCustomer() {
 
-    console.log('formLogin.value = > ', this.formLogin.value);
+    //console.log('formLogin.value = > ', this.formLogin.value);
     // Object.assign(this.customer, this.formLogin.value);
     this.customer.email =   this.formLogin.value.email;
     this.customer.userName =   this.formLogin.value.userName;
@@ -47,15 +47,15 @@ export class CustomerComponent implements OnInit {
     this.customer.address.city =  this.formLogin.value.city;
     this.customer.address.street =  this.formLogin.value.street;
 
-    console.log('Customer = > ', this.customer);
+    //console.log('Customer = > ', this.customer);
 
     this.customerService.addNewCustomer(this.customer)
       .subscribe((response) => {
-        console.log('response => ', response);
+        //console.log('response => ', response);
         //
       }, (error: HttpErrorResponse) => {
 
-        console.log('error => ', error);
+        //console.log('error => ', error);
         //
       });
   }

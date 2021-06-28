@@ -72,15 +72,15 @@ export class SignUpComponent implements OnInit {
   }
 
   checkIfEmailExist(event: any) {
-    console.log(event.target.value);
+    //console.log(event.target.value);
     let userEmail = {"email":event.target.value};
     this._authenticationService.checkEmailExist(userEmail).subscribe((response) => {
-      // console.log("response " ,response);
+      // //console.log("response " ,response);
       this.isExist = true;
     }, (error: HttpErrorResponse) => {
       // this.toasterService.error(error.error.message)
       this.isExist = false;
-      // console.log("error " ,error);
+      // //console.log("error " ,error);
     })
   }
 }

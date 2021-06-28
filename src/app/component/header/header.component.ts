@@ -29,9 +29,9 @@ export class HeaderComponent implements OnInit {
     // this.logged = this._authenticationService.isLoggedIn();
     // this._authenticationService.getLoggedStatus().subscribe((status) => {
     //   this.isLogged = status;
-    //   console.log("status : " + status)
+    //   //console.log("status : " + status)
     // }, (error) => {
-    //   console.log(error);
+    //   //console.log(error);
     // })
 
     if (localStorage.getItem("token") != null) {
@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit {
       cartItems.forEach((item)=>{
         this.total += item.product.price * item.quantity;
       });
-      console.log(cartItems);
+      //console.log(cartItems);
     }, (error: HttpErrorResponse) => {
       this.toasterService.error(error.error.message);
     });
@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
   public removeItemFromShoppingCart(productId: number): void {
     this.shoppingCartService.removeItemFromShoppingCart(productId).subscribe((cartItems: CartItem[]) => {
       this.cartItems = cartItems;
-      console.log(cartItems);
+      //console.log(cartItems);
       cartItems.forEach((item)=>{
         this.total += item.product.price * item.quantity;
       });

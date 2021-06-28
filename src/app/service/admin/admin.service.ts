@@ -35,4 +35,5 @@ export class AdminService {
   deleteAdmins(): Observable<any> {
     return this.httpClient.delete(this.url);
   }
+  
 }

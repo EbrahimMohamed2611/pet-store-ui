@@ -71,7 +71,8 @@ export class LoginComponent implements OnInit {
       this.badCredentialMessage = error.error.message;
       // this.toasterService.error(error.error.message);
       this.isBadCredential = true;
-    })
+    }
+    )
 
   }
 
@@ -80,7 +81,7 @@ export class LoginComponent implements OnInit {
       let token = new SocialMediaToken();
       token.token = response.idToken;
       this._socialMediaService.loginWithGoogle(token).subscribe((response: AuthenticationResponse) => {
-        console.log(response.jwtToken);
+        //console.log(response.jwtToken);
         this._authenticationService.login(response.jwtToken);
         this._routerService.navigate(['/home']).then(() => {
           window.location.reload();
@@ -100,7 +101,7 @@ export class LoginComponent implements OnInit {
       let token = new SocialMediaToken();
       token.token = response.authToken;
       this._socialMediaService.loginWithFacebook(token).subscribe((response: AuthenticationResponse) => {
-        console.log(response.jwtToken);
+        //console.log(response.jwtToken);
         this._authenticationService.login(response.jwtToken);
         this._routerService.navigate(['/home']).then(() => {
           window.location.reload();
