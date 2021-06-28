@@ -53,7 +53,7 @@
                   </ng-template>
                 </owl-carousel-o>
               </div>
-              <div class="product-gallery__carousel">
+              <div *ngIf="product?.images!.length > 1 " class="product-gallery__carousel">
                 <owl-carousel-o [options]="customOptions">
                   <ng-template carouselSlide *ngFor="let image of product?.images!">
                     <img [src]="image.url" (click)="firstCarousel.to(image.id!.toString())">
@@ -158,7 +158,8 @@
             <div class="product__prices">
               <div *ngIf="product?.discount! != 0; then salePrice else normalPrice"></div>
               <ng-template #salePrice>
-                            <span class="product__new-price">{{(product?.price! - (product?.price! * product?.discount!))
+                            <span
+                              class="product__new-price">{{(product?.price! - (product?.price! * product?.discount!))
                               |
                               currency:'EGP':true}}</span>
                 <span class="pl-1 product__old-price">{{product?.price | currency:'EGP':true}}</span>
@@ -175,18 +176,18 @@
                   <div class="product__actions-item">
                     <div class="input-number product__quantity">
                       <input id="product-quantity" [disabled]="true" (change)="onQuantityChange($event)"
-                                                                       class="input-number__input form-control form-control-lg"
-                                                                       type="number"
-                                                                       min="1" [value]="quantity">
+                             class="input-number__input form-control form-control-lg"
+                             type="number"
+                             min="1" [value]="quantity">
                       <div class="add" (click)="increaseProductQuantity()"></div>
-<!--                      <div [hidden]="product.quantity <= product.quantity"  class="input-number__add"></div>-->
+                      <!--                      <div [hidden]="product.quantity <= product.quantity"  class="input-number__add"></div>-->
                       <div (click)="decreaseProductQuantity()" [hidden]="quantity <= 1 " class="sub"></div>
 
                     </div>
                   </div>
                   <div class="product__actions-item product__actions-item--addtocart">
-                    <button  (click)="addToShoppingCart(product)"
-                      class="btn btn-primary btn-lg">Add to cart
+                    <button (click)="addToShoppingCart(product)"
+                            class="btn btn-primary btn-lg">Add to cart
                     </button>
                   </div>
                 </div>

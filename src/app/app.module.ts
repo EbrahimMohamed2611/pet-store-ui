@@ -112,7 +112,7 @@ export function getToken(): string {
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('950564655732078')
+            provider: new FacebookLoginProvider('197106415540508')
           }
         ]
       } as SocialAuthServiceConfig,
