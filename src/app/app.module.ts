@@ -42,6 +42,7 @@ import { FailedComponent } from './component/failed/failed.component';
 
 import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
 import {NgxSliderModule} from '@angular-slider/ngx-slider';
+import { SearchResultComponent } from './component/search-result/search-result.component';
 
 export function getToken(): string {
   return localStorage.getItem('token')!;
@@ -74,7 +75,8 @@ export function getToken(): string {
     CheckoutComponent,
     LayoutComponent,
     SuccessComponent,
-    FailedComponent
+    FailedComponent,
+    SearchResultComponent
 
 
   ],

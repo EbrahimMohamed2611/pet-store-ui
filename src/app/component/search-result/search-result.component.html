@@ -1,0 +1,81 @@
+<!-- site__body -->
+<div class="site__body">
+  <div class="page-header">
+    <div class="page-header__container container">
+      <div class="page-header__breadcrumb">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="['']">Home</a>
+              <svg class="breadcrumb-arrow" width="6px" height="9px">
+                <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-right-6x9">
+                </use>
+              </svg>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Search</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="page-header__title">
+        <h1>Shop</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="block">
+          <div class="products-view">
+            <div class="products-view__options">
+              <div class="view-options">
+                <div class="view-options__layout">
+                  <div class="layout-switcher">
+                    <div class="layout-switcher__list">
+                      <button data-layout="grid-3-sidebar" data-with-features="false" title="Grid"
+                              type="button"
+                              class="layout-switcher__button layout-switcher__button--active">
+                        <svg width="16px" height="16px">
+                          <use
+                            xlink:href="../../../assets/images/sprite.svg#layout-grid-16x16">
+                          </use>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="view-options__legend">Showing {{math.min(page * pageLimit, count)}} of
+                  {{count}} products</div>
+                <div class="view-options__divider"></div>
+                <!-- <div class="view-options__control"><label for="">Sort By</label>
+                    <div><select class="form-control form-control-sm" name="" id="">
+                            <option value="">Default</option>
+                            <option value="">Name (A-Z)</option>
+                        </select></div>
+                </div> -->
+                <div class="view-options__control"><label for="">Show</label>
+                  <div><select class="form-control form-control-sm" name="" id="">
+                    <option value="" (click)="pageLimit = 12; applyFilters()">24</option>
+                    <option value="" (click)="pageLimit = 24; applyFilters()">48</option>
+                  </select></div>
+                </div>
+              </div>
+            </div>
+            <div class="products-view__list products-list" data-layout="grid-5-full"
+                 data-with-features="false">
+              <div class="products-list__body">
+                <app-product
+                  *ngFor="let product of products | paginate: {itemsPerPage: pageLimit, currentPage: page, totalItems: count}"
+                  [product-item]="product" class="products-list__item"></app-product>
+              </div>
+            </div>
+            <div class="products-view__pagination">
+              <pagination-controls class="pagination justify-content-center"
+                                   (pageChange)="pageChanged($event)" [autoHide]="true" [maxSize]="5" [responsive]="true">
+              </pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- site__body / end -->
