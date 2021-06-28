@@ -24,12 +24,14 @@ import {ProductInfoComponent} from './component/product-info/product-info.compon
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {AboutUsComponent} from './component/about-us/about-us.component';
-
+import { ServicesShopComponent } from './component/services-shop/services-shop.component';
+import { ServiceComponent } from './component/service/service.component';
+import { ServiceInfoComponent } from './component/service-info/service-info.component';
 import {ContactUsComponent} from './component/contact-us/contact-us.component';
-
 import {ShoppingCartComponent} from './component/shopping-cart/shopping-cart.component';
 import {CheckoutComponent} from './component/checkout/checkout.component';
 import {LayoutComponent} from './component/layout/layout.component';
+import { ProfileComponent } from './component/profile/profile.component';
 import {
   GoogleLoginProvider,
   FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule
@@ -39,19 +41,18 @@ import { SuccessComponent } from './component/success/success.component';
 import { FailedComponent } from './component/failed/failed.component';
 
 import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
+import {NgxSliderModule} from '@angular-slider/ngx-slider';
 
 export function getToken(): string {
   return localStorage.getItem('token')!;
 }
-
-
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NotFoundComponent,
-
+    ProfileComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,
@@ -65,7 +66,9 @@ export function getToken(): string {
     ShopComponent,
     ProductInfoComponent,
     AboutUsComponent,
-
+    ServicesShopComponent,
+    ServiceComponent,
+    ServiceInfoComponent,
     ContactUsComponent,
     ShoppingCartComponent,
     CheckoutComponent,
@@ -75,24 +78,25 @@ export function getToken(): string {
 
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    CarouselModule,
-    NgxPaginationModule,
-    ToastrModule.forRoot(),
-    SocialLoginModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: getToken
-      }
-    })
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        CarouselModule,
+        NgxPaginationModule,
+        ToastrModule.forRoot(),
+        SocialLoginModule,
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: getToken
+            }
+        }),
+        NgxSliderModule
 
-  ],
+    ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true},
     JwtHelperService,
     {
@@ -116,5 +120,4 @@ export function getToken(): string {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

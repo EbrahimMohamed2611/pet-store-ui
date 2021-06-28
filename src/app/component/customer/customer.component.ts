@@ -60,5 +60,9 @@ export class CustomerComponent implements OnInit {
       });
   }
 
+  public getCustomerByID(id:number){
+
+  }
+
 
 }

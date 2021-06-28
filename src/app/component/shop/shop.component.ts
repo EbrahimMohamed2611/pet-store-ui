@@ -5,6 +5,8 @@ import {Product} from 'src/app/model/Product.model';
 import {BrandService} from 'src/app/service/brand/brand.service';
 import {CategoryService} from 'src/app/service/category/category.service';
 import {ProductService} from 'src/app/service/product/product.service';
+import {ChangeContext, LabelType, Options} from '@angular-slider/ngx-slider';
+
 
 @Component({
   selector: 'app-shop',
@@ -24,6 +26,20 @@ export class ShopComponent implements OnInit {
   minPriceSelected: number;
   maxPriceSelected: number;
   math = Math;
+  options: Options = {
+    floor: 0,
+    ceil: 100000,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return `<b  class="price-min-value">Min: EGP${value}</b>`;
+        case LabelType.High:
+          return `<b  class="price-max-value">Max: EGP${value}</b>`;
+        default:
+          return `EGP${value}`;
+      }
+    }
+  };
 
   constructor(private _productService: ProductService, private _categoryService: CategoryService, private _brandService: BrandService) {
   }
@@ -86,13 +102,12 @@ export class ShopComponent implements OnInit {
       , (error) => {
         // console.log(error.message)
       });
+
   }
 
-  priceValueChanged(): void {
-    let minPrice = document.querySelector(".noUi-handle.noUi-handle-lower");
-    let maxPrice = document.querySelector(".noUi-handle.noUi-handle-upper");
-    this.minPriceSelected = Number(minPrice?.getAttribute("aria-valuenow"));
-    this.maxPriceSelected = Number(maxPrice?.getAttribute("aria-valuenow"));
+  priceValueChanged(changeContext: ChangeContext): void {
+    this.minPriceSelected = changeContext.value;
+    this.maxPriceSelected = changeContext.highValue as number;
   }
 
 }

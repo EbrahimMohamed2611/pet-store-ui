@@ -34,6 +34,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   public getShoppingCart(): void {
+    this.total = 0;
     this.shoppingCartService.getShoppingCartForUser().subscribe((cartItems: CartItem[]) => {
       this.cartItems = cartItems;
       cartItems.forEach((item)=>{
@@ -47,6 +48,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   public increaseQuantity(product: Product, quantity: number): void {
+    this.total = 0;
     this.shoppingCartService.updateShoppingCart(product, quantity).subscribe((cartItems: CartItem[]) => {
       this.cartItems = cartItems;
       cartItems.forEach((item)=>{
@@ -60,6 +62,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   public decreaseQuantity(product: Product, quantity: number): void {
+    this.total = 0;
     this.shoppingCartService.updateShoppingCart(product, quantity).subscribe((cartItems: CartItem[]) => {
       this.cartItems = cartItems;
       cartItems.forEach((item)=>{
@@ -79,6 +82,7 @@ export class ShoppingCartComponent implements OnInit {
 
 
   public removeItemFromShoppingCart(productId: number): void {
+    this.total = 0;
     this.shoppingCartService.removeItemFromShoppingCart(productId).subscribe((cartItems: CartItem[]) => {
       this.cartItems = cartItems;
       this.cartItems.sort((a, b) => (a.product.name < b.product.name ? -1 : 1));

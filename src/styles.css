@@ -4,3 +4,15 @@
 .ngx-pagination .current {
     background-color: #ffd333 !important;
 }
+.price-min-value, .price-max-value {
+  font-size: .75rem !important;
+}
+
+.ngx-slider .ngx-slider-pointer, .ngx-slider-selection {
+  background-color: #ffd333 !important;
+}
+
+.ngx-slider .ngx-slider-pointer.ngx-slider-active::after {
+  background-color: black !important;
+}
+

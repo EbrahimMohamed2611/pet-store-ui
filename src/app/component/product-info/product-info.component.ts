@@ -8,6 +8,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {AuthenticationService} from "../../service/authenticate/authentication.service";
 import {CartService} from "../../service/cart/cart.service";
+import {Rate} from 'src/app/model/Rate.model';
 
 @Component({
   selector: 'app-product-info',
@@ -48,14 +49,14 @@ export class ProductInfoComponent implements OnInit {
   };
   product: Product = new Product();
   selectedTab = 'description';
-
   // relatedProducts: Product[];
+  public quantity: number = 1;
 
   constructor(private _activatedRoute: ActivatedRoute, private _productService: ProductService,
               private notification: ToastrService,
               private shoppingCartService: CartService,
-              private _authService:AuthenticationService,
-              private _routerService:Router) {
+              private _authService: AuthenticationService,
+              private _routerService: Router) {
   }
 
   ngOnInit(): void {
@@ -71,15 +72,22 @@ export class ProductInfoComponent implements OnInit {
     });
   }
 
+  getAvgRate(rates: Rate[]): number {
+    if (rates !== null) {
+      const rating = Math.floor(rates.map(rate => rate.rateNumber).reduce((p, c) => p + c, 0) / rates.length);
+      return Number.isNaN(rating) ? 0 : rating;
+    } else {
+      return 0;
+    }
+  }
+
 
   public addToShoppingCart(product: Product): void {
-    if (!this._authService.isLoggedIn()){
-      this._routerService.navigateByUrl("/login");
-    }else{
-
-      this.shoppingCartService.updateShoppingCart(product, 1)
+    if (!this._authService.isLoggedIn()) {
+      this._routerService.navigateByUrl('/login');
+    } else {
+      this.shoppingCartService.updateShoppingCart(product, this.quantity)
         .subscribe((cartItems: CartItem[]) => {
-          console.log("cartItems " ,cartItems)
           cartItems.forEach(items => {
             if (items.product.id == product.id) {
               this.notification.info('your cart has ' + items.quantity + ' from ' + items.product.name);
@@ -90,5 +98,18 @@ export class ProductInfoComponent implements OnInit {
           this.notification.error(error.error.message)
         });
     }
+  }
+
+  public increaseQuantity(product: Product, quantity: number): void {
+    this.shoppingCartService.updateShoppingCart(product, quantity).subscribe((cartItems: CartItem[]) => {
+
+    }, (error: HttpErrorResponse) => {
+      this.notification.error(error.error.message);
+    });
+  }
+
+
+  public onQuantityChange(productQuantity: any) {
+    this.quantity = productQuantity.target.value;
   }
 }

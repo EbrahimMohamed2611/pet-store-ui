@@ -78,7 +78,7 @@
           <div class="topbar__spring"></div>
           <div class="topbar__item">
 
-            <div *ngIf="isLoggin()" class="topbar-dropdown">
+            <div  class="topbar-dropdown">
               <button class="topbar-dropdown__btn" type="button">MyAccount
                 <svg width="7px" height="5px">
                   <use xlink:href="../../../assets/images/sprite.svg#arrow-rounded-down-7x5"></use>
@@ -88,9 +88,10 @@
               <div class="topbar-dropdown__body">
                 <!-- .menu -->
                 <ul class="menu menu--layout--topbar">
-                  <li *ngIf='isLogged' ><a  routerLink='/login'>Login</a></li>
-                  <li *ngIf='isLogged'><a  routerLink='/signup'>Register</a></li>
-                  <li *ngIf='!isLogged'><a  (click)="logOut()">LogOut</a></li>
+                  <li *ngIf='!isLogged' ><a  routerLink='/login'>Login</a></li>
+                  <li *ngIf='!isLogged'><a  routerLink='/signup'>Register</a></li>
+                  <li *ngIf='isLogged'><a  routerLink='/customer/profile'>Profile</a></li>
+                  <li *ngIf='isLogged'><a  (click)="logOut()">LogOut</a></li>
                 </ul><!-- .menu / end -->
               </div>
             </div>
@@ -195,7 +196,7 @@
                   <div class="dropcart">
 
 
-                    <div *ngFor="let item of cartItems;" class="dropcart__products-list">
+                    <div (click)="$event.stopPropagation()" *ngFor="let item of cartItems;" class="dropcart__products-list">
 
                       <div class="dropcart__product">
 
@@ -229,16 +230,16 @@
 
 
 
-                    <div class="dropcart__totals">
-                      <table>
+                    <div (click)="$event.stopPropagation()" class="dropcart__totals">
+                      <table (click)="$event.stopPropagation()">
                         <!-- <tr>
                           <th>Subtotal</th>
                           <td>$5,877.00</td>
                         </tr>                       -->
 
-                        <tr>
-                          <th>Total</th>
-                          <td>{{total | currency: 'EGP':true:'2.0'}}</td>
+                        <tr (click)="$event.stopPropagation()">
+                          <th (click)="$event.stopPropagation()">Total</th>
+                          <td (click)="$event.stopPropagation()">{{total | currency: 'EGP':true:'2.0'}}</td>
                         </tr>
                       </table>
                     </div>
@@ -286,4 +287,5 @@
 
     </div>
   </div>
-</header><!-- desktop site__header / end -->
+</header>
+<!-- desktop site__header / end -->
