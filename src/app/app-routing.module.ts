@@ -24,6 +24,7 @@ import {TopRatedResolverService} from './resolvers/top-rated-resolver.service';
 import {TopCategoriesResolverService} from './resolvers/top-categories-resolver.service';
 import {TopOffersResolverService} from './resolvers/top-offers-resolver.service';
 import {HomeProductsResolverService} from './resolvers/home-products-resolver.service';
+import { ProfileComponent } from './component/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -43,15 +44,13 @@ const routes: Routes = [
       {path: 'shop', component: ShopComponent},
       {path: 'services', component: ServicesShopComponent},
       {path: 'service/:id', component: ServiceInfoComponent},
-      {path: 'cart', component: ShoppingCartComponent},
-      {path: 'checkout', component: CheckoutComponent},
+      {path: 'customer/profile', component: ProfileComponent},
       {path: 'success', component: SuccessComponent},
       {path: 'failed', component: FailedComponent},
       {path: 'contacts', component: ContactUsComponent},
       {path: 'about-us', component: AboutUsComponent},
       {path: 'cart', component: ShoppingCartComponent, canActivate: [AuthenticationGuard]},
       {path: 'checkout', component: CheckoutComponent, canActivate: [AuthenticationGuard]},
-
     ]
   },
   {path: 'signup', component: SignUpComponent, canActivate: [LoginGuard]},

@@ -31,6 +31,7 @@ import {ContactUsComponent} from './component/contact-us/contact-us.component';
 import {ShoppingCartComponent} from './component/shopping-cart/shopping-cart.component';
 import {CheckoutComponent} from './component/checkout/checkout.component';
 import {LayoutComponent} from './component/layout/layout.component';
+import { ProfileComponent } from './component/profile/profile.component';
 import {
   GoogleLoginProvider,
   FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule
@@ -46,14 +47,12 @@ export function getToken(): string {
   return localStorage.getItem('token')!;
 }
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NotFoundComponent,
-
+    ProfileComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,

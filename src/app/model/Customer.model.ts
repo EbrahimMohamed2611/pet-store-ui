@@ -10,6 +10,8 @@ export class Customer {
   gender: string;
   birthDate: Date;
   password: string;
+  firstName: string;
+  lastName:string
 
   constructor() {
   }
