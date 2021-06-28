@@ -178,9 +178,9 @@
                                                                        class="input-number__input form-control form-control-lg"
                                                                        type="number"
                                                                        min="1" [value]="quantity">
-                      <div class="input-number__add"></div>
+                      <div class="add" (click)="increaseProductQuantity()"></div>
 <!--                      <div [hidden]="product.quantity <= product.quantity"  class="input-number__add"></div>-->
-                      <div [hidden]="quantity <= 1 " class="input-number__sub"></div>
+                      <div (click)="decreaseProductQuantity()" [hidden]="quantity <= 1 " class="sub"></div>
 
                     </div>
                   </div>

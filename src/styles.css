@@ -16,3 +16,48 @@
   background-color: black !important;
 }
 
+.add, .sub {
+  position: absolute;
+  height: 100%;
+  width: 24px;
+  top: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  opacity: .3;
+  transition: opacity .18s
+}
+
+.add:after, .add:before, .sub:after, .sub:before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: currentColor
+}
+
+.add:before, .sub:before {
+  width: 8px;
+  height: 2px
+}
+
+.add:hover, .sub:hover {
+  opacity: 1
+}
+
+.sub {
+  left: 1px
+}
+
+.add{
+  right: 1px
+}
+
+.add:after {
+  width: 2px;
+  height: 8px
+}
