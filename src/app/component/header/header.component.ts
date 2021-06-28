@@ -16,6 +16,9 @@ import {Router} from "@angular/router";
 export class HeaderComponent implements OnInit {
 
   isLogged = false;
+  isMyAccountOpened = false;
+  isShoppingCartOpened = false;
+  isMobileHeaderOpened = false;
   total:number= 0;
   public cartItems: CartItem[] = [];
 
@@ -71,7 +74,7 @@ export class HeaderComponent implements OnInit {
 
     this._authenticationService.logOut();
     this.isLogged = false;
-    this._router.navigateByUrl("/home")
+    this._router.navigateByUrl("/home");
 
   }
 
@@ -79,4 +82,19 @@ export class HeaderComponent implements OnInit {
     return this._authenticationService.isLoggedIn();
   }
 
+  toggleMyAccount(): void {
+    this.isMyAccountOpened = !this.isMyAccountOpened;
+  }
+
+  toggleShoppingCart(): void {
+    this.isShoppingCartOpened = !this.isShoppingCartOpened;
+  }
+
+  toggleMobileHeader(): void {
+    this.isMobileHeaderOpened = !this.isMobileHeaderOpened;
+  }
+
+  closeShoppingCart(): void {
+    this.isShoppingCartOpened = false;
+  }
 }

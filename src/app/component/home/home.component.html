@@ -68,10 +68,10 @@
 
 
               <div class="carousel-item ">
-                <img *ngIf="topRateProducts[1]" src="../../../assets/images/slides/slide-1-full.png" alt="First slide">
+                <img *ngIf="topRateProducts[0]" src="../../../assets/images/slides/slide-1-full.png" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
-                  <h5 class="text-black" *ngIf="topRateProducts[1]">{{topRateProducts[1].name}}</h5>
-                <p *ngIf="topRateProducts[1]" class="text-black">{{topRateProducts[1].description}}</p>
+                  <h5 class="text-black" *ngIf="topRateProducts[0]">{{topRateProducts[0].name}}</h5>
+                <p *ngIf="topRateProducts[0]" class="text-black">{{topRateProducts[0].description}}</p>
                 </div>
               </div>
               <div class="carousel-item ">
@@ -82,10 +82,10 @@
                 </div>
               </div>
               <div class="carousel-item ">
-                <img *ngIf="topRateProducts[1]" src="../../../assets/images/slides/slide-3-full.png" alt="First slide">
+                <img *ngIf="topRateProducts[0]" src="../../../assets/images/slides/slide-3-full.png" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
-                  <h5 class="text-black" *ngIf="topRateProducts[1]">{{topRateProducts[1].name}}</h5>
-                <p *ngIf="topRateProducts[1]" class="text-black">{{topRateProducts[1].description}}</p>
+                  <h5 class="text-black" *ngIf="topRateProducts[0]">{{topRateProducts[0].name}}</h5>
+                <p *ngIf="topRateProducts[0]" class="text-black">{{topRateProducts[0].description}}</p>
                 </div>
               </div>
 
@@ -112,13 +112,13 @@
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img class="d-block w-100" *ngIf="topRateProducts[2]" [src]="topRateProducts[2].images[1].url" alt="First slide">
+                <img class="d-block w-100" *ngIf="topRateProducts[2]" [src]="topRateProducts[2].images[0].url" alt="First slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block w-100" *ngIf="topRateProducts[1]" [src]="topRateProducts[1].images[1].url" alt="First slide">
+                <img class="d-block w-100" *ngIf="topRateProducts[0]" [src]="topRateProducts[0].images[0].url" alt="First slide">
               </div>
               <div class="carousel-item">
-                <img class="d-block w-100" *ngIf="topRateProducts[3]" [src]="topRateProducts[3].images[1].url" alt="First slide">
+                <img class="d-block w-100" *ngIf="topRateProducts[3]" [src]="topRateProducts[3].images[0].url" alt="First slide">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -212,107 +212,56 @@
         <div class="block-products__featured">
           <div class="block-products__featured-item">
             <div class="product-card">
-              <button class="product-card__quickview" type="button">
-                <svg width="16px" height="16px">
-                  <use xlink:href="../../../assets/images/sprite.svg#quickview-16"></use>
-                </svg>
-                <span class="fake-svg-icon"></span></button>
               <div class="product-card__badges-list">
                 <div class="product-card__badge product-card__badge--new">New</div>
               </div>
-              <div class="product-card__image"><a><img *ngIf="topRateProducts[2]"
-                    [src]="topRateProducts[2].images[1].url" alt=""></a>
+              <div class="product-card__image"><a [routerLink]="['/product', topRateProducts[2].id]"><img *ngIf="topRateProducts[2]"
+                    [src]="topRateProducts[2].images[0].url" alt=""></a>
               </div>
               <div class="product-card__info">
-                <div class="product-card__name"><a *ngIf="topRateProducts[2]">{{topRateProducts[2].name}}</a></div>
+                <div class="product-card__name"><a *ngIf="topRateProducts[2]" [routerLink]="['/product', topRateProducts[2].id]">{{topRateProducts[2].name}}</a></div>
                 <div class="product-card__rating">
                   <div class="rating">
-                    <div class="rating__body">
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
+                    <div class="rating__body"><!--star-->
+                      <ng-template ngFor let-loop [ngForOf]="[].constructor(getAvgRate(topRateProducts[2]?.rates!)) ">
+                        <svg class="rating__star rating__star--active" width="13px" height="12px">
+                          <g class="rating__fill">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                          </g>
+                          <g class="rating__stroke">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                            </use>
+                          </g>
+                        </svg>
+                        <div class="rating__star rating__star--only-edge rating__star--active">
+                          <div class="rating__fill">
+                            <div class="fake-svg-icon"></div>
+                          </div>
+                          <div class="rating__stroke">
+                            <div class="fake-svg-icon"></div>
+                          </div>
                         </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
+                      </ng-template>
+                      <!--black star-->
+                      <ng-template ngFor let-loop [ngForOf]="[].constructor(5-getAvgRate(topRateProducts[2]?.rates!)) ">
+                        <svg class="rating__star" width="13px" height="12px">
+                          <g class="rating__fill">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                          </g>
+                          <g class="rating__stroke">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                            </use>
+                          </g>
+                        </svg>
+                        <div class="rating__star rating__star--only-edge">
+                          <div class="rating__fill">
+                            <div class="fake-svg-icon"></div>
+                          </div>
+                          <div class="rating__stroke">
+                            <div class="fake-svg-icon"></div>
+                          </div>
                         </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
+                      </ng-template>
                     </div>
                   </div>
                   <div class="product-card__rating-legend" *ngIf="topRateProducts[2]">
@@ -337,136 +286,73 @@
 
                 <div class="product-card__buttons">
                   <button class="btn btn-primary product-card__addtocart"
-                    (click)="addToShoppingCart(topRateProducts[2])" type="button">Add Toart
+                    (click)="addToShoppingCart(topRateProducts[2])" type="button">Add To Cart
                   </button>
                   <button (click)="addToShoppingCart(topRateProducts[2])"
                     class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">
-                    Add To
-                    Cart
+                    Add To Cart
                   </button>
-                  <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
-                    type="button">
-                    <svg width="16px" height="16px">
-                      <use xlink:href="../../../assets/images/sprite.svg#wishlist-16"></use>
-                    </svg>
-                    <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span></button>
-                  <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare" type="button">
-                    <svg width="16px" height="16px">
-                      <use xlink:href="../../../assets/images/sprite.svg#compare-16"></use>
-                    </svg>
-                    <span class="fake-svg-icon fake-svg-icon--compare-16"></span></button>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="block-products__list">
-          <div *ngIf="bestOfferProducts[1]" class="block-products__list-item">
+          <div *ngIf="bestOfferProducts[0]" class="block-products__list-item">
             <div class="product-card">
-              <button class="product-card__quickview" type="button">
-                <svg width="16px" height="16px">
-                  <use xlink:href="../../../assets/images/sprite.svg#quickview-16"></use>
-                </svg>
-                <span class="fake-svg-icon"></span></button>
               <div class="product-card__badges-list">
                 <div class="product-card__badge product-card__badge--hot">Hot</div>
               </div>
-              <div class="product-card__image"><a>
-                  <img [src]="bestOfferProducts[1].images[0].url" *ngIf="bestOfferProducts[1]" alt=""></a></div>
+              <div class="product-card__image"><a [routerLink]="['/product', topRateProducts[0].id]">
+                  <img [src]="bestOfferProducts[0].images[0].url" *ngIf="bestOfferProducts[0]" alt=""></a></div>
               <div class="product-card__info">
-                <div class="product-card__name"><a *ngIf="bestOfferProducts[1]">{{bestOfferProducts[1].name}}</a></div>
+                <div class="product-card__name"><a *ngIf="bestOfferProducts[0]" [routerLink]="['/product', topRateProducts[0].id]">{{bestOfferProducts[0].name}}</a></div>
                 <div class="product-card__rating">
                   <div class="rating">
-                    <div class="rating__body">
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
+                    <div class="rating__body"><!--star-->
+                      <ng-template ngFor let-loop [ngForOf]="[].constructor(getAvgRate(bestOfferProducts[0]?.rates!)) ">
+                        <svg class="rating__star rating__star--active" width="13px" height="12px">
+                          <g class="rating__fill">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                          </g>
+                          <g class="rating__stroke">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                            </use>
+                          </g>
+                        </svg>
+                        <div class="rating__star rating__star--only-edge rating__star--active">
+                          <div class="rating__fill">
+                            <div class="fake-svg-icon"></div>
+                          </div>
+                          <div class="rating__stroke">
+                            <div class="fake-svg-icon"></div>
+                          </div>
                         </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
+                      </ng-template>
+                      <!--black star-->
+                      <ng-template ngFor let-loop [ngForOf]="[].constructor(5-getAvgRate(bestOfferProducts[0]?.rates!)) ">
+                        <svg class="rating__star" width="13px" height="12px">
+                          <g class="rating__fill">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                          </g>
+                          <g class="rating__stroke">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                            </use>
+                          </g>
+                        </svg>
+                        <div class="rating__star rating__star--only-edge">
+                          <div class="rating__fill">
+                            <div class="fake-svg-icon"></div>
+                          </div>
+                          <div class="rating__stroke">
+                            <div class="fake-svg-icon"></div>
+                          </div>
                         </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
+                      </ng-template>
                     </div>
                   </div>
-                  <div class="product-card__rating-legend" *ngIf="bestOfferProducts[1]">
-                    {{bestOfferProducts[1].rates.length}} Reviews</div>
+                  <div class="product-card__rating-legend" *ngIf="bestOfferProducts[0]">
+                    {{bestOfferProducts[0].rates.length}} Reviews</div>
                 </div>
                 <ul class="product-card__features-list">
                   <li>Speed: 750 RPM</li>
@@ -478,139 +364,77 @@
               </div>
               <div class="product-card__actions">
                 <div class="product-card__availability">Availability: <span class="text-success">In Stock</span></div>
-                <!-- <div class="product-card__prices" *ngIf="bestOfferProducts[1]">{{bestOfferProducts[1].price}} L.E</div> -->
-                 <div *ngIf="categoryProducts[1]" class="product-card__prices">
-                      <span class="product-card__new-price">{{bestOfferProducts[1].price * bestOfferProducts[1].discount | currency: 'EGP':true:'2.0'}}</span> <span
-                        class="product-card__old-price">{{bestOfferProducts[1].price | currency: 'EGP':true:'2.0'}}</span></div>
+                <!-- <div class="product-card__prices" *ngIf="bestOfferProducts[0]">{{bestOfferProducts[0].price}} L.E</div> -->
+                 <div *ngIf="categoryProducts[0]" class="product-card__prices">
+                      <span class="product-card__new-price">{{bestOfferProducts[0].price * bestOfferProducts[0].discount | currency: 'EGP':true:'2.0'}}</span> <span
+                        class="product-card__old-price">{{bestOfferProducts[0].price | currency: 'EGP':true:'2.0'}}</span></div>
 
                 <div class="product-card__buttons">
                   <button class="btn btn-primary product-card__addtocart"
-                    (click)="addToShoppingCart(bestOfferProducts[1])" type="button">Add To
+                    (click)="addToShoppingCart(bestOfferProducts[0])" type="button">Add To
                     Cart
                   </button>
-                  <button (click)="addToShoppingCart(bestOfferProducts[1])"
+                  <button (click)="addToShoppingCart(bestOfferProducts[0])"
                     class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">
                     Add To
                     Cart
                   </button>
-                  <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
-                    type="button">
-                    <svg width="16px" height="16px">
-                      <use xlink:href="../../../assets/images/sprite.svg#wishlist-16"></use>
-                    </svg>
-                    <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span></button>
-                  <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare" type="button">
-                    <svg width="16px" height="16px">
-                      <use xlink:href="../../../assets/images/sprite.svg#compare-16"></use>
-                    </svg>
-                    <span class="fake-svg-icon fake-svg-icon--compare-16"></span></button>
                 </div>
               </div>
             </div>
           </div>
           <div *ngIf="bestOfferProducts[2]" class="block-products__list-item">
             <div class="product-card">
-              <button class="product-card__quickview" type="button">
-                <svg width="16px" height="16px">
-                  <use xlink:href="../../../assets/images/sprite.svg#quickview-16"></use>
-                </svg>
-                <span class="fake-svg-icon"></span></button>
-              <div class="product-card__image"><a>
+              <div class="product-card__image"><a [routerLink]="['/product', bestOfferProducts[2].id]">
                   <img [src]="bestOfferProducts[2].images[0]?.url" *ngIf="bestOfferProducts[2]" alt=""></a>
               </div>
               <div class="product-card__info">
-                <div class="product-card__name"><a *ngIf="bestOfferProducts[2]">{{bestOfferProducts[2].name}}</a></div>
+                <div class="product-card__name"><a *ngIf="bestOfferProducts[2]" [routerLink]="['/product', bestOfferProducts[2].id]">{{bestOfferProducts[2].name}}</a></div>
                 <div class="product-card__rating">
                   <div class="rating">
-                    <div class="rating__body">
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
+                    <div class="rating__body"><!--star-->
+                      <ng-template ngFor let-loop [ngForOf]="[].constructor(getAvgRate(bestOfferProducts[2]?.rates!)) ">
+                        <svg class="rating__star rating__star--active" width="13px" height="12px">
+                          <g class="rating__fill">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                          </g>
+                          <g class="rating__stroke">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                            </use>
+                          </g>
+                        </svg>
+                        <div class="rating__star rating__star--only-edge rating__star--active">
+                          <div class="rating__fill">
+                            <div class="fake-svg-icon"></div>
+                          </div>
+                          <div class="rating__stroke">
+                            <div class="fake-svg-icon"></div>
+                          </div>
                         </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
+                      </ng-template>
+                      <!--black star-->
+                      <ng-template ngFor let-loop [ngForOf]="[].constructor(5-getAvgRate(bestOfferProducts[2]?.rates!)) ">
+                        <svg class="rating__star" width="13px" height="12px">
+                          <g class="rating__fill">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                          </g>
+                          <g class="rating__stroke">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                            </use>
+                          </g>
+                        </svg>
+                        <div class="rating__star rating__star--only-edge">
+                          <div class="rating__fill">
+                            <div class="fake-svg-icon"></div>
+                          </div>
+                          <div class="rating__stroke">
+                            <div class="fake-svg-icon"></div>
+                          </div>
                         </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
+                      </ng-template>
                     </div>
                   </div>
-                  <div class="product-card__rating-legend">9 Reviews</div>
+                  <div class="product-card__rating-legend">{{bestOfferProducts[2].rates.length}} Reviews</div>
                 </div>
                 <ul class="product-card__features-list">
                   <li>Speed: 750 RPM</li>
@@ -624,7 +448,7 @@
                 <div class="product-card__availability">Availability: <span class="text-success">In Stock</span></div>
                 <!-- <div class="product-card__prices" *ngIf="bestOfferProducts[2]">{{bestOfferProducts[2].price}} L.E</div> -->
 
-                 <div *ngIf="categoryProducts[1]" class="product-card__prices">
+                 <div *ngIf="categoryProducts[0]" class="product-card__prices">
                       <span class="product-card__new-price">{{bestOfferProducts[2].price * bestOfferProducts[2].discount | currency: 'EGP':true:'2.0'}}</span> <span
                         class="product-card__old-price">{{bestOfferProducts[2].price | currency: 'EGP':true:'2.0'}}</span></div>
 
@@ -638,130 +462,68 @@
                     Add To
                     Cart
                   </button>
-                  <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
-                    type="button">
-                    <svg width="16px" height="16px">
-                      <use xlink:href="../../../assets/images/sprite.svg#wishlist-16"></use>
-                    </svg>
-                    <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span></button>
-                  <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare" type="button">
-                    <svg width="16px" height="16px">
-                      <use xlink:href="../../../assets/images/sprite.svg#compare-16"></use>
-                    </svg>
-                    <span class="fake-svg-icon fake-svg-icon--compare-16"></span></button>
                 </div>
               </div>
             </div>
           </div>
-          <div *ngIf="categoryProducts[1]" class="block-products__list-item">
+          <div *ngIf="categoryProducts[0]" class="block-products__list-item">
             <div class="product-card">
-              <button class="product-card__quickview" type="button">
-                <svg width="16px" height="16px">
-                  <use xlink:href="../../../assets/images/sprite.svg#quickview-16"></use>
-                </svg>
-                <span class="fake-svg-icon"></span></button>
               <div class="product-card__badges-list">
                 <div class="product-card__badge product-card__badge--sale" style=" background: #37f; color: #fff;">
                   Sale
                 </div>
               </div>
-              <div class="product-card__image"><a>
-                  <img [src]="categoryProducts[1].images[0]?.url" *ngIf="categoryProducts[1]" alt=""></a>
+              <div class="product-card__image"><a [routerLink]="['/product', categoryProducts[0].id]">
+                  <img [src]="categoryProducts[0].images[0]?.url" *ngIf="categoryProducts[0]" alt=""></a>
               </div>
               <div class="product-card__info">
-                <div class="product-card__name"><a *ngIf="categoryProducts[1]">{{categoryProducts[1].name}}</a></div>
+                <div class="product-card__name"><a *ngIf="categoryProducts[0]" [routerLink]="['/product', categoryProducts[0].id]">{{categoryProducts[0].name}}</a></div>
                 <div class="product-card__rating">
                   <div class="rating">
-                    <div class="rating__body">
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
+                    <div class="rating__body"><!--star-->
+                      <ng-template ngFor let-loop [ngForOf]="[].constructor(getAvgRate(categoryProducts[0]?.rates!)) ">
+                        <svg class="rating__star rating__star--active" width="13px" height="12px">
+                          <g class="rating__fill">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                          </g>
+                          <g class="rating__stroke">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                            </use>
+                          </g>
+                        </svg>
+                        <div class="rating__star rating__star--only-edge rating__star--active">
+                          <div class="rating__fill">
+                            <div class="fake-svg-icon"></div>
+                          </div>
+                          <div class="rating__stroke">
+                            <div class="fake-svg-icon"></div>
+                          </div>
                         </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
+                      </ng-template>
+                      <!--black star-->
+                      <ng-template ngFor let-loop [ngForOf]="[].constructor(5-getAvgRate(categoryProducts[0]?.rates!)) ">
+                        <svg class="rating__star" width="13px" height="12px">
+                          <g class="rating__fill">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                          </g>
+                          <g class="rating__stroke">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                            </use>
+                          </g>
+                        </svg>
+                        <div class="rating__star rating__star--only-edge">
+                          <div class="rating__fill">
+                            <div class="fake-svg-icon"></div>
+                          </div>
+                          <div class="rating__stroke">
+                            <div class="fake-svg-icon"></div>
+                          </div>
                         </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
+                      </ng-template>
                     </div>
                   </div>
-                  <div class="product-card__rating-legend" *ngIf="categoryProducts[1]">
-                    {{categoryProducts[1].rates.length}} Reviews</div>
+                  <div class="product-card__rating-legend" *ngIf="categoryProducts[0]">
+                    {{categoryProducts[0].rates.length}} Reviews</div>
                 </div>
                 <ul class="product-card__features-list">
                   <li>Speed: 750 RPM</li>
@@ -774,138 +536,76 @@
               <div class="product-card__actions">
                 <div class="product-card__availability">Availability: <span class="text-success">In Stock</span></div>
                 <!-- <div class="product-card__prices"><span class="product-card__new-price"
-                    *ngIf="categoryProducts[1]">{{categoryProducts[1].price}}
+                    *ngIf="categoryProducts[0]">{{categoryProducts[0].price}}
                     L.E</span></div> -->
 
-                    <div *ngIf="categoryProducts[1]" class="product-card__prices">
-                      <span class="product-card__new-price">{{categoryProducts[1].price * categoryProducts[1].discount | currency: 'EGP':true:'2.0'}}</span> <span
-                        class="product-card__old-price">{{categoryProducts[1].price | currency: 'EGP':true:'2.0'}}</span></div>
+                    <div *ngIf="categoryProducts[0]" class="product-card__prices">
+                      <span class="product-card__new-price">{{categoryProducts[0].price * categoryProducts[0].discount | currency: 'EGP':true:'2.0'}}</span> <span
+                        class="product-card__old-price">{{categoryProducts[0].price | currency: 'EGP':true:'2.0'}}</span></div>
 
                 <div class="product-card__buttons">
                   <button class="btn btn-primary product-card__addtocart"
-                    (click)="addToShoppingCart(categoryProducts[1])" type="button">Add To
+                    (click)="addToShoppingCart(categoryProducts[0])" type="button">Add To
                     Cart
                   </button>
-                  <button (click)="addToShoppingCart(categoryProducts[1])"
+                  <button (click)="addToShoppingCart(categoryProducts[0])"
                     class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">
                     Add To
                     Cart
                   </button>
-                  <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
-                    type="button">
-                    <svg width="16px" height="16px">
-                      <use xlink:href="../../../assets/images/sprite.svg#wishlist-16"></use>
-                    </svg>
-                    <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span></button>
-                  <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare" type="button">
-                    <svg width="16px" height="16px">
-                      <use xlink:href="../../../assets/images/sprite.svg#compare-16"></use>
-                    </svg>
-                    <span class="fake-svg-icon fake-svg-icon--compare-16"></span></button>
                 </div>
               </div>
             </div>
           </div>
           <div *ngIf="categoryProducts[5]" class="block-products__list-item">
             <div class="product-card">
-              <button class="product-card__quickview" type="button">
-                <svg width="16px" height="16px">
-                  <use xlink:href="../../../assets/images/sprite.svg#quickview-16"></use>
-                </svg>
-                <span class="fake-svg-icon"></span></button>
-              <div class="product-card__image"><a>
+              <div class="product-card__image"><a [routerLink]="['/product', categoryProducts[5].id]">
                   <img [src]="categoryProducts[5].images[0]?.url" *ngIf="categoryProducts[5]" alt=""></a>
               </div>
               <div class="product-card__info">
-                <div class="product-card__name"><a *ngIf="categoryProducts[5]">{{categoryProducts[5].name}}</a></div>
+                <div class="product-card__name"><a *ngIf="categoryProducts[5]" [routerLink]="['/product', categoryProducts[5].id]">{{categoryProducts[5].name}}</a></div>
                 <div class="product-card__rating">
                   <div class="rating">
-                    <div class="rating__body">
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
+                    <div class="rating__body"><!--star-->
+                      <ng-template ngFor let-loop [ngForOf]="[].constructor(getAvgRate(categoryProducts[5]?.rates!)) ">
+                        <svg class="rating__star rating__star--active" width="13px" height="12px">
+                          <g class="rating__fill">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                          </g>
+                          <g class="rating__stroke">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                            </use>
+                          </g>
+                        </svg>
+                        <div class="rating__star rating__star--only-edge rating__star--active">
+                          <div class="rating__fill">
+                            <div class="fake-svg-icon"></div>
+                          </div>
+                          <div class="rating__stroke">
+                            <div class="fake-svg-icon"></div>
+                          </div>
                         </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
+                      </ng-template>
+                      <!--black star-->
+                      <ng-template ngFor let-loop [ngForOf]="[].constructor(5-getAvgRate(categoryProducts[5]?.rates!)) ">
+                        <svg class="rating__star" width="13px" height="12px">
+                          <g class="rating__fill">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                          </g>
+                          <g class="rating__stroke">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                            </use>
+                          </g>
+                        </svg>
+                        <div class="rating__star rating__star--only-edge">
+                          <div class="rating__fill">
+                            <div class="fake-svg-icon"></div>
+                          </div>
+                          <div class="rating__stroke">
+                            <div class="fake-svg-icon"></div>
+                          </div>
                         </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
+                      </ng-template>
                     </div>
                   </div>
                   <div class="product-card__rating-legend" *ngIf="categoryProducts[5]">
@@ -936,121 +636,59 @@
                     Add To
                     Cart
                   </button>
-                  <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
-                    type="button">
-                    <svg width="16px" height="16px">
-                      <use xlink:href="../../../assets/images/sprite.svg#wishlist-16"></use>
-                    </svg>
-                    <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span></button>
-                  <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare" type="button">
-                    <svg width="16px" height="16px">
-                      <use xlink:href="../../../assets/images/sprite.svg#compare-16"></use>
-                    </svg>
-                    <span class="fake-svg-icon fake-svg-icon--compare-16"></span></button>
                 </div>
               </div>
             </div>
           </div>
           <div *ngIf="categoryProducts[7]" class="block-products__list-item">
             <div class="product-card">
-              <button class="product-card__quickview" type="button">
-                <svg width="16px" height="16px">
-                  <use xlink:href="../../../assets/images/sprite.svg#quickview-16"></use>
-                </svg>
-                <span class="fake-svg-icon"></span></button>
-              <div class="product-card__image"><a>
+              <div class="product-card__image"><a [routerLink]="['/product', categoryProducts[7].id]">
                   <img [src]="categoryProducts[7].images[0]?.url" *ngIf="categoryProducts[7]" alt=""></a>
               </div>
               <div class="product-card__info">
-                <div class="product-card__name"><a *ngIf="categoryProducts[7]">{{categoryProducts[7].name}}</a></div>
+                <div class="product-card__name"><a *ngIf="categoryProducts[7]" [routerLink]="['/product', categoryProducts[7].id]">{{categoryProducts[7].name}}</a></div>
                 <div class="product-card__rating">
                   <div class="rating">
-                    <div class="rating__body">
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
+                    <div class="rating__body"><!--star-->
+                      <ng-template ngFor let-loop [ngForOf]="[].constructor(getAvgRate(categoryProducts[7]?.rates!)) ">
+                        <svg class="rating__star rating__star--active" width="13px" height="12px">
+                          <g class="rating__fill">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                          </g>
+                          <g class="rating__stroke">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                            </use>
+                          </g>
+                        </svg>
+                        <div class="rating__star rating__star--only-edge rating__star--active">
+                          <div class="rating__fill">
+                            <div class="fake-svg-icon"></div>
+                          </div>
+                          <div class="rating__stroke">
+                            <div class="fake-svg-icon"></div>
+                          </div>
                         </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
+                      </ng-template>
+                      <!--black star-->
+                      <ng-template ngFor let-loop [ngForOf]="[].constructor(5-getAvgRate(categoryProducts[7]?.rates!)) ">
+                        <svg class="rating__star" width="13px" height="12px">
+                          <g class="rating__fill">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                          </g>
+                          <g class="rating__stroke">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                            </use>
+                          </g>
+                        </svg>
+                        <div class="rating__star rating__star--only-edge">
+                          <div class="rating__fill">
+                            <div class="fake-svg-icon"></div>
+                          </div>
+                          <div class="rating__stroke">
+                            <div class="fake-svg-icon"></div>
+                          </div>
                         </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
+                      </ng-template>
                     </div>
                   </div>
                   <div class="product-card__rating-legend" *ngIf="categoryProducts[7]">
@@ -1083,121 +721,59 @@
                     Add To
                     Cart
                   </button>
-                  <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
-                    type="button">
-                    <svg width="16px" height="16px">
-                      <use xlink:href="../../../assets/images/sprite.svg#wishlist-16"></use>
-                    </svg>
-                    <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span></button>
-                  <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare" type="button">
-                    <svg width="16px" height="16px">
-                      <use xlink:href="../../../assets/images/sprite.svg#compare-16"></use>
-                    </svg>
-                    <span class="fake-svg-icon fake-svg-icon--compare-16"></span></button>
                 </div>
               </div>
             </div>
           </div>
           <div *ngIf="categoryProducts[3]" class="block-products__list-item">
             <div class="product-card">
-              <button class="product-card__quickview" type="button">
-                <svg width="16px" height="16px">
-                  <use xlink:href="../../../assets/images/sprite.svg#quickview-16"></use>
-                </svg>
-                <span class="fake-svg-icon"></span></button>
-              <div class="product-card__image"><a>
+              <div class="product-card__image"><a [routerLink]="['/product', categoryProducts[3].id]">
                   <img [src]="categoryProducts[3].images[0]?.url" *ngIf="categoryProducts[3]" alt=""></a>
               </div>
               <div class="product-card__info">
-                <div class="product-card__name"><a *ngIf="categoryProducts[3]">{{categoryProducts[3].name}}</a></div>
+                <div class="product-card__name"><a *ngIf="categoryProducts[3]" [routerLink]="['/product', categoryProducts[3].id]">{{categoryProducts[3].name}}</a></div>
                 <div class="product-card__rating">
                   <div class="rating">
-                    <div class="rating__body">
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
+                    <div class="rating__body"><!--star-->
+                      <ng-template ngFor let-loop [ngForOf]="[].constructor(getAvgRate(categoryProducts[3]?.rates!)) ">
+                        <svg class="rating__star rating__star--active" width="13px" height="12px">
+                          <g class="rating__fill">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                          </g>
+                          <g class="rating__stroke">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                            </use>
+                          </g>
+                        </svg>
+                        <div class="rating__star rating__star--only-edge rating__star--active">
+                          <div class="rating__fill">
+                            <div class="fake-svg-icon"></div>
+                          </div>
+                          <div class="rating__stroke">
+                            <div class="fake-svg-icon"></div>
+                          </div>
                         </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
+                      </ng-template>
+                      <!--black star-->
+                      <ng-template ngFor let-loop [ngForOf]="[].constructor(5-getAvgRate(categoryProducts[3]?.rates!)) ">
+                        <svg class="rating__star" width="13px" height="12px">
+                          <g class="rating__fill">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                          </g>
+                          <g class="rating__stroke">
+                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                            </use>
+                          </g>
+                        </svg>
+                        <div class="rating__star rating__star--only-edge">
+                          <div class="rating__fill">
+                            <div class="fake-svg-icon"></div>
+                          </div>
+                          <div class="rating__stroke">
+                            <div class="fake-svg-icon"></div>
+                          </div>
                         </div>
-                      </div>
-                      <svg class="rating__star rating__star--active" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge rating__star--active">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
-                      <svg class="rating__star" width="13px" height="12px">
-                        <g class="rating__fill">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                        </g>
-                        <g class="rating__stroke">
-                          <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                          </use>
-                        </g>
-                      </svg>
-                      <div class="rating__star rating__star--only-edge">
-                        <div class="rating__fill">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                        <div class="rating__stroke">
-                          <div class="fake-svg-icon"></div>
-                        </div>
-                      </div>
+                      </ng-template>
                     </div>
                   </div>
                   <div class="product-card__rating-legend" *ngIf="categoryProducts[3]">
@@ -1228,17 +804,6 @@
                     Add To
                     Cart
                   </button>
-                  <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
-                    type="button">
-                    <svg width="16px" height="16px">
-                      <use xlink:href="../../../assets/images/sprite.svg#wishlist-16"></use>
-                    </svg>
-                    <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span></button>
-                  <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare" type="button">
-                    <svg width="16px" height="16px">
-                      <use xlink:href="../../../assets/images/sprite.svg#compare-16"></use>
-                    </svg>
-                    <span class="fake-svg-icon fake-svg-icon--compare-16"></span></button>
                 </div>
               </div>
             </div>
@@ -1285,114 +850,63 @@
 
             <div *ngFor="let p of topRateProducts" class="block-product-columns__item">
               <div class="product-card product-card--layout--horizontal">
-                <button class="product-card__quickview" type="button">
-                  <svg width="16px" height="16px">
-                    <use xlink:href="../../../assets/images/sprite.svg#quickview-16"></use>
-                  </svg>
-                  <span class="fake-svg-icon"></span></button>
                 <div class="product-card__badges-list">
                   <div class="product-card__badge product-card__badge--sale badge-warning"
                     style="    background: #614ba6;   color: #fff;">Top Rate
                   </div>
                 </div>
                 <div class="product-card__image">
-                  <a>
-                    <img [src]="p.images[1]?.url" [alt]="p.name">
+                  <a [routerLink]="['/product', p.id]">
+                    <img [src]="p.images[0]?.url" [alt]="p.name">
                   </a>
                 </div>
                 <div class="product-card__info">
                   <div class="product-card__name">
-                    <a class="mb-2 badge badge-success" style=" color: white;">{{p.name}}</a><br>
+                    <a class="mb-2 badge badge-success" style=" color: white;" [routerLink]="['/product', p.id]">{{p.name}}</a><br>
                     <span>{{p.description}}</span>
                   </div>
                   <div class="product-card__rating">
                     <div class="rating">
-                      <div class="rating__body">
-                        <svg class="rating__star rating__star--active" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge rating__star--active">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
+                      <div class="rating__body"><!--star-->
+                        <ng-template ngFor let-loop [ngForOf]="[].constructor(getAvgRate(p?.rates!)) ">
+                          <svg class="rating__star rating__star--active" width="13px" height="12px">
+                            <g class="rating__fill">
+                              <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                            </g>
+                            <g class="rating__stroke">
+                              <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                              </use>
+                            </g>
+                          </svg>
+                          <div class="rating__star rating__star--only-edge rating__star--active">
+                            <div class="rating__fill">
+                              <div class="fake-svg-icon"></div>
+                            </div>
+                            <div class="rating__stroke">
+                              <div class="fake-svg-icon"></div>
+                            </div>
                           </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
+                        </ng-template>
+                        <!--black star-->
+                        <ng-template ngFor let-loop [ngForOf]="[].constructor(5-getAvgRate(p?.rates!)) ">
+                          <svg class="rating__star" width="13px" height="12px">
+                            <g class="rating__fill">
+                              <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                            </g>
+                            <g class="rating__stroke">
+                              <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                              </use>
+                            </g>
+                          </svg>
+                          <div class="rating__star rating__star--only-edge">
+                            <div class="rating__fill">
+                              <div class="fake-svg-icon"></div>
+                            </div>
+                            <div class="rating__stroke">
+                              <div class="fake-svg-icon"></div>
+                            </div>
                           </div>
-                        </div>
-                        <svg class="rating__star rating__star--active" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge rating__star--active">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                        </div>
-                        <svg class="rating__star rating__star--active" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge rating__star--active">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                        </div>
-                        <svg class="rating__star" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                        </div>
-                        <svg class="rating__star" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                        </div>
+                        </ng-template>
                       </div>
                     </div>
                     <div class="product-card__rating-legend">{{p.rates.length}}</div>
@@ -1416,18 +930,6 @@
                       class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">Add
                       To Cart
                     </button>
-                    <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
-                      type="button">
-                      <svg width="16px" height="16px">
-                        <use xlink:href="../../../assets/images/sprite.svg#wishlist-16"></use>
-                      </svg>
-                      <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span></button>
-                    <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare"
-                      type="button">
-                      <svg width="16px" height="16px">
-                        <use xlink:href="../../../assets/images/sprite.svg#compare-16"></use>
-                      </svg>
-                      <span class="fake-svg-icon fake-svg-icon--compare-16"></span></button>
                   </div>
                 </div>
               </div>
@@ -1443,112 +945,61 @@
           <div class="block-product-columns__column">
             <div *ngFor="let best of bestOfferProducts" class="block-product-columns__item">
               <div class="product-card product-card--layout--horizontal">
-                <button class="product-card__quickview" type="button">
-                  <svg width="16px" height="16px">
-                    <use xlink:href="../../../assets/images/sprite.svg#quickview-16"></use>
-                  </svg>
-                  <span class="fake-svg-icon"></span></button>
                 <div class="product-card__badges-list">
                   <div class="product-card__badge product-card__badge--sale "
                     style=" background: #dc3545; color: #fff;">Offers</div>
                 </div>
                 <div class="product-card__image">
-                  <a>
-                    <img [src]="best.images[1]?.url" alt=""></a>
+                  <a [routerLink]="['/product', best.id]">
+                    <img [src]="best.images[0]?.url" alt=""></a>
                 </div>
                 <div class="product-card__info">
                   <div class="product-card__name">
-                    <a class=" mb-2 badge badge-success" style="color: white;">{{best.name}}</a><br>
+                    <a class=" mb-2 badge badge-success" style="color: white;" [routerLink]="['/product', best.id]">{{best.name}}</a><br>
                     <a>{{best.description}}</a>
                   </div>
                   <div class="product-card__rating">
                     <div class="rating">
-                      <div class="rating__body">
-                        <svg class="rating__star rating__star--active" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge rating__star--active">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
+                      <div class="rating__body"><!--star-->
+                        <ng-template ngFor let-loop [ngForOf]="[].constructor(getAvgRate(best?.rates!)) ">
+                          <svg class="rating__star rating__star--active" width="13px" height="12px">
+                            <g class="rating__fill">
+                              <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                            </g>
+                            <g class="rating__stroke">
+                              <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                              </use>
+                            </g>
+                          </svg>
+                          <div class="rating__star rating__star--only-edge rating__star--active">
+                            <div class="rating__fill">
+                              <div class="fake-svg-icon"></div>
+                            </div>
+                            <div class="rating__stroke">
+                              <div class="fake-svg-icon"></div>
+                            </div>
                           </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
+                        </ng-template>
+                        <!--black star-->
+                        <ng-template ngFor let-loop [ngForOf]="[].constructor(5-getAvgRate(best?.rates!)) ">
+                          <svg class="rating__star" width="13px" height="12px">
+                            <g class="rating__fill">
+                              <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                            </g>
+                            <g class="rating__stroke">
+                              <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                              </use>
+                            </g>
+                          </svg>
+                          <div class="rating__star rating__star--only-edge">
+                            <div class="rating__fill">
+                              <div class="fake-svg-icon"></div>
+                            </div>
+                            <div class="rating__stroke">
+                              <div class="fake-svg-icon"></div>
+                            </div>
                           </div>
-                        </div>
-                        <svg class="rating__star rating__star--active" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge rating__star--active">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                        </div>
-                        <svg class="rating__star rating__star--active" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge rating__star--active">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                        </div>
-                        <svg class="rating__star" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                        </div>
-                        <svg class="rating__star" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                        </div>
+                        </ng-template>
                       </div>
                     </div>
                     <div class="product-card__rating-legend">{{best.rates.length}}</div>
@@ -1573,18 +1024,6 @@
                       class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">Add
                       To Cart
                     </button>
-                    <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
-                      type="button">
-                      <svg width="16px" height="16px">
-                        <use xlink:href="../../../assets/images/sprite.svg#wishlist-16"></use>
-                      </svg>
-                      <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span></button>
-                    <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare"
-                      type="button">
-                      <svg width="16px" height="16px">
-                        <use xlink:href="../../../assets/images/sprite.svg#compare-16"></use>
-                      </svg>
-                      <span class="fake-svg-icon fake-svg-icon--compare-16"></span></button>
                   </div>
                 </div>
               </div>
@@ -1601,111 +1040,60 @@
 
             <div *ngFor="let rateProduct of topRateProducts" class="block-product-columns__item">
               <div class="product-card product-card--layout--horizontal">
-                <button class="product-card__quickview" type="button">
-                  <svg width="16px" height="16px">
-                    <use xlink:href="../../../assets/images/sprite.svg#quickview-16"></use>
-                  </svg>
-                  <span class="fake-svg-icon"></span></button>
                 <div class="product-card__badges-list">
                   <div class="product-card__badge product-card__badge--sale">Sale</div>
                 </div>
                 <div class="product-card__image">
-                  <a>
-                    <img [src]="rateProduct.images[1]?.url" alt=""></a>
+                  <a [routerLink]="['/product', rateProduct.id]">
+                    <img [src]="rateProduct.images[0]?.url" alt=""></a>
                 </div>
                 <div class="product-card__info">
                   <div class="product-card__name">
-                    <a class=" mt-2 badge badge-success" style="color: white;">{{rateProduct.name}}</a><br>
+                    <a class=" mt-2 badge badge-success" style="color: white;" [routerLink]="['/product', rateProduct.id]">{{rateProduct.name}}</a><br>
                     <span> {{rateProduct.description}}</span>
                   </div>
                   <div class="product-card__rating">
                     <div class="rating">
-                      <div class="rating__body">
-                        <svg class="rating__star rating__star--active" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge rating__star--active">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
+                      <div class="rating__body"><!--star-->
+                        <ng-template ngFor let-loop [ngForOf]="[].constructor(getAvgRate(rateProduct?.rates!)) ">
+                          <svg class="rating__star rating__star--active" width="13px" height="12px">
+                            <g class="rating__fill">
+                              <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                            </g>
+                            <g class="rating__stroke">
+                              <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                              </use>
+                            </g>
+                          </svg>
+                          <div class="rating__star rating__star--only-edge rating__star--active">
+                            <div class="rating__fill">
+                              <div class="fake-svg-icon"></div>
+                            </div>
+                            <div class="rating__stroke">
+                              <div class="fake-svg-icon"></div>
+                            </div>
                           </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
+                        </ng-template>
+                        <!--black star-->
+                        <ng-template ngFor let-loop [ngForOf]="[].constructor(5-getAvgRate(rateProduct?.rates!)) ">
+                          <svg class="rating__star" width="13px" height="12px">
+                            <g class="rating__fill">
+                              <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
+                            </g>
+                            <g class="rating__stroke">
+                              <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
+                              </use>
+                            </g>
+                          </svg>
+                          <div class="rating__star rating__star--only-edge">
+                            <div class="rating__fill">
+                              <div class="fake-svg-icon"></div>
+                            </div>
+                            <div class="rating__stroke">
+                              <div class="fake-svg-icon"></div>
+                            </div>
                           </div>
-                        </div>
-                        <svg class="rating__star rating__star--active" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge rating__star--active">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                        </div>
-                        <svg class="rating__star rating__star--active" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge rating__star--active">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                        </div>
-                        <svg class="rating__star" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                        </div>
-                        <svg class="rating__star" width="13px" height="12px">
-                          <g class="rating__fill">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal"></use>
-                          </g>
-                          <g class="rating__stroke">
-                            <use xlink:href="../../../assets/images/sprite.svg#star-normal-stroke">
-                            </use>
-                          </g>
-                        </svg>
-                        <div class="rating__star rating__star--only-edge">
-                          <div class="rating__fill">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                          <div class="rating__stroke">
-                            <div class="fake-svg-icon"></div>
-                          </div>
-                        </div>
+                        </ng-template>
                       </div>
                     </div>
                     <div class="product-card__rating-legend">{{rateProduct.rates.length}}</div>
@@ -1731,18 +1119,6 @@
                       class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">Add
                       To Cart
                     </button>
-                    <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
-                      type="button">
-                      <svg width="16px" height="16px">
-                        <use xlink:href="../../../assets/images/sprite.svg#wishlist-16"></use>
-                      </svg>
-                      <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span></button>
-                    <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare"
-                      type="button">
-                      <svg width="16px" height="16px">
-                        <use xlink:href="../../../assets/images/sprite.svg#compare-16"></use>
-                      </svg>
-                      <span class="fake-svg-icon fake-svg-icon--compare-16"></span></button>
                   </div>
                 </div>
               </div>
