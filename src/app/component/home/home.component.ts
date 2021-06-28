@@ -7,6 +7,7 @@ import {CartService} from '../../service/cart/cart.service';
 import {CartItem} from '../../model/CartItem.model';
 import {AuthenticationService} from 'src/app/service/authenticate/authentication.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Rate} from '../../model/Rate.model';
 
 @Component({
   selector: 'app-home',
@@ -50,6 +51,15 @@ export class HomeComponent implements OnInit {
           // //console.error("error " ,error)
           this.notification.error(error.error.message);
         });
+    }
+  }
+
+  getAvgRate(rates: Rate[]): number {
+    if (rates !== undefined && rates !== null) {
+      const rating = Math.floor(rates.map(rate => rate.rateNumber).reduce((p, c) => p + c, 0) / rates.length);
+      return Number.isNaN(rating) ? 0 : rating;
+    } else {
+      return 0;
     }
   }
 }
