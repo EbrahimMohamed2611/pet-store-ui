@@ -135,7 +135,7 @@
               </div>
               <div class="product__rating-legend">{{product?.rates!.length}} Reviews</div>
             </div>
-            <div class="product__description">{{product?.description}}</div>
+            <div class="product__description">{{product?.description! | shortenString:100}}</div>
             <ul class="product__features">
               <li>Speed: 750 RPM</li>
               <li>Power Source: Cordless-Electric</li>

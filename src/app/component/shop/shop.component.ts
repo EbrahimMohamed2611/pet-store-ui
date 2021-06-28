@@ -6,6 +6,7 @@ import {BrandService} from 'src/app/service/brand/brand.service';
 import {CategoryService} from 'src/app/service/category/category.service';
 import {ProductService} from 'src/app/service/product/product.service';
 import {ChangeContext, LabelType, Options} from '@angular-slider/ngx-slider';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -41,7 +42,7 @@ export class ShopComponent implements OnInit {
     }
   };
 
-  constructor(private _productService: ProductService, private _categoryService: CategoryService, private _brandService: BrandService) {
+  constructor(private _productService: ProductService, private _categoryService: CategoryService, private _brandService: BrandService, private _router: Router) {
   }
 
   ngOnInit(): void {
@@ -52,8 +53,12 @@ export class ShopComponent implements OnInit {
       // console.log(error.message)
     });
     this._productService.getProducts(this.page - 1, this.pageLimit).subscribe(response => {
+      if (response !== null) {
         this.products = response.products;
         this.count = response.count;
+      } else {
+        this._router.navigateByUrl('/home');
+      }
       }
       , (error) => {
         // console.log(error.message)

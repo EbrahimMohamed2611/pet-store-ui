@@ -4,6 +4,7 @@ import {ServiceType} from 'src/app/model/ServiceType.model';
 import {ServiceTypeService} from 'src/app/service/service-type/service-type.service';
 import {ServiceService} from 'src/app/service/service/service.service';
 import {ChangeContext, LabelType, Options} from '@angular-slider/ngx-slider';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class ServicesShopComponent implements OnInit {
     }
   };
 
-  constructor(private _serviceService: ServiceService, private _typeService: ServiceTypeService) {
+  constructor(private _serviceService: ServiceService, private _typeService: ServiceTypeService, private _router: Router) {
   }
 
   ngOnInit(): void {
@@ -67,8 +68,12 @@ export class ServicesShopComponent implements OnInit {
   pageChanged(newPage: number): void {
     this.page = newPage;
     this._serviceService.getAllServices(this.page - 1, this.pageLimit).subscribe(response => {
+      if(response !== null) {
         this.services = response.services;
         this.count = response.count;
+      } else {
+        this._router.navigateByUrl('/home');
+      }
       }
       , error => console.log(error.message));
   }
