@@ -43,6 +43,7 @@ import { FailedComponent } from './component/failed/failed.component';
 import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
 import {NgxSliderModule} from '@angular-slider/ngx-slider';
 import { SearchResultComponent } from './component/search-result/search-result.component';
+import { ShortenStringPipe } from './pipe/shorten-string.pipe';
 
 export function getToken(): string {
   return localStorage.getItem('token')!;
@@ -76,7 +77,8 @@ export function getToken(): string {
     LayoutComponent,
     SuccessComponent,
     FailedComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    ShortenStringPipe
 
 
   ],
