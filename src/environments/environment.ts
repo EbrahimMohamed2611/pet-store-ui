@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:9393/api/v1/',
-  // apiUrl: 'http://petstorebackend-env.eba-g95jjqqn.us-east-2.elasticbeanstalk.com/api/v1',
   stripe: 'STRIPE_KEY',
 };
 
