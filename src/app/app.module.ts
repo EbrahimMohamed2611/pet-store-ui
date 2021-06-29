@@ -109,12 +109,12 @@ export function getToken(): string {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '150394644628-b6rfj7tbi4pv0cguooulnsomi7a4p1qv.apps.googleusercontent.com'
+              'GOOGLE_ID'
             )
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('197106415540508')
+            provider: new FacebookLoginProvider('FACEBOOK_ID')
           }
         ]
       } as SocialAuthServiceConfig,

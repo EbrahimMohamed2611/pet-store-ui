@@ -109,29 +109,29 @@
                 <tbody class="checkout__totals-products">
 
                 <tr *ngFor="let item of cartItems; let i = index;">
-                  <td>{{item.product.name}} : {{item.product.description}}</td>
-                  <td>{{item.product.price * item.quantity | currency: 'EGP':true:'2.0'}}  </td>
+                  <td>{{item.product.name}}</td>
+                  <td>{{((item.product.price * ( 1 - item.product.discount ) ) * item.quantity) | number: '1.2-2' | currency : 'EGP' : true }}  </td>
                 </tr>
 
                 </tbody>
-                <tbody class="checkout__totals-subtotals">
-                <tr>
+                <!-- <tbody class="checkout__totals-subtotals"> -->
+                <!-- <tr>
                   <th>Subtotal</th>
-                  <td>{{subTotal}}</td>
-                </tr>
+                  <td>{{subTotal | number: '1.2-2' | currency : 'EGP' : true}}</td>
+                </tr> -->
 <!--                <tr>-->
 <!--                  <th>Store Credit</th>-->
 <!--                  <td>$-20.00</td>-->
 <!--                </tr>-->
-                <tr>
+                <!-- <tr>
                   <th>Shipping</th>
                   <td>25.00 L.E</td>
-                </tr>
-                </tbody>
+                </tr> -->
+                <!-- </tbody> -->
                 <tfoot class="checkout__totals-footer">
                 <tr>
                   <th>Total</th>
-                  <td>{{subTotal}}</td>
+                  <td>{{subTotal | number: '1.2-2' | currency : 'EGP' : true}}</td>
                 </tr>
                 </tfoot>
               </table>

@@ -1,19 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {loadStripe} from '@stripe/stripe-js/pure';
-import {environment} from '../../../environments/environment';
+import { loadStripe } from '@stripe/stripe-js/pure';
+import { environment } from '../../../environments/environment';
 
 
-import {CustomerService} from "../../service/customer/customer.service";
-import {CheckoutService} from "../../service/checkout/checkout.service";
-import {Customer} from "../../model/Customer.model";
-import {HttpErrorResponse} from "@angular/common/http";
-import {ToastrService} from "ngx-toastr";
-import {ShoppingCartService} from "../../service/shoppingCart/shopping-cart.service";
-import {CartItem} from "../../model/CartItem.model";
-import {Order} from "../../model/Order.model";
-import {Router} from "@angular/router";
-import {UserService} from "../../service/user/user.service";
+import { CustomerService } from "../../service/customer/customer.service";
+import { CheckoutService } from "../../service/checkout/checkout.service";
+import { Customer } from "../../model/Customer.model";
+import { HttpErrorResponse } from "@angular/common/http";
+import { ToastrService } from "ngx-toastr";
+import { ShoppingCartService } from "../../service/shoppingCart/shopping-cart.service";
+import { CartItem } from "../../model/CartItem.model";
+import { Order } from "../../model/Order.model";
+import { Router } from "@angular/router";
+import { UserService } from "../../service/user/user.service";
+import { Address } from 'src/app/model/Address.model';
 
 
 @Component({
@@ -24,11 +25,11 @@ import {UserService} from "../../service/user/user.service";
 export class CheckoutComponent implements OnInit {
 
   constructor(private customerService: CustomerService,
-              private checkoutService: CheckoutService,
-              private shoppingCartService: ShoppingCartService,
-              private toasterService: ToastrService,
-              private router: Router,
-              private _userService:UserService
+    private checkoutService: CheckoutService,
+    private shoppingCartService: ShoppingCartService,
+    private toasterService: ToastrService,
+    private router: Router,
+    private _userService: UserService
   ) {
   }
 
@@ -56,7 +57,7 @@ export class CheckoutComponent implements OnInit {
     this.shoppingCartService.getShoppingCartForUser().subscribe((cartItems: CartItem[]) => {
       this.cartItems = cartItems;
       cartItems.forEach((item) => {
-        this.subTotal += item.quantity * item.product.price;
+        this.subTotal += item.quantity * (item.product.price * (1 - item.product.discount));
       });
       //console.log(cartItems);
     }, (error: HttpErrorResponse) => {
@@ -67,6 +68,13 @@ export class CheckoutComponent implements OnInit {
   private getCustomerDetails(): void {
     this.customerService.getCustomer(this.userId).subscribe((customer: Customer) => {
       this.customer = customer;
+      if (this.customer.address == null) {
+        this.customer.address = new Address();
+        this.customer.address.city = "";
+        this.customer.address.street = "";
+        this.customer.address.country = "";
+
+      }
       //console.log('this.customer ', this.customer);
     }, (error: HttpErrorResponse) => {
 

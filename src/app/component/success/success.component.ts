@@ -4,6 +4,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {CheckoutService} from '../../service/checkout/checkout.service';
 import {loadStripe} from '@stripe/stripe-js/pure';
 import {environment} from '../../../environments/environment';
+import { UserService } from 'src/app/service/user/user.service';
 
 @Component({
   selector: 'app-success',
@@ -12,13 +13,14 @@ import {environment} from '../../../environments/environment';
 })
 export class SuccessComponent implements OnInit {
 
-  private order: Order = new Order();
-  private userId = 1;
-
   constructor(
     private checkoutService: CheckoutService,
+    private _userService:UserService
   ) {
   }
+  private order: Order = new Order();
+  private userId = this._userService.getUserId();
+
 
   ngOnInit(): void {
     this.createOrder();
@@ -28,6 +30,7 @@ export class SuccessComponent implements OnInit {
     // tslint:disable-next-line:no-non-null-assertion
     this.order = JSON.parse(localStorage.getItem('customerOrder')!)  ;
     localStorage.removeItem('customerAddress');
+    console.log(this.order);
     this.checkoutService.createOrder(this.order, this.userId).subscribe((orderResponse: Order) => {
       //console.log(orderResponse);
     }, (error: HttpErrorResponse) => {

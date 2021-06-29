@@ -19,7 +19,7 @@ export class CustomerService {
   }
 
   getCustomer(id: number): Observable<Customer> {
-    console.log("the id ",id);
+    // console.log("the id ",id);
     return this.httpClient.get<Customer>(this.url + '/' + id);
   }
 
