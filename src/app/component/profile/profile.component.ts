@@ -2,9 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Address } from 'src/app/model/Address.model';
-import { Customer } from 'src/app/model/Customer.model';
-import { CustomerService } from 'src/app/service/customer/customer.service';
-import { UserService } from "../../service/user/user.service";
+import { UserService } from 'src/app/service/user/user.service';
+import { Customer } from '../../model/Customer.model';
+import { CustomerService } from '../../service/customer/customer.service';
 
 @Component({
   selector: 'app-profile',

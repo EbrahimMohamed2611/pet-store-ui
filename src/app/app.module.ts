@@ -31,7 +31,6 @@ import {ContactUsComponent} from './component/contact-us/contact-us.component';
 import {ShoppingCartComponent} from './component/shopping-cart/shopping-cart.component';
 import {CheckoutComponent} from './component/checkout/checkout.component';
 import {LayoutComponent} from './component/layout/layout.component';
-import { ProfileComponent } from './component/profile/profile.component';
 import {
   GoogleLoginProvider,
   FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule
@@ -44,6 +43,7 @@ import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
 import {NgxSliderModule} from '@angular-slider/ngx-slider';
 import { SearchResultComponent } from './component/search-result/search-result.component';
 import { ShortenStringPipe } from './pipe/shorten-string.pipe';
+import { ProfileComponent } from './component/profile/profile.component';
 
 export function getToken(): string {
   return localStorage.getItem('token')!;

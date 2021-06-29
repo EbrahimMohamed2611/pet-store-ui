@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-
 import { loadStripe } from '@stripe/stripe-js/pure';
 import { environment } from '../../../environments/environment';
 
-
-import { CustomerService } from "../../service/customer/customer.service";
-import { CheckoutService } from "../../service/checkout/checkout.service";
-import { Customer } from "../../model/Customer.model";
 import { HttpErrorResponse } from "@angular/common/http";
 import { ToastrService } from "ngx-toastr";
-import { ShoppingCartService } from "../../service/shoppingCart/shopping-cart.service";
-import { CartItem } from "../../model/CartItem.model";
-import { Order } from "../../model/Order.model";
-import { Router } from "@angular/router";
-import { UserService } from "../../service/user/user.service";
+import { ShoppingCartService } from 'src/app/service/shoppingCart/shopping-cart.service';
+import { CheckoutService } from 'src/app/service/checkout/checkout.service';
+import { CustomerService } from 'src/app/service/customer/customer.service';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/service/user/user.service';
+import { Customer } from 'src/app/model/Customer.model';
+import { CartItem } from 'src/app/model/CartItem.model';
+import { Order } from 'src/app/model/Order.model';
 import { Address } from 'src/app/model/Address.model';
+
 
 
 @Component({
