@@ -110,7 +110,7 @@
               </div>
               <div class="product__rating-legend">{{service?.rates?.length}} Reviews</div>
             </div>
-            <div class="product__description">{{service?.description}}</div>
+            <div class="product__description">{{service?.description! | shortenString:100}}</div>
             <ul class="product__features">
               <li>Speed: 750 RPM</li>
               <li>Power Source: Cordless-Electric</li>
@@ -142,28 +142,6 @@
                 {{service?.price | currency:'EGP':true}}
               </ng-template>
             </div>
-            <!-- .product__options -->
-            <form class="product__options">
-              <div class="form-group product__option"><label class="product__option-label"
-                                                             for="product-quantity">Quantity</label>
-                <div class="product__actions">
-                  <div class="product__actions-item">
-                    <div class="input-number product__quantity"><input id="product-quantity"
-                                                                       class="input-number__input form-control form-control-lg"
-                                                                       type="number"
-                                                                       min="1" value="1">
-                      <div class="input-number__add"></div>
-                      <div class="input-number__sub"></div>
-                    </div>
-                  </div>
-                  <div class="product__actions-item product__actions-item--addtocart">
-                    <button
-                      class="btn btn-primary btn-lg">Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </form>
           </div>
           <div class="product__footer">
             <div class="product__tags tags">
